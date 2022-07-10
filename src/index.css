@@ -556,8 +556,23 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-@media (min-width: 768px) {
-  .md\:flex {
-    display: flex;
-  }
+.flex {
+  display: flex;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-screen {
+  width: 100vw;
+}
+
+.border {
+  border-width: 1px;
+}
+
+.border-sky-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(14 165 233 / var(--tw-border-opacity));
 }
