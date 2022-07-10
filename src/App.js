@@ -1,11 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import SignIn from './components/signin';
 
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import 'firebase/compat/auth';
+
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,40 +25,12 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = firebase.initializeApp(firebaseConfig);
 
 function App() {
 
-  // Example of how to load initial data
-  // useEffect((),[]) so it does it in the beginning
-  // Remove React Strict Mode so it doesn't double invoke
-  // Call function in useEffect to load data. Then use axios and call the path with the data
-  // Remember to have a proxy set to the server in package.json
-  // set the data
-  // Don't load the page until the data is set.
-  // This works (call still works) when it's built as well
-
-  // const [myData, setMyData] = useState(null);
-
-  // const getData = async () => {
-  //   await axios.get('/rest')
-  //     .then((response) => {
-  //       setMyData(response.data);
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   getData();
-  // }, []);
-
-  // if(!myData) {
-  //   return 'loading...';
-  // } else {
-  //   console.log(myData);
-  // }
-
   return (
-    <div className="md:flex">
+    <div>
       <SignIn />
     </div>
   );
