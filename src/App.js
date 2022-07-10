@@ -1,4 +1,4 @@
-import './App.css';
+import './index.css';
 import { useEffect, useState } from 'react';
 import SignIn from './components/signin';
 
@@ -30,7 +30,7 @@ const app = firebase.initializeApp(firebaseConfig);
 function App() {
 
   return (
-    <div>
+    <div className='flex'>
       <SignIn />
     </div>
   );
