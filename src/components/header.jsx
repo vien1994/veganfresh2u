@@ -1,14 +1,29 @@
+import React from 'react'
+import './Header.css'
 
-import React from "react";
-// import logo from '../../globals/img/doof2.png';
-
-import './header.styles.scss';
-
-const Header = (props) => (
-  <div className="header">
-      <img src={logo} alt="Doofenshmirtz" className="logo"></img>
-      <div className="title">{props.children}</div>
-  </div>
-);
+function Header() {
+  return (
+    <ul className="banner">
+      <li>
+        <a href="/" id="logo">VeganFresh2U</a>
+      </li>
+      <li>
+        <a href="/about" className="navbar-item">About Us</a>
+      </li>
+      <li>
+        <a href="/menu" className="navbar-item">Menu</a>
+      </li>
+      <li>
+        <a href="/login" className="navbar-item">Sign In</a>
+      </li>
+    </ul>
+    //  <div className="banner">
+    //    <div className="navbar-item">About Us</div>
+    //    <div className="navbar-item">Menu</div>
+    //    <div className="navbar-item">Sign In</div>
+    //    <div id="logo">VeganFresh2U</div>
+    //  </div> 
+  )
+}
 
 export default Header;

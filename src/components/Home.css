@@ -1,0 +1,9 @@
+.text-overlay {
+    font-size: 80px;
+    color: rgb(9, 139, 9);
+    text-align: center;
+    position: fixed;
+    top: 10%;
+    width: 100%;
+    text-decoration:underline;
+}

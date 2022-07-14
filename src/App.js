@@ -1,12 +1,17 @@
 import './index.css';
-import { useEffect, useState } from 'react';
-import SignIn from './components/signin';
-
 // Import the functions you need from the SDKs you need
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
+import "./App.css";
+import React, { useEffect, useState } from "react";
+import SignIn from "./components/SignIn";
+import Header from "./components/Header";
+import Home from "./components/Home";
+import Footer from "./components/Footer";
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -21,18 +26,27 @@ const firebaseConfig = {
   storageBucket: "veganfresh2u.appspot.com",
   messagingSenderId: "1041425850896",
   appId: "1:1041425850896:web:b8fdaa9a30f8a5cbf12095",
-  measurementId: "G-G1F5BX8209"
+  measurementId: "G-G1F5BX8209",
 };
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 
 function App() {
-
   return (
-    <div className='flex'>
-      <SignIn />
-    </div>
+    <React.Fragment>
+      <div className="grid-container">
+        <div className="grid-item-1">
+          <Header />
+        </div>
+        <div className="grid-item-2">
+          <Home />
+        </div>
+        <div className="grid-item-3">
+          <Footer />
+        </div>
+      </div>
+    </React.Fragment>
   );
 }
 
