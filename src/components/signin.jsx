@@ -4,13 +4,24 @@ import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthPro
 import { useAuthState } from 'react-firebase-hooks/auth';
 import './SignIn.css'
 
+/**
+ * Functional component for signing in/creating users in our database using google's firebase.
+ * A user can click the button to sign in with google and it will create an account for them in our database if it doesn't alread exist.
+ * 
+ * Workflow: When signed in, the 'Sign Out' button appears. When signed out, the 'Sign in with Google' button appears.
+ */
 export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const auth = getAuth();
+  const provider = new GoogleAuthProvider();
 
-  const handleClick = () => {
-    console.log('handleclick')
+  // Check if user is signed in. Signed in - User is an object. Signed out - User is null. 
+  const [user] = useAuthState(auth);
+
+  // Create a new user with an email and password. This feature can be saved for later.
+  const createNewUser = () => {
+    console.log('Creating a new user with email & password.')
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in 
@@ -27,6 +38,33 @@ export default function SignIn() {
     });
   }
 
+  // Use firebase's function, signInWithPopup, to sign in with google.
+  const signInWithGoogle = () => {
+    console.log('Signing in with Google');
+    signInWithPopup(auth, provider)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      // ...
+    }).catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+    });
+  }
+
+  // For testing purposes. Manually view the current user details in the console.
+  const checkUser = () => {
+    console.log(auth.currentUser);
+  }
 
   return (
     <React.Fragment>
