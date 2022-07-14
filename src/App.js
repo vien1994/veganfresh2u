@@ -1,4 +1,8 @@
-import logo from "./logo.svg";
+import "./index.css";
+// Import the functions you need from the SDKs you need
+import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
+import "firebase/compat/auth";
 import "./App.css";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -62,17 +66,15 @@ function App() {
 
   return (
     <React.Fragment>
-      <div className="grid-container">
-        <div className="grid-item-1">
-          <Header />
-        </div>
+      <Header />
+      {/* <div className="grid-container">
         <div className="grid-item-2">
           <Home />
         </div>
         <div className="grid-item-3">
           <Footer />
         </div>
-      </div>
+      </div> */}
     </React.Fragment>
   );
 }
