@@ -6,7 +6,7 @@ function Home() {
   return (
     <div>
       <img src={StockCuttingBoard}></img>
-      <div className="text-overlay">Home Page Content</div>
+      <div className="homepage-text">Home Content</div>
     </div>
   )
 }

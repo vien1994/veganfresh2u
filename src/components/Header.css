@@ -1,19 +1,15 @@
 .header-container {
+    position: fixed;
     display: flex;
     justify-content: space-between;
     height: 4.5rem;
-    background-color: rgb(204, 204, 204);
+    width: 100%;
+    background-color: rgb(245, 245, 245);
 }
-
-/* .banner {
-    display: flex;
-    justify-content: flex-end;
-    position: fixed; 
-} */
 
 #logo {  
     align-self: center;
-    padding-left: 1rem;
+    padding-left: 3rem;
     font-size: 2rem;
     cursor: pointer;
     color: rgb(76, 175, 76);
@@ -29,7 +25,3 @@
     font-weight: 550;
     margin: 1rem;
 }
-
-/* Make the header component a 
-separate fixed layer, have a grid inside 
-to layout the logo and list within */

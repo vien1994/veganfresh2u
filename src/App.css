@@ -1,14 +1,15 @@
 .grid-container {
     display: grid;
+    padding-top: 4.5rem;
     width: 100vw;
     height: 100vh;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 5rem 1fr 1fr 1fr;
-    overflow: scroll;
+    grid-template-rows: repeat(4, 1fr);
 }
 
 /* Header */
  .grid-item-1 {
+    display: grid;
     grid-row-start: 1;
     grid-row-end: 2;
     grid-column-start: 1;
