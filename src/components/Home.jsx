@@ -4,8 +4,8 @@ import './Home.css'
 
 function Home() {
   return (
-    <div>
-      <img src={StockCuttingBoard}></img>
+    <div className="home-wrapper">
+      <img className="home-image" src={StockCuttingBoard}></img>
       <div className="homepage-text">Home Content</div>
     </div>
   )

@@ -3,8 +3,8 @@
     padding-top: 4.5rem;
     width: 100vw;
     height: 100vh;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
 }
 
 /* Header */

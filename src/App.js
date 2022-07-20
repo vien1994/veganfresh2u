@@ -40,14 +40,12 @@ function App() {
       <Header />
 
       <div className="grid-container">
-        <div className="grid-item-1">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<AboutUs />} />
-            <Route path="/menu" element={<Menu />} />
-          </Routes>
-          {/* <Home /> */}
-        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/menu" element={<Menu />} />
+        </Routes>
+        {/* <Home /> */}
       </div>
       {/* <div className="grid-container">
         <div className="grid-item-2">
