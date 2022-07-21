@@ -1,14 +1,13 @@
 import React from 'react'
-import './Header.css'
 import SignIn from './SignIn';
 
 function Header() {
   return (
-    <div className="header-container banner">
-     <div id="logo">VeganFresh2U</div>
-      <div className="navbar">
-        <a href='/about' className="navbar-item">About Us</a>
-        <a href='/menu' className="navbar-item">Menu</a>
+    <div className="header-container">
+     <a href="/" className="self-center pl-12 text-4xl text-green-500 cursor-pointer" >VeganFresh2U</a>
+      <div className="flex items-center">
+        <a href='/about' className="m-4 font-semibold">About Us</a>
+        <a href='/menu' className="m-4 font-semibold">Menu</a>
         <SignIn />
       </div>         
      </div> 

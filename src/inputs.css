@@ -2,9 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-    
-    .header-container {
-        @apply fixed flex justify-between w-18 ;
-    }
-}

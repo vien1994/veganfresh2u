@@ -38,23 +38,14 @@ function App() {
   return (
     <React.Fragment>
       <Header />
-
-      <div className="grid-container">
+      <div className="grid w-full h-full grid-cols-6 grid-rows-6 pt-24">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/menu" element={<Menu />} />
         </Routes>
-        {/* <Home /> */}
       </div>
-      {/* <div className="grid-container">
-        <div className="grid-item-2">
-          <Home />
-        </div>
-        <div className="grid-item-3">
-          <Footer />
-        </div>
-      </div> */}
+      <Footer />
     </React.Fragment>
   );
 }
