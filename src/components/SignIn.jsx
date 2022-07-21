@@ -14,6 +14,8 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
+  const [isAdmin, setIsAdmin] = useState(false);
+
 
   // Check if user is signed in. Signed in - User is an object. Signed out - User is null. 
   const [user] = useAuthState(auth);
@@ -48,6 +50,18 @@ export default function SignIn() {
       // The signed-in user info.
       const user = result.user;
       // ...
+
+      auth.currentUser.getIdTokenResult()
+      .then((idTokenResult) => {
+        if (!!idTokenResult.claims.admin) {
+          // Show admin UI.
+          setIsAdmin(true);
+        } else {
+          // Show regular user UI.
+          setIsAdmin(false);
+        }
+      })
+
     }).catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
@@ -62,8 +76,22 @@ export default function SignIn() {
 
   // For testing purposes. Manually view the current user details in the console.
   const checkUser = () => {
+    // Log basic user info
     console.log(auth.currentUser);
+    
+    // Log if a user is an admin or not
+    auth.currentUser.getIdTokenResult()
+      .then((idTokenResult) => {
+        if (!!idTokenResult.claims.admin) {
+          // Show admin UI.
+          console.log('Is an admin.')
+        } else {
+          // Show regular user UI.
+          console.log('Not an admin.')
+        }
+      })
   }
+
 
   return (
     <React.Fragment>
