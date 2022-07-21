@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import firebase from 'firebase/compat/app';
 import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import './SignIn.css'
 
 /**
  * Functional component for signing in/creating users in our database using google's firebase.
@@ -72,11 +71,11 @@ export default function SignIn() {
       {user ? 
         <React.Fragment>
           {/* <p>Welcome {user.displayName}</p> */}
-          <button className="navbar-item" onClick={() => auth.signOut()}>Sign Out</button> 
+          <button className="m-4 font-semibold pr-4" onClick={() => auth.signOut()}>Sign Out</button> 
         </React.Fragment>
         : 
         <React.Fragment>
-          <button className="navbar-item" onClick={signInWithGoogle}>Sign in with Google</button>
+          <button className="m-4 font-semibold pr-4" onClick={signInWithGoogle}>Sign in with Google</button>
           {/* Save sign in with email as a later feature */}
           {/* <button>Sign in with email</button> */}
         </React.Fragment>

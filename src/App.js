@@ -5,10 +5,12 @@ import "firebase/compat/firestore";
 import "firebase/compat/auth";
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import SignIn from "./components/SignIn";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
+import { Routes, Route } from "react-router-dom";
+import AboutUs from "./components/AboutUs";
+import Menu from "./components/Menu";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -36,14 +38,14 @@ function App() {
   return (
     <React.Fragment>
       <Header />
-      {/* <div className="grid-container">
-        <div className="grid-item-2">
-          <Home />
-        </div>
-        <div className="grid-item-3">
-          <Footer />
-        </div>
-      </div> */}
+      <div className="grid w-full h-full grid-cols-6 grid-rows-6 pt-24">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/menu" element={<Menu />} />
+        </Routes>
+      </div>
+      <Footer />
     </React.Fragment>
   );
 }
