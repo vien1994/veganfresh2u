@@ -2,8 +2,9 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div className="grid-col-4 grid-row-1 relative bottom-0">
-      Pho Fresh 123 Address
+    <div className="grid-col-4 grid-row-2 relative bg-slate-300">
+      <div>Pho Fresh</div>
+      <div> 123 Address</div>
     </div>
   )
 }
