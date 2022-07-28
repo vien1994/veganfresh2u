@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import { Routes, Route } from "react-router-dom";
 import AboutUs from "./components/AboutUs";
 import Menu from "./components/Menu";
+import Pricing from "./components/Pricing";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -43,6 +44,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/menu" element={<Menu />} />
+          <Route path="/pricing" element={<Pricing />} />
         </Routes>
       </div>
       <Footer />

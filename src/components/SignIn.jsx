@@ -99,11 +99,11 @@ export default function SignIn() {
       {user ? 
         <React.Fragment>
           {/* <p>Welcome {user.displayName}</p> */}
-          <button className="m-4 font-semibold pr-4" onClick={() => auth.signOut()}>Sign Out</button> 
+          <button className="navbar-items-sm sm:pr-4" onClick={() => auth.signOut()}>Sign Out</button> 
         </React.Fragment>
         : 
         <React.Fragment>
-          <button className="m-4 font-semibold pr-4" onClick={signInWithGoogle}>Sign in with Google</button>
+          <button className="navbar-items-sm sm:pr-4" onClick={signInWithGoogle}>Sign in with Google</button>
           {/* Save sign in with email as a later feature */}
           {/* <button>Sign in with email</button> */}
         </React.Fragment>
