@@ -2,6 +2,7 @@ import React from 'react'
 import SignIn from '../SignIn';
 import HeaderCart from '../Cart/HeaderCart';
 import { Link } from "react-router-dom";
+import { Spin as Hamburger } from 'hamburger-react'
 
 function Header() {
   return (
@@ -9,7 +10,12 @@ function Header() {
     // until screen size of 640px is reached, then 
     // all the 'sm' styles will be active
     <div className="header-container-sm flex justify-evenly h-24 w-screen bg-white border-gray-300 border-b-2 font-sans text-slate-500 overflow-x-hidden">
-      <div className="sm:hidden self-center p-4 font-medium cursor-pointer">Dropdown</div>    
+      {/* Hamburger Icon - Appears only when the screen is mobile size */}
+      <div className="space-y-2 sm:hidden self-center p-4 font-medium cursor-pointer">
+        <div className="w-8 h-0.5 bg-gray-600"></div>
+        <div className="w-8 h-0.5 bg-gray-600"></div>
+        <div className="w-8 h-0.5 bg-gray-600"></div>
+      </div>
       <Link to="/" className="logo-sm text-3xl text-green-500 font-bold self-center cursor-pointer" >VeganFresh2U</Link>
       <div className="hidden sm:flex sm:items-center">
         <Link to='/about' className="navbar-items-sm">ABOUT US</Link>

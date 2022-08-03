@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import firebase from 'firebase/compat/app';
 import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useAuthState } from 'react-firebase-hooks/auth';
 

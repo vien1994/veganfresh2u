@@ -1,5 +1,5 @@
 import React from 'react'
-import StockCuttingBoard from './StockCuttingBoard.jpg'
+import StockCuttingBoard from '../img/StockCuttingBoard.jpg';
 
 function Home() {
   return (
