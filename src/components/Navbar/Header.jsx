@@ -2,7 +2,6 @@ import React from 'react'
 import SignIn from '../SignIn';
 import HeaderCart from '../Cart/HeaderCart';
 import { Link } from "react-router-dom";
-import { Spin as Hamburger } from 'hamburger-react'
 
 function Header() {
   return (
