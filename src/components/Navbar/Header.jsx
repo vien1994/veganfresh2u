@@ -1,6 +1,7 @@
 import React from 'react'
 import SignIn from '../SignIn';
 import HeaderCart from '../Cart/HeaderCart';
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -11,9 +12,9 @@ function Header() {
       <div className="sm:hidden self-center p-4 font-medium cursor-pointer">Dropdown</div>    
      <a href="/" className="logo-sm pl-12 text-4xl text-green-500 self-center cursor-pointer" >VeganFresh2U</a>
       <div className="hidden sm:flex sm:items-center">
-        <a href='/about' className="navbar-items-sm">About Us</a>
-        <a href="/pricing" className="navbar-items-sm" >Pricing</a>
-        <div><a href="/menu" className="navbar-items-sm">Menu</a></div>
+        <Link to='/about' className="navbar-items-sm">About Us</Link>
+        <Link to="/pricing" className="navbar-items-sm" >Pricing</Link>
+        <Link to="/menu" className="navbar-items-sm">Menu</Link>
         <SignIn />
         <HeaderCart />
       </div>
