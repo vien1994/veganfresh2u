@@ -42,7 +42,7 @@ function App() {
     <React.Fragment>
       {/* <Cart /> */}
       <Header />
-      <div className="grid w-full h-full grid-cols-6 grid-rows-6 pt-24">
+      <div className="grid w-full h-full grid-cols-6 grid-rows-6 sm:pt-24">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
