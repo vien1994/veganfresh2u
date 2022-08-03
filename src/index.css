@@ -15,7 +15,7 @@
 @layer components {
     
   .header-container-sm {
-      @apply sm:fixed sm:flex sm:justify-between sm:h-24 sm:w-screen sm:bg-gray-100  sm:border-gray-300 sm:border-b-2;
+      @apply sm:fixed sm:flex sm:justify-between sm:h-24 sm:w-screen sm:bg-white  sm:border-gray-300 sm:border-b-2;
   }
 
   .navbar-items-sm {
