@@ -9,5 +9,5 @@ function Input(props) {
     </div>
   )
 }
-
+// Are props allowed in a functional component
 export default Input;

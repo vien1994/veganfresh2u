@@ -18,7 +18,6 @@ function Header() {
         <HeaderCart />
       </div>
       <div className="sm:hidden self-center"><SignIn /></div>
-      <div></div>
      </div> 
   )
 }
