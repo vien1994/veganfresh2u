@@ -6,7 +6,7 @@
     overflow: auto;
   }
   
-  .total-price {
+  .total {
     display: flex;
     justify-content: space-between;
     align-items: center;
