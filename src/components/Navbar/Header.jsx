@@ -3,7 +3,7 @@ import SignIn from '../SignIn';
 import HeaderCart from '../Cart/HeaderCart';
 import { Link } from "react-router-dom";
 
-function Header() {
+function Header(props) {
   return (
     // All the following styles will be ran as default
     // until screen size of 640px is reached, then 
@@ -21,7 +21,7 @@ function Header() {
         <Link to="/pricing" className="navbar-items-sm" >PRICING</Link>
         <Link to="/menu" className="navbar-items-sm">MENU</Link>
         <SignIn />
-        <HeaderCart />
+        <HeaderCart onClick={props.onShowCart} />
       </div>
       <div className="sm:hidden self-center"><SignIn /></div>
      </div> 
