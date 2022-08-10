@@ -7,13 +7,14 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 
-function Header() {
+function Header(props) {
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
 
   // Execute code whenever the hamburger is clicked
   useEffect(() => {
 
   }, [hamburgerOpen]);
+
 
   return (
     // All the following styles will be ran as default
@@ -31,7 +32,7 @@ function Header() {
         <Link to="/pricing" className="navbar-items-sm" >PRICING</Link>
         <Link to="/menu" className="navbar-items-sm">MENU</Link>
         <SignIn />
-        <HeaderCart />
+        <HeaderCart onClick={props.onShowCart} />
       </div>
       <div className="sm:hidden self-center"><SignIn /></div>
      </div> 

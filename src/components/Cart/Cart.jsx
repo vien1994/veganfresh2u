@@ -1,23 +1,43 @@
-import { toContainHTML } from "@testing-library/jest-dom/dist/matchers";
+import { useContext } from 'react';
 import React from "react";
 import "./Cart.css";
+import CartItem from './CartItem';
 import Modal from './Modal'
+import CartContext from '../../store/cart-context';
 
 function Cart(props) {
-    const cartItems = (<ul className="cart-items">{[ 
-        {id:'c1', name: 'Glazed Tofu', quantity: 4, price: 12.99}
-    ].map((item) => (<li>{item.name}</li>))}</ul>);
+    const cartCtx = useContext(CartContext);
+
+    const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
+    const hasItems = cartCtx.items.length > 0;
+
+    const cartItemRemoveHandler = id => {};
+
+    const cartItemAddHandler = item => {};
+
+    const cartItems = (
+      <ul className="cart-items">{cartCtx.items.map((item) => (
+        <CartItem 
+        key={item.id}
+        name={item.name} 
+        amount={item.amount}
+        price={item.price} 
+        onRemove={cartItemRemoveHandler.bind(null,item.id)} 
+        onAdd={cartItemAddHandler.bind(null, item)} 
+        />
+      ))}</ul>
+    );
 
   return (
-  <Modal>
+  <Modal onClose={props.onClose} >
     {cartItems}
     <div className="total">
         <span>Total Amount</span>
-        <span>$69.420</span>
+        <span>{totalAmount}</span>
     </div>
     <div className="actions">
-        <button className="button--alt">Close</button>
-        <button className="button">Place Order</button>
+        <button className="button--alt" onClick={props.onClose} >Close</button>
+        {hasItems && <button className="button">Place Order</button>}
     </div>
   </Modal>
   )
