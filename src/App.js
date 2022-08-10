@@ -17,6 +17,7 @@ import Pricing from "./components/Navbar/Pricing";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import CartProvider from "./store/CartProvider";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -38,10 +39,20 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 
 function App() {
+  const [cartIsShown, setCartIsShown] = useState(false);
+
+  const showCartHandler = () => {
+    setCartIsShown(true);
+  };
+
+  const hideCartHandler = () => {
+    setCartIsShown(false);
+  };
+
   return (
-    <React.Fragment>
-      {/* <Cart /> */}
-      <Header />
+    <CartProvider>
+      {cartIsShown && <Cart onClose={hideCartHandler} />}
+      <Header onShowCart={showCartHandler} />
       <div className="grid w-full h-full grid-cols-6 grid-rows-6 sm:pt-24">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -51,7 +62,7 @@ function App() {
         </Routes>
       </div>
       <Footer />
-    </React.Fragment>
+    </CartProvider>
   );
 }
 
