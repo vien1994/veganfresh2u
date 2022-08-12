@@ -32,6 +32,8 @@ function Cart(props) {
       ))}</ul>
     );
 
+    console.log({cartCtx});
+
   return (
   <Modal onClose={props.onClose} >
     {cartItems}
