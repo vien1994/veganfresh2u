@@ -1,10 +1,7 @@
 import "./index.css";
 // Import the functions you need from the SDKs you need
-import firebase from "firebase/compat/app";
-import "firebase/compat/firestore";
-import "firebase/compat/auth";
-import "./App.css";
-import React, { useEffect, useState } from "react";
+import { getFirestore } from "firebase/firestore";
+import React, { useState } from "react";
 import Header from "./components/Navbar/Header";
 import AboutUs from "./components/Navbar/AboutUs";
 import Home from "./components/Home";
@@ -36,7 +33,9 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app);
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -51,7 +50,7 @@ function App() {
 
   return (
     <CartProvider>
-      {cartIsShown && <Cart onClose={hideCartHandler} />}
+      {cartIsShown && <Cart onClose={hideCartHandler} db={db} />}
       <Header onShowCart={showCartHandler} />
       <div className="grid w-full h-full grid-cols-6 grid-rows-6 sm:pt-24">
         <Routes>
