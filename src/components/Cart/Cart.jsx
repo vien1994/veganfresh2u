@@ -4,7 +4,7 @@ import "./Cart.css";
 import CartItem from './CartItem';
 import Modal from './Modal'
 import CartContext from '../../store/cart-context';
-import { doc, setDoc } from "firebase/firestore"; 
+import { collection, addDoc } from "firebase/firestore"; 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from "firebase/auth";
 
@@ -40,16 +40,26 @@ function Cart(props) {
       ))}</ul>
     );
 
-    console.log({cartCtx});
+    console.log(db);
 
-    
+    const dummyOrder = {
+      total: 32.33,
+      order1: {
+        foodID: "1",
+        qty: 2
+      },
+      order2: {
+        foodID:"2",
+        qty: 1
+      },
+      status: "order placed"
+    }
+
+
     const placeOrder = async () => {
       console.log("placing order to: ", db);
-      // Add a new document in collection "cities"
-      await setDoc(doc(db, `orders/${user.uid}`), {
-        total: 22.99,
-        state: "CA",
-      });
+      // Create a new record in the orders table. Ensure that a UID is included in the order to keep track of all orders.
+      await addDoc(collection(db, `orders`), dummyOrder);
     }
 
   return (
