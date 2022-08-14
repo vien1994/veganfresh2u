@@ -4,7 +4,7 @@ import "./Cart.css";
 import CartItem from './CartItem';
 import Modal from './Modal'
 import CartContext from '../../store/cart-context';
-import { collection, addDoc, serverTimestamp } from "firebase/firestore"; 
+import { collection, getDoc, addDoc, setDoc, doc, serverTimestamp } from "firebase/firestore"; 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from "firebase/auth";
 
@@ -42,7 +42,7 @@ function Cart(props) {
 
 
     const dummyOrder = {
-      total: 50,
+      total: 52,
       order1: {
         foodID: "1", //Need a database for food to reference ID
         qty: 2
@@ -58,17 +58,53 @@ function Cart(props) {
       payment_succeeded: false // Make this dynamic
     }
 
+    const checkIfUserOrderIDExists = async (userID) => {
+      const docRef = doc(db, "orders", userID);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+      } else {
+        // doc.data() will be undefined in this case and does not exist
+        return false;
+      }
+
+      return true;
+
+    }
+
 
     // Writes order to DB. Need to implement validation. Did order go through?
     const placeOrder = async () => {
       console.log("placing order...");
-      // Create a new record in the orders table. Ensure that a UID is included in the order to keep track of all orders.
-      try {
-        await addDoc(collection(db, `orders`), dummyOrder);
-        console.log('order placed');
-      } catch (error) {
-        console.log(error);
+
+      // If the user does not have a record (document) in the orders table, create an empty one for them. Then create a subcollection, transactions, to store the actual order data.
+      const userOrderIDExists = await checkIfUserOrderIDExists(user.uid);
+      console.log("Does user exist: ",userOrderIDExists)
+
+      if(!userOrderIDExists) {
+        try {
+            // Create the record for the user in the orders table
+            await setDoc(doc(db, `orders/${user.uid}/transactions/1`), dummyOrder);
+            console.log('created user record in orders table');
+
+          } catch (error) {
+            console.log(error);
+          }
+      } else {
+        // WORK IN PROGRESS
+        console.log("UserOrderID Already exists. Need to add more data")
+        try {
+          await addDoc(collection(db, `orders/${user.uid}/transactions`), dummyOrder);
+          console.log('order placed');
+        } catch (error) {
+          console.log(error);
+        }
       }
+
+
+      // Create a new record in the orders table. Ensure that a UID is included in the order to keep track of all orders.
+   
       
     }
 
