@@ -59,17 +59,20 @@ function Cart(props) {
     }
 
     const checkIfUserOrderIDExists = async (userID) => {
-      const docRef = doc(db, "orders", userID);
+      const docRef = doc(db, `orders/${userID}/transactions/1`);
+
       const docSnap = await getDoc(docRef);
+
+      console.log(docSnap)
 
       if (docSnap.exists()) {
         console.log("Document data:", docSnap.data());
+        return true;
       } else {
         // doc.data() will be undefined in this case and does not exist
         return false;
       }
 
-      return true;
 
     }
 
@@ -95,8 +98,8 @@ function Cart(props) {
         // WORK IN PROGRESS
         console.log("UserOrderID Already exists. Need to add more data")
         try {
-          await addDoc(collection(db, `orders/${user.uid}/transactions`), dummyOrder);
-          console.log('order placed');
+          // await addDoc(collection(db, `orders/${user.uid}/transactions`), dummyOrder);
+
         } catch (error) {
           console.log(error);
         }
