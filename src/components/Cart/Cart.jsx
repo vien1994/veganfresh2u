@@ -4,7 +4,7 @@ import "./Cart.css";
 import CartItem from './CartItem';
 import Modal from './Modal'
 import CartContext from '../../store/cart-context';
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"; 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from "firebase/auth";
 
@@ -40,26 +40,36 @@ function Cart(props) {
       ))}</ul>
     );
 
-    console.log(db);
 
     const dummyOrder = {
-      total: 32.33,
+      total: 50,
       order1: {
-        foodID: "1",
+        foodID: "1", //Need a database for food to reference ID
         qty: 2
       },
       order2: {
-        foodID:"2",
+        foodID:"2", 
         qty: 1
       },
-      status: "order placed"
+      status: "order placed", // Need to figure out what status we want to use
+      date: serverTimestamp(), //Timestamp
+      uid: user.uid,  // Keep track of WHOSE order it is - Need user table and address info
+      customer_id: "", //ID from Stripe payment processing company
+      payment_succeeded: false // Make this dynamic
     }
 
 
+    // Writes order to DB. Need to implement validation. Did order go through?
     const placeOrder = async () => {
-      console.log("placing order to: ", db);
+      console.log("placing order...");
       // Create a new record in the orders table. Ensure that a UID is included in the order to keep track of all orders.
-      await addDoc(collection(db, `orders`), dummyOrder);
+      try {
+        await addDoc(collection(db, `orders`), dummyOrder);
+        console.log('order placed');
+      } catch (error) {
+        console.log(error);
+      }
+      
     }
 
   return (
