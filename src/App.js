@@ -1,29 +1,20 @@
+import { Routes, Route } from "react-router-dom";
+import React, { useState } from "react";
 import "./index.css";
-// Import the functions you need from the SDKs you need
-import firebase from "firebase/compat/app";
-import "firebase/compat/firestore";
-import "firebase/compat/auth";
-import "./App.css";
-import React, { useEffect, useState } from "react";
 import Header from "./components/Navbar/Header";
 import AboutUs from "./components/Navbar/AboutUs";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
 import Cart from "./components/Cart/Cart";
-import { Routes, Route } from "react-router-dom";
-
+import CartProvider from "./store/CartProvider";
 import Menu from "./components/Menu/Menu";
 import Pricing from "./components/Navbar/Pricing";
 
-// Import the functions you need from the SDKs you need
+// Import the firebase functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import CartProvider from "./store/CartProvider";
+import { getFirestore } from "firebase/firestore";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+//Set up firebase configurations
 const firebaseConfig = {
   apiKey: "AIzaSyDIUoDfxR18I6_VwMcy8QXD_pnKrserdFg",
   authDomain: "veganfresh2u.firebaseapp.com",
@@ -36,7 +27,10 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app);
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -51,7 +45,7 @@ function App() {
 
   return (
     <CartProvider>
-      {cartIsShown && <Cart onClose={hideCartHandler} />}
+      {cartIsShown && <Cart onClose={hideCartHandler} db={db} />}
       <Header onShowCart={showCartHandler} />
       <div className="grid w-full h-full grid-cols-6 grid-rows-6 sm:pt-24">
         <Routes>

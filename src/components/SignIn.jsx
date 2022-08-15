@@ -6,7 +6,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
  * Functional component for signing in/creating users in our database using google's firebase.
  * A user can click the button to sign in with google and it will create an account for them in our database if it doesn't alread exist.
  * 
- * Workflow: When signed in, the 'Sign Out' button appears. When signed out, the 'Sign in with Google' button appears.
+ * Workflow: When signed in, the 'Sign Out' button appears. When signed out, the 'Sign In' button appears.
  */
 export default function SignIn() {
   const [email, setEmail] = useState('');
