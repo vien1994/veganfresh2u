@@ -4,7 +4,7 @@ import "./Cart.css";
 import CartItem from './CartItem';
 import Modal from './Modal'
 import CartContext from '../../store/cart-context';
-import { collection, getDoc, addDoc, setDoc, doc, serverTimestamp } from "firebase/firestore"; 
+import { collection, getDoc, addDoc, setDoc, doc, serverTimestamp, query, where, getDocs } from "firebase/firestore"; 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from "firebase/auth";
 
@@ -40,7 +40,7 @@ function Cart(props) {
       ))}</ul>
     );
 
-
+    // mock order
     const dummyOrder = {
       total: 52,
       order1: {
@@ -58,47 +58,49 @@ function Cart(props) {
       payment_succeeded: false // Make this dynamic
     }
 
+    // Used to see if the customer is placing their first order or not. This allows us to create their first record in the placeOrder() method.
     const checkIfUserOrderIDExists = async (userID) => {
       const docRef = doc(db, `orders/${userID}/transactions/1`);
-
       const docSnap = await getDoc(docRef);
-
       console.log(docSnap)
 
       if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
         return true;
       } else {
         // doc.data() will be undefined in this case and does not exist
         return false;
       }
-
-
     }
-
 
     // Writes order to DB. Need to implement validation. Did order go through?
     const placeOrder = async () => {
       console.log("placing order...");
 
-      // If the user does not have a record (document) in the orders table, create an empty one for them. Then create a subcollection, transactions, to store the actual order data.
+      // If the user does not have a record (document) in the orders table, create an empty one for them. Then create the subcollection, "transactions", to store the actual order data.
       const userOrderIDExists = await checkIfUserOrderIDExists(user.uid);
-      console.log("Does user exist: ",userOrderIDExists)
+      console.log("Does user exist: ", userOrderIDExists)
 
       if(!userOrderIDExists) {
         try {
             // Create the record for the user in the orders table
             await setDoc(doc(db, `orders/${user.uid}/transactions/1`), dummyOrder);
-            console.log('created user record in orders table');
+            console.log('created user and transaction record in orders table');
 
           } catch (error) {
             console.log(error);
           }
       } else {
-        // WORK IN PROGRESS
-        console.log("UserOrderID Already exists. Need to add more data")
+        // User already has existing order data. Add a new transaction record
         try {
-          // await addDoc(collection(db, `orders/${user.uid}/transactions`), dummyOrder);
+          // THIS SHOULD BE OPTIMIZED SOMEHOW - Seems like it would get a large payload after a while. Want to just grab the highest record instead of all.
+          // Find out how many transactions this user has so we can determine the next ID for the incoming order being placed
+          const q = query(collection(db, `orders/${user.uid}/transactions`));
+          const querySnapshot = await getDocs(q);
+          const nextID = querySnapshot.docs.length + 1;
+
+          // Create the transaction record using the new ID
+          await setDoc(doc(db, `orders/${user.uid}/transactions/${nextID}`), dummyOrder);
+          console.log('created transaction record');
 
         } catch (error) {
           console.log(error);
