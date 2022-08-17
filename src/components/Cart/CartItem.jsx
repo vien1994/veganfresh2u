@@ -20,4 +20,6 @@ const CartItem = (props) => {
   );
 };
 
+//  BUGFIX: When adding items to the cart and removing it total does not update correctly
+
 export default CartItem;

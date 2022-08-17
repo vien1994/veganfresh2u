@@ -16,7 +16,7 @@ function MealItemForm(props) {
     if (
     enteredAmount.trim().length === 0 || 
     enteredAmountNumber < 1 || 
-    enteredAmountNumber > 5
+    enteredAmountNumber > 100
     ) {
       setAmountIsValid(false);
       return;
@@ -34,12 +34,12 @@ function MealItemForm(props) {
         id:'amount_' + props.id,
         type:'number',
         min:'1',
-        max:'8',
+        max:'100',
         step: '1',
         defaultValue:'1'
      }}/>
      <button>Add to Cart</button>
-     {!amountIsValid && <p>Please enter a valid amount (1-5).</p>}
+     {!amountIsValid && <p>Please enter a valid amount (1-100).</p>}
     </form>   
   )
 }

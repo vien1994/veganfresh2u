@@ -55,7 +55,7 @@ function App() {
           <Route path="/pricing" element={<Pricing />} />
         </Routes>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </CartProvider>
   );
 }
