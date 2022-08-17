@@ -2,3 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+/* @layer components {
+    .cart-items {
+        @apply list-none m-0 p-0 max-h-80 overflow-y-scroll
+    }
+
+    .total {
+        @apply flex justify-between items-center font-bold text-base my-4 mx-0
+    }
+
+    .actions {
+        @apply text-right
+    }
+    
+} */

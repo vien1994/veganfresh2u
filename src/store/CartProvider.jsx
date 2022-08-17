@@ -24,24 +24,26 @@ const cartReducer = (state, action) => {
         const existingCartItem = state.items[existingCartItemIndex];
         
         // Variables to update cart if the item already exists
+        let updatedItem;
         let updatedItems;
 
         // Runs if the item you are trying to add already exists in the cart
         if (existingCartItem) {
             // If the item already exists, then updatedItem will have a new amount
-            const updatedItem = {
+            updatedItem = {
                 ...existingCartItem,
-                amount: existingCartItem.amount + action.item.amount
+                amount: existingCartItem.amount + 1
             };
             updatedItems = [...state.items];    // Copies the old objects and creates a new array
             updatedItems[existingCartItemIndex] = updatedItem;  // Updates the pre-existing item in the cart to reflect new amount
         } else {   
             // If a new item is added, creates new array with new item appended  
+            updatedItem = {...action.item};
             updatedItems = state.items.concat(action.item);
         }
         
         return {
-            items: updatedCartItems,
+            items: updatedItems,
             totalAmount: updatedTotalAmount,
         };
     }

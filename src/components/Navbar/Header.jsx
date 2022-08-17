@@ -1,29 +1,36 @@
 import React from 'react'
 import SignIn from '../SignIn';
 import HeaderCart from '../Cart/HeaderCart';
+import DropdownMenu from './DropdownMenu';
 import { Link } from "react-router-dom";
 import { Spin as Hamburger } from 'hamburger-react'
 import { useState } from 'react';
 import { useEffect } from 'react';
+import DropdownContent from './DropdownContent';
+
 
 
 function Header(props) {
+
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
 
   // Execute code whenever the hamburger is clicked
   useEffect(() => {
-
+    
   }, [hamburgerOpen]);
-
 
   return (
     // All the following styles will be ran as default
     // until screen size of 640px is reached, then 
-    // all the 'sm' styles will be active
-    <div className="header-container-sm flex justify-evenly h-24 w-screen bg-white border-gray-300 border-b-2 font-sans text-slate-500 overflow-x-hidden">
+    // all of the 'sm' styles will be active
+    <div className="header-container-sm absolute flex justify-evenly h-24 w-screen bg-white border-gray-300 border-b-2 font-sans text-slate-500 overflow-x-hidden">
+
       {/* Hamburger Icon - Appears only when the screen is mobile size. Changes the state of hamburgerOpen when clicked */}
       <div className='sm:hidden cursor-pointer self-center'>
-        <Hamburger toggled={hamburgerOpen} toggle={setHamburgerOpen}/>
+      <Hamburger toggled={hamburgerOpen} toggle={setHamburgerOpen} />
+        {/* <DropdownMenu>
+         <DropdownContent />
+        </DropdownMenu> */}
       </div>
 
       <Link to="/" className="logo-sm text-3xl text-green-500 font-bold self-center cursor-pointer" >VeganFresh2U</Link>
@@ -35,6 +42,13 @@ function Header(props) {
         <HeaderCart onClick={props.onShowCart} />
       </div>
       <div className="sm:hidden self-center"><SignIn /></div>
+
+      { hamburgerOpen === true ?
+         <DropdownMenu /> 
+         :
+         null 
+      }
+
      </div> 
   )
 }

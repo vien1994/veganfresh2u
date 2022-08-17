@@ -35,7 +35,7 @@
     background-color: rgb(39, 168, 39);
   }
   
-  /* .bump {
+  .bump {
     animation: bump 300ms ease-out;
   }
   
@@ -55,4 +55,4 @@
     100% {
       transform: scale(1);
     }
-  } */
+  }
