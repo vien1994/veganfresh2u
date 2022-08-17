@@ -23,7 +23,7 @@ function Header(props) {
     // All the following styles will be ran as default
     // until screen size of 640px is reached, then 
     // all of the 'sm' styles will be active
-    <div className="header-container-sm absolute flex justify-evenly h-24 w-screen bg-white border-gray-300 border-b-2 font-sans text-slate-500 overflow-x-hidden">
+    <div className="header-container-sm flex justify-evenly h-24 w-screen bg-white border-gray-300 border-b-2 font-sans text-slate-500 overflow-x-hidden">
 
       {/* Hamburger Icon - Appears only when the screen is mobile size. Changes the state of hamburgerOpen when clicked */}
       <div className='sm:hidden cursor-pointer self-center'>

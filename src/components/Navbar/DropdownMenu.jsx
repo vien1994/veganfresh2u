@@ -1,6 +1,8 @@
 import Hamburger from 'hamburger-react';
 import {useState} from 'react'
 
+// RUN NPM RUN BUILD-CSS in a new terminal
+
 function DropdownMenu(props) {
     const [display, setDisplay] = useState('none');
 
