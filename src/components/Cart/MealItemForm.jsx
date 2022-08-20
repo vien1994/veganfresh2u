@@ -38,7 +38,7 @@ function MealItemForm(props) {
         step: '1',
         defaultValue:'1'
      }}/>
-     <button>Add to Cart</button>
+     <button className="mr-2" >Add to Cart</button>
      {!amountIsValid && <p>Please enter a valid amount (1-100).</p>}
     </form>   
   )

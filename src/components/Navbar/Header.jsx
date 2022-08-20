@@ -1,12 +1,12 @@
 import React from 'react'
-import SignIn from '../SignIn';
+import SignIn from '../../img/SignIn';
 import HeaderCart from '../Cart/HeaderCart';
 import DropdownMenu from './DropdownMenu';
 import { Link } from "react-router-dom";
 import { Spin as Hamburger } from 'hamburger-react'
 import { useState } from 'react';
 import { useEffect } from 'react';
-import DropdownContent from './DropdownContent';
+
 
 
 
@@ -16,8 +16,9 @@ function Header(props) {
 
   // Execute code whenever the hamburger is clicked
   useEffect(() => {
-    
+    console.log(hamburgerOpen);
   }, [hamburgerOpen]);
+  
 
   return (
     // All the following styles will be ran as default
@@ -35,14 +36,16 @@ function Header(props) {
 
       <Link to="/" className="logo-sm text-3xl text-green-500 font-bold self-center cursor-pointer" >VeganFresh2U</Link>
       <div className="hidden sm:flex sm:items-center">
-        <Link to='/about' className="navbar-items-sm">ABOUT US</Link>
-        <Link to="/pricing" className="navbar-items-sm" >PRICING</Link>
-        <Link to="/menu" className="navbar-items-sm">MENU</Link>
+        <Link to='/about' className="navbar-items">ABOUT US</Link>
+        <Link to="/pricing" className="navbar-items" >PRICING</Link>
+        <Link to='/menu' className="navbar-items">MENU</Link>
         <SignIn />
         <HeaderCart onClick={props.onShowCart} />
       </div>
       <div className="sm:hidden self-center"><SignIn /></div>
 
+
+        {/* If the hamburger is open, shows dropdown menu, if hamburger is closed displays nothing */}
       { hamburgerOpen === true ?
          <DropdownMenu /> 
          :

@@ -4,8 +4,8 @@
 
 
 
-/* @layer components {
-    .cart-items {
+@layer components {
+    /* .cart-items {
         @apply list-none m-0 p-0 max-h-80 overflow-y-scroll
     }
 
@@ -16,5 +16,10 @@
     .actions {
         @apply text-right
     }
-    
-} */
+     */
+
+     .navbar-items{
+        @apply font-semibold m-4 text-lg
+     }
+     
+}
