@@ -12,9 +12,9 @@ function MenuTabs() {
 
   return (
     <div className="menu-container">
-      <div className="self-center text-5xl m-4 font-semibold">Meal Kits</div>
-      <div className="self-center text-2xl font-medium">What's cooking this week</div>
-      <div className="self-center text-xl">
+      <div className="self-center text-gray-700 m-4 pt-4 text-4xl sm:text-5xl font-semibold">Meal Kits</div>
+      <div className="self-center text-gray-700 my-2 text-xl sm:text-2xl font-normal italic">What's cooking this week...</div>
+      <div className="self-center text-gray-700 mx-6 text-lg sm:text-xl">
         Certified fresh recipes delivered to your doorstep. 
         Choose from a variety of healthy meals and put your chef's hat on.
       </div>
@@ -42,17 +42,16 @@ function MenuTabs() {
             {/* Checks which tab is active and displays the content of the currently active tab  */}
             <div className={toggleState === 1 ? "menu-content  menu-active-content" : "menu-content"}>
               <div className="flex justify-center">
-                <h1 className="tab-header inline-flex">Breakfasts
+                <h1 className="menu-tab-header inline-flex">Breakfasts
                 <div className="font-normal italic text-base pl-4 pt-1">Available in 2-4 servings</div>
                 </h1>
               </div>
-                
                 <DummyMeals />
             </div>
 
             <div className={toggleState === 2 ? "menu-content  menu-active-content" : "menu-content"}>
               <div className="flex justify-center">
-                <h1 className="tab-header inline-flex">Lunches
+                <h1 className="menu-tab-header inline-flex">Lunches
                 <div className="font-normal italic text-base pl-4 pt-1">Available in 2-4 servings</div>
                 </h1>
               </div>
@@ -61,7 +60,7 @@ function MenuTabs() {
 
             <div className={toggleState === 3 ? "menu-content  menu-active-content" : "menu-content"}>
               <div className="flex justify-center">
-                <h1 className="tab-header inline-flex">Dinners
+                <h1 className="menu-tab-header inline-flex">Dinners
                 <div className="font-normal italic text-base pl-4 pt-1">Available in 2-4 servings</div>
                 </h1>
               </div>

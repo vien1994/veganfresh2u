@@ -10,7 +10,11 @@ import { getAuth } from "firebase/auth";
 
 
 function Cart(props) {
+
+  
+
     const cartCtx = useContext(CartContext);
+    console.log(cartCtx);
     const db = props.db;
     const auth = getAuth();
     // Check if user is signed in. Signed in - User is an object. Signed out - User is null. 
@@ -40,23 +44,48 @@ function Cart(props) {
       ))}</ul>
     );
 
+
     // mock order
-    const dummyOrder = {
-      total: 52,
-      order1: {
-        foodID: "1", //Need a database for food to reference ID
-        qty: 2
-      },
-      order2: {
-        foodID:"2", 
-        qty: 1
-      },
-      status: "order placed", // Need to figure out what status we want to use
-      date: serverTimestamp(), //Timestamp
-      uid: user.uid,  // Keep track of WHOSE order it is - Need user table and address info
-      customer_id: "", //ID from Stripe payment processing company
-      payment_succeeded: false // Make this dynamic
+
+    // const dummyOrder = {
+    //   total: 52,
+    //   order1: {
+    //     foodID: "1", //Need a database for food to reference ID
+    //     qty: 2
+    //   },
+    //   order2: {
+    //     foodID:"2", 
+    //     qty: 1
+    //   },
+    //   status: "order placed", // Need to figure out what status we want to use
+    //   date: serverTimestamp(), //Timestamp
+    //   uid: user.uid,  // Keep track of WHOSE order it is - Need user table and address info
+    //   customer_id: "", //ID from Stripe payment processing company
+    //   payment_succeeded: false // Make this dynamic
+    // }
+
+    const createFinalOrder = () => {
+      let finalOrder = {
+        status: "order placed", // Need to figure out what status we want to use
+        date: serverTimestamp(), //Timestamp
+        uid: user.uid,  // Keep track of WHOSE order it is - Need user table and address info
+        customer_id: "", //ID from Stripe payment processing company
+        payment_succeeded: false, // Make this dynamic
+        total: cartCtx.totalAmount,
+      };
+      let counter = 1;
+      cartCtx.items.forEach((item) => {
+        console.log(item);
+        finalOrder[`order${counter}`] = {
+          foodID: item.id,
+          qty: item.amount,
+        };
+        counter++;
+      })
+      console.log(finalOrder);
+      return finalOrder;
     }
+  
 
     // Used to see if the customer is placing their first order or not. This allows us to create their first record in the placeOrder() method.
     const checkIfUserOrderIDExists = async (userID) => {
@@ -74,6 +103,7 @@ function Cart(props) {
 
     // Writes order to DB. Need to implement validation. Did order go through?
     const placeOrder = async () => {
+      let order = createFinalOrder();
       console.log("placing order...");
 
       // If the user does not have a record (document) in the orders table, create an empty one for them. Then create the subcollection, "transactions", to store the actual order data.
@@ -83,7 +113,7 @@ function Cart(props) {
       if(!userOrderIDExists) {
         try {
             // Create the record for the user in the orders table
-            await setDoc(doc(db, `orders/${user.uid}/transactions/1`), dummyOrder);
+            await setDoc(doc(db, `orders/${user.uid}/transactions/1`), order);
             console.log('created user and transaction record in orders table');
 
           } catch (error) {
@@ -99,7 +129,7 @@ function Cart(props) {
           const nextID = querySnapshot.docs.length + 1;
 
           // Create the transaction record using the new ID
-          await setDoc(doc(db, `orders/${user.uid}/transactions/${nextID}`), dummyOrder);
+          await setDoc(doc(db, `orders/${user.uid}/transactions/${nextID}`), order);
           console.log('created transaction record');
 
         } catch (error) {

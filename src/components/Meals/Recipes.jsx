@@ -21,7 +21,7 @@ const addToCartHandler = amount => {
   return (
     <div className="recipe-container relative border border-slate-100">
       <div className="recipe-top-content flex justify-between">
-        <div className="">
+        <div className="mx-2">
             <picture className="font-bold">PICTURE GOES HERE</picture>
             <div className="recipe-content-center">
               <a>
