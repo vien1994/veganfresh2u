@@ -15,7 +15,7 @@ const addToCartHandler = amount => {
     nutrition: props.nutrition,
     amount: amount,
     price: props.price,
-});
+  });
 };
 
   return (

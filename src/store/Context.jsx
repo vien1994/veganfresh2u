@@ -1,10 +1,11 @@
-import React from 'react';
+import {createContext} from 'react';
 
-const Context = React.createContext({
-    items: [],
-    totalAmount: 0,
-    addItem: (item) => {},
-    removeItem: (id) => {}
+const Context = createContext({
+  items: [],
+  totalAmount: 0,
+  addItem: (item) => {},
+  removeItem: (id) => {}, 
+  db: null
 });
 
 export default Context;

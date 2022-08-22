@@ -1,3 +1,7 @@
+// This file provides the values we want to be accessible to all child components.
+// It ALSO initializes firebase.
+// VALUES passed down include: firebase db, cart
+
 import React from 'react'
 import Context from './Context';
 import { useReducer } from 'react';
@@ -5,6 +9,7 @@ import { useReducer } from 'react';
 // Import the firebase functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 //Set up firebase configurations
 const firebaseConfig = {
@@ -23,6 +28,8 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
+
+const auth = getAuth();
 
 const defaultCartState = {
     items: [],
@@ -123,7 +130,8 @@ function CartProvider(props) {
         totalAmount: cartState.totalAmount,
         addItem: addItemToCartHandler,
         removeItem: removeItemFromCartHandler,
-        db: db
+        db: db,
+        auth: auth
     };
 
   return (
