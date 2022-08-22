@@ -1,6 +1,28 @@
 import React from 'react'
-import CartContext from './cart-context';
+import Context from './Context';
 import { useReducer } from 'react';
+
+// Import the firebase functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+
+//Set up firebase configurations
+const firebaseConfig = {
+  apiKey: "AIzaSyDIUoDfxR18I6_VwMcy8QXD_pnKrserdFg",
+  authDomain: "veganfresh2u.firebaseapp.com",
+  databaseURL: "https://veganfresh2u-default-rtdb.firebaseio.com",
+  projectId: "veganfresh2u",
+  storageBucket: "veganfresh2u.appspot.com",
+  messagingSenderId: "1041425850896",
+  appId: "1:1041425850896:web:b8fdaa9a30f8a5cbf12095",
+  measurementId: "G-G1F5BX8209",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app);
 
 const defaultCartState = {
     items: [],
@@ -96,17 +118,18 @@ function CartProvider(props) {
         dispatchCartAction({type: 'REMOVE', id: id})
     };
 
-    const cartContext = {
+    const context = {
         items: cartState.items,
         totalAmount: cartState.totalAmount,
         addItem: addItemToCartHandler,
         removeItem: removeItemFromCartHandler,
+        db: db
     };
 
   return (
-    <CartContext.Provider value={cartContext}>
+    <Context.Provider value={context}>
         {props.children}
-    </CartContext.Provider>
+    </Context.Provider>
   )
 }
 

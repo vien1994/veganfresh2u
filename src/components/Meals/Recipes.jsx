@@ -1,10 +1,10 @@
 import {useContext} from 'react'
 
 import MealItemForm from '../Cart/MealItemForm';
-import CartContext from '../../store/cart-context';
+import Context from '../../store/Context';
 
 function Recipes(props) {
-const cartCtx = useContext(CartContext);
+const cartCtx = useContext(Context);
 
 const addToCartHandler = amount => {
   cartCtx.addItem({

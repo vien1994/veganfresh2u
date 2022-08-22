@@ -1,11 +1,11 @@
 import CartIcon from "./CartIcon";
 import './HeaderCart.css';
-import CartContext from "../../store/cart-context";
+import Context from "../../store/Context";
 import { useContext, useState, useEffect} from "react";
 
 function HeaderCart(props) {
     const [btnIsHighlighted, setBtnIsHighlighted] =  useState(false);
-    const cartCtx = useContext(CartContext);
+    const cartCtx = useContext(Context);
     
     // Set only the items array as a dependency as opposed to the entire cart context
     const {items} = cartCtx;
