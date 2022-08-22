@@ -3,20 +3,15 @@ import React from "react";
 import "./Cart.css";
 import CartItem from './CartItem';
 import Modal from './Modal'
-import CartContext from '../../store/cart-context';
-import { collection, getDoc, addDoc, setDoc, doc, serverTimestamp, query, where, getDocs } from "firebase/firestore"; 
+import Context from '../../store/Context';
+import { collection, getDoc, setDoc, doc, serverTimestamp, query, getDocs } from "firebase/firestore"; 
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { getAuth } from "firebase/auth";
-
 
 function Cart(props) {
+    const cartCtx = useContext(Context);
+    const db = cartCtx.db;
+    const auth = cartCtx.auth;
 
-  
-
-    const cartCtx = useContext(CartContext);
-    console.log(cartCtx);
-    const db = props.db;
-    const auth = getAuth();
     // Check if user is signed in. Signed in - User is an object. Signed out - User is null. 
     const [user] = useAuthState(auth);
 

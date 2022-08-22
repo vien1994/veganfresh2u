@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
-import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import React, { useState, useContext } from 'react';
+import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useAuthState } from 'react-firebase-hooks/auth';
+import Context from '../../store/Context';
 
 /**
  * Functional component for signing in/creating users in our database using google's firebase.
@@ -9,12 +10,12 @@ import { useAuthState } from 'react-firebase-hooks/auth';
  * Workflow: When signed in, the 'Sign Out' button appears. When signed out, the 'Sign In' button appears.
  */
 export default function SignIn() {
+  const context = useContext(Context);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const auth = getAuth();
+  const auth = context.auth;
   const provider = new GoogleAuthProvider();
   const [isAdmin, setIsAdmin] = useState(false);
-
 
   // Check if user is signed in. Signed in - User is an object. Signed out - User is null. 
   const [user] = useAuthState(auth);

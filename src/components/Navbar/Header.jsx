@@ -1,14 +1,11 @@
 import React from 'react'
-import SignIn from '../../img/SignIn';
+import SignIn from './SignIn';
 import HeaderCart from '../Cart/HeaderCart';
 import DropdownMenu from './DropdownMenu';
 import { Link } from "react-router-dom";
 import { Spin as Hamburger } from 'hamburger-react'
 import { useState } from 'react';
 import { useEffect } from 'react';
-
-
-
 
 function Header(props) {
 
