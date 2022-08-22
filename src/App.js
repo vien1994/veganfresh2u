@@ -32,7 +32,8 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/pricing" element={<Pricing />} />
-          <Route path="/orders" element={<OrderHistoryPage />} />
+          {/* Currently there is no way to access this page. May need something like a dropdown on the user icon to navigate to it. */}
+          <Route path="/orders" element={<OrderHistoryPage />} /> 
         </Routes>
       </div>
       {/* <Footer /> */}

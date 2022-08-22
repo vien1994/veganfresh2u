@@ -7,9 +7,6 @@ import { Spin as Hamburger } from 'hamburger-react'
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-
-
-
 function Header(props) {
 
   const [hamburgerOpen, setHamburgerOpen] = useState(false);

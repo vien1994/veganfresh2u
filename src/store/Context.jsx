@@ -5,7 +5,8 @@ const Context = createContext({
   totalAmount: 0,
   addItem: (item) => {},
   removeItem: (id) => {}, 
-  db: null
+  db: null, 
+  auth: null
 });
 
 export default Context;

@@ -1,9 +1,7 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Context from '../../store/Context';
 import { collection, getDocs } from "firebase/firestore";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useState } from 'react';
-
 
 export default function OrderHistoryPage() {
   const {db, auth} = useContext(Context);
@@ -30,8 +28,9 @@ export default function OrderHistoryPage() {
 
   console.log(orders);
 
-    //   Print all the dummy order info (quantity, price, id(name) of the item, image of the item) onto a page(dynamically) and style it
+    // Print all the dummy order info (quantity, price, id(name) of the item, image of the item) onto a page(dynamically) and style it
     // Make sure to cover what happens if a user has no order history 
+    // ALSO, make sure there is a way for the user to navigate to this page
       
   return (
     <React.Fragment>

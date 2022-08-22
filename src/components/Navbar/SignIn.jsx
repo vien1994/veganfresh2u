@@ -17,7 +17,6 @@ export default function SignIn() {
   const provider = new GoogleAuthProvider();
   const [isAdmin, setIsAdmin] = useState(false);
 
-
   // Check if user is signed in. Signed in - User is an object. Signed out - User is null. 
   const [user] = useAuthState(auth);
 
