@@ -1,6 +1,6 @@
 // This file provides the values we want to be accessible to all child components.
 // It ALSO initializes firebase.
-// VALUES passed down include: firebase db, cart
+// VALUES passed down include: firebase db, auth, cart
 
 import React from 'react'
 import Context from './Context';
@@ -29,6 +29,7 @@ const app = initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 
+// Tool used to check who is logged in
 const auth = getAuth();
 
 const defaultCartState = {

@@ -4,7 +4,7 @@ import "./Cart.css";
 import CartItem from './CartItem';
 import Modal from './Modal'
 import Context from '../../store/Context';
-import { collection, getDoc, addDoc, setDoc, doc, serverTimestamp, query, where, getDocs } from "firebase/firestore"; 
+import { collection, getDoc, setDoc, doc, serverTimestamp, query, getDocs } from "firebase/firestore"; 
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 function Cart(props) {

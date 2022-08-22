@@ -9,6 +9,7 @@ import Cart from "./components/Cart/Cart";
 import Provider from "./store/Provider";
 import Menu from "./components/Menu/Menu";
 import Pricing from "./components/Navbar/Pricing";
+import OrderHistoryPage from "./components/Orders/OrderHistoryPage";
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -31,6 +32,7 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/pricing" element={<Pricing />} />
+          <Route path="/orders" element={<OrderHistoryPage />} />
         </Routes>
       </div>
       {/* <Footer /> */}
