@@ -22,18 +22,12 @@ const addToCartHandler = amount => {
 
   return (
     <div className="recipe-container relative border border-slate-200 w-96 mb-8">
-      <div className="recipe-top-content flex justify-between">
-        <div className="mx-2">
-            <img src={veggieBowl} alt='veggieBowl' className="font-bold h-44 w-44" />
-            <div className="recipe-content-center mb-5">
-              <p className='font-bold'>{props.name}</p>
-              <p>{props.with}</p>
-            </div>
-              <div className="recipe-tags italic">{props.allergies}</div>
-              <div className="recipe-info">
-              <div className="recipe-details">{props.nutrition}</div>
-            </div>  
-        </div>
+      <img src={veggieBowl} alt='veggieBowl' className="font-bold w-96 h-44" />
+      <p className='font-bold'>{props.name}</p>
+      <p className='mb-4'>{props.with}</p>
+      <p className="italic">{props.allergies}</p>
+      <div className='flex justify-between items-center'>
+        <p>{props.nutrition}</p>
         <MealItemForm id={props.id} onAddToCart={addToCartHandler} />
       </div>
     </div>

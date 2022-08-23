@@ -51,9 +51,9 @@ const sampleMeals = [
     );
 
     return (
-        <div className="meals flex flex-wrap content-center justify-evenly">
-          {mealsList}
-        </div>
+      <div className="meals flex flex-wrap content-center justify-evenly">
+        {mealsList}
+      </div>
     )
   }
 

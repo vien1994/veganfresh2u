@@ -1,5 +1,4 @@
 import React from 'react';
-import './MenuTabs.css';
 import MenuTabs from './MenuTabs.jsx';
 import DummyMeals from '../Meals/DummyMeals';
 
