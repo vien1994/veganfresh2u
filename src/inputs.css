@@ -2,24 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
-
+/* Custom tailwind classes */
+@layer utilities {
+  .border-1 {
+    border-width: 1px;
+  }
+}
 
 @layer components {
-    /* .cart-items {
-        @apply list-none m-0 p-0 max-h-80 overflow-y-scroll
-    }
+   /* Cart.jsx styles*/
+  .cart-items {
+     @apply list-none m-0 p-0 max-h-80 overflow-y-scroll
+  }
 
-    .total {
-        @apply flex justify-between items-center font-bold text-base my-4 mx-0
-    }
+  .cart-total {
+     @apply flex justify-between items-center font-bold text-2xl my-4 mx-0
+  }
 
-    .actions {
-        @apply text-right
-    }
-     */
+  .cart-button-wrapper {
+     @apply text-right 
+  }
 
-     .navbar-items{
-        @apply font-semibold m-4 text-lg
-     }
+  .cart-buttons {
+    @apply text-inherit cursor-pointer bg-transparent border-2 border-gray-700 py-2 px-8 rounded-3xl ml-4 
+    hover:border-gray-500 hover:bg-green-500 hover:text-white
+  } 
+
+ .cart-close-button {
+    @apply text-green-700 font-medium
+  }
+
+  .cart-order-button {
+    @apply bg-green-600 text-white font-medium
+  }  
+  /* End of Cart.jsx styles */
+
+
+  /* CartItem.jsx styles */
+  .cart-item {
+    @apply flex justify-between items-center border-b-2 border-green-500 py-4 px-0 my-4 mx-0
+  }
+
+  .cart-item-name {
+    @apply mx-0 mb-2 mt-0 text-gray-700 font-medium text-lg
+  }
+
+  .cart-item-summary {
+    @apply w-40 flex justify-between items-center
+  }
+
+  .cart-item-price {
+    @apply font-bold text-gray-800
+  }
+
+  .cart-item-amount {
+    @apply font-bold border-2 border-gray-300 py-1 px-3 rounded-md text-gray-700
+  }
+
+  .cart-item-actions {
+    @apply flex flex-col md:flex-row
+  }
+
+  .cart-item-buttons {
+    @apply text-inherit font-bold text-xl text-green-600 border-2 border-green-600 w-12 
+           text-center rounded-md bg-transparent 
+           cursor-pointer ml-4 m-1 flex-wrap
+           hover:bg-green-500 hover:text-white active:bg-green-600 active:text-white
+           /* font: inherit */
+  }
+  /* End of CartItem.jsx styles */
+  
+
+
+
+  /* Navbar styles */
+  .navbar-items{
+    @apply font-semibold m-4 text-lg
+  }
      
 }
+
+
