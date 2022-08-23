@@ -3,6 +3,8 @@ import {useContext} from 'react'
 import MealItemForm from '../Cart/MealItemForm';
 import Context from '../../store/Context';
 
+import veggieBowl from '../../img/VeggieBowl.jpg';
+
 function Recipes(props) {
 const cartCtx = useContext(Context);
 
@@ -19,17 +21,13 @@ const addToCartHandler = amount => {
 };
 
   return (
-    <div className="recipe-container relative border border-slate-100">
+    <div className="recipe-container relative border border-slate-200 w-96 mb-8">
       <div className="recipe-top-content flex justify-between">
         <div className="mx-2">
-            <picture className="font-bold">PICTURE GOES HERE</picture>
-            <div className="recipe-content-center">
-              <a>
-                <div>
-                  {props.name}
-                  <div>{props.with}</div>
-                </div>
-              </a>
+            <img src={veggieBowl} alt='veggieBowl' className="font-bold h-44 w-44" />
+            <div className="recipe-content-center mb-5">
+              <p className='font-bold'>{props.name}</p>
+              <p>{props.with}</p>
             </div>
               <div className="recipe-tags italic">{props.allergies}</div>
               <div className="recipe-info">

@@ -39,22 +39,21 @@ const sampleMeals = [
 
   function DummyMeals() {
     const mealsList = sampleMeals.map(meal => 
-    <Recipes 
-    id={meal.id}
-    key={meal.id} 
-    name={meal.name} 
-    with={meal.with}
-    allergies={meal.allergies}
-    nutrition={meal.nutrition} 
-    price={meal.price} 
-    />);
+      <Recipes 
+      id={meal.id}
+      key={meal.id} 
+      name={meal.name} 
+      with={meal.with}
+      allergies={meal.allergies}
+      nutrition={meal.nutrition} 
+      price={meal.price} 
+      />
+    );
 
     return (
-        <section className="meals">
-            <ul>
-                {mealsList}
-            </ul>
-        </section>
+        <div className="meals flex flex-wrap content-center justify-evenly">
+          {mealsList}
+        </div>
     )
   }
 
