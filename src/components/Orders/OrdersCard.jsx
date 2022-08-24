@@ -5,7 +5,7 @@ function OrdersCard(props) {
     <div className="text-gray-600 bg-white shadow-md border-2 rounded-xl">
       <div className="m-4">
         <div className="font-medium" >
-          Name goes here {props.foodID}
+          Name: {props.foodID}
           </div>
         <div>Total: ${props.total}</div>
         <div>Quantity: {props.qty}</div>
