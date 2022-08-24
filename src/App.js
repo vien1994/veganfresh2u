@@ -24,7 +24,7 @@ function App() {
 
   return (
     <Provider>
-      {cartIsShown && <Cart onClose={hideCartHandler}/>}
+      {cartIsShown && <Cart onClose={hideCartHandler} />}
       <Header onShowCart={showCartHandler} />
       <div className="grid w-full h-full grid-cols-6 grid-rows-6 sm:pt-24">
         <Routes>
@@ -33,7 +33,7 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/pricing" element={<Pricing />} />
           {/* Currently there is no way to access this page. May need something like a dropdown on the user icon to navigate to it. */}
-          <Route path="/orders" element={<OrderHistoryPage />} /> 
+          <Route path="/orders" element={<OrderHistoryPage />} />
         </Routes>
       </div>
       {/* <Footer /> */}
