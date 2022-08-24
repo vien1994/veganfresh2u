@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 
 function DropdownMenu(props) {
     return (
-        <div className="absolute overflow-y-scroll left-0 top-24 bg-white w-1/2 h-full border-r-2 border-grey z-10">
+        <div className="absolute left-0 top-24 bg-white w-1/2 h-full border-r-2 border-grey z-10">
             <div className="text-gray-500" >
              <Link to="/about" className="block text-lg p-3 ml-2 mt-2" >About Us</Link>
              <Link to="/pricing" className="block text-lg p-3 ml-2" >Pricing</Link>
