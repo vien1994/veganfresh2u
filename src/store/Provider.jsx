@@ -42,7 +42,7 @@ const cartReducer = (state, action) => {
     if (action.type === 'ADD') {
         
         // Adds price and quantity together to find total for the item(s)
-        const updatedTotalAmount = state.totalAmount + action.item.price * action.item.amount;
+        const updatedTotalAmount = state.totalAmount + action.item.price;
         
         // Creates a new array with the added item at the end
         const updatedCartItems = state.items.concat(action.item);
@@ -77,10 +77,7 @@ const cartReducer = (state, action) => {
             totalAmount: updatedTotalAmount,
         };
     }
-
-
-    // BUGFIX: When adding an item within the cart and then removing all existing items the page crashes
-
+    
     // Loop that runs to remove an item
     if (action.type === 'REMOVE') {
 

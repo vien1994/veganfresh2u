@@ -13,7 +13,6 @@ const CartItem = (props) => {
         </div>
       </div>
       <div className="cart-item-actions">
-        {/* BUGFIX: Buttons displaying dark red on hover instead of green */}
         <button className="cart-item-buttons" onClick={props.onRemove}>−</button>
         <button className="cart-item-buttons" onClick={props.onAdd}>+</button>
         

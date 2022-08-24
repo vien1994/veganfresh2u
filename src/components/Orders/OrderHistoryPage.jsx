@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Context from '../../store/Context';
 import { collection, getDocs } from "firebase/firestore";
 import { useAuthState } from 'react-firebase-hooks/auth';
+import OrdersCard from './OrdersCard';
 
 export default function OrderHistoryPage() {
   const {db, auth} = useContext(Context);
@@ -36,10 +37,19 @@ export default function OrderHistoryPage() {
     <React.Fragment>
       {/* Don't load the page unless there is order info */}
       {orders !== null ? 
-        <div>
+        <div className="col-start-3 col-end-5">
+          <h1 className="m-4 pl-4 text-5xl font-semibold">
+            Your Orders
+          </h1>
+          <OrdersCard />
           {/* Example on how to display data */}
-          {orders[0].total}
+          
+          {/* <div>Total Price: ${orders[0].total}</div>
+          <div>Item: {orders[0].order1.foodID}</div>
+          <div>Quantity: {orders[0].order1.qty}</div>
+          <div>Status: {orders[0].status}</div> */}
         </div>
+      
       :
         null
       }

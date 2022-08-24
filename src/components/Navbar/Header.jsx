@@ -36,6 +36,7 @@ function Header(props) {
         <Link to='/about' className="navbar-items">ABOUT US</Link>
         <Link to="/pricing" className="navbar-items" >PRICING</Link>
         <Link to='/menu' className="navbar-items">MENU</Link>
+        <Link to='/orders' className="navbar-items">ORDERS</Link>
         <SignIn />
         <HeaderCart onClick={props.onShowCart} />
       </div>
