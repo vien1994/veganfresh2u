@@ -1,5 +1,4 @@
 import { useRef, useState} from 'react'
-import './MealItemForm.css'
 import Input from './Input';
 
 function MealItemForm(props) {
@@ -26,20 +25,22 @@ function MealItemForm(props) {
   };
 
   return (
-    <form className='form' onSubmit={submitHandler} >
-     <Input 
-     ref={amountInputRef}
-     label ="Amount" 
-     input={{
-        id:'amount_' + props.id,
-        type:'number',
-        min:'1',
-        max:'100',
-        step: '1',
-        defaultValue:'1'
-     }}/>
-     <button className="mr-2" >Add to Cart</button>
-     {!amountIsValid && <p>Please enter a valid amount (1-100).</p>}
+    <form className='form flex items-center	
+    ' onSubmit={submitHandler} >
+      <Input 
+        ref={amountInputRef}
+        // label ="Amount" 
+        input={{
+          id:'amount_' + props.id,
+          type:'number',
+          min:'1',
+          max:'100',
+          step: '1',
+          defaultValue:'1'
+        }}
+      />
+      <button className="mr-2 h-7 w-7 flex align-middle text-center self-center justify-center" >+</button>
+      {!amountIsValid && <p>Please enter a valid amount (1-100).</p>}
     </form>   
   )
 }

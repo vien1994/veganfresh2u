@@ -1,5 +1,4 @@
 import {useState} from 'react';
-import './MenuTabs.css'
 import DummyMeals from '../Meals/DummyMeals';
 
 function MenuTabs() {
@@ -40,32 +39,32 @@ function MenuTabs() {
         <div className="grow"> {/* The content of the active tab will fill the whole container */}
 
             {/* Checks which tab is active and displays the content of the currently active tab  */}
-            <div className={toggleState === 1 ? "menu-content  menu-active-content" : "menu-content"}>
-              <div className="flex justify-center">
-                <h1 className="menu-tab-header inline-flex">Breakfasts
-                <div className="font-normal italic text-base pl-4 pt-1">Available in 2-4 servings</div>
-                </h1>
-              </div>
+            {/* VIEN: Removed menu-content here. */}
+            {toggleState === 1 ? 
+              <div className="menu-active-content">
+                <div className="flex justify-center">
+                  <h1 className="menu-tab-header inline-flex">Breakfasts</h1>
+                  <div className="font-normal italic text-base pl-4 pt-1">Available in 2-4 servings</div>
+                </div>
                 <DummyMeals />
-            </div>
-
-            <div className={toggleState === 2 ? "menu-content  menu-active-content" : "menu-content"}>
-              <div className="flex justify-center">
-                <h1 className="menu-tab-header inline-flex">Lunches
-                <div className="font-normal italic text-base pl-4 pt-1">Available in 2-4 servings</div>
-                </h1>
               </div>
+            : toggleState === 2 ?
+              <div className="menu-active-content">
+                <div className="flex justify-center">
+                  <h1 className="menu-tab-header inline-flex">Lunches</h1>
+                  <div className="font-normal italic text-base pl-4 pt-1">Available in 2-4 servings</div>
+                </div>
                 <DummyMeals />
-            </div>
-
-            <div className={toggleState === 3 ? "menu-content  menu-active-content" : "menu-content"}>
-              <div className="flex justify-center">
-                <h1 className="menu-tab-header inline-flex">Dinners
-                <div className="font-normal italic text-base pl-4 pt-1">Available in 2-4 servings</div>
-                </h1>
               </div>
+            : 
+              <div className="menu-active-content">
+                <div className="flex justify-center">
+                  <h1 className="menu-tab-header inline-flex">Dinner</h1>
+                  <div className="font-normal italic text-base pl-4 pt-1">Available in 2-4 servings</div>
+                </div>
                 <DummyMeals />
-            </div>
+              </div>
+            }
 
         </div>
 
