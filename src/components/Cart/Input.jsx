@@ -1,12 +1,8 @@
-import React from 'react'
-import './Input.css'
+import React from 'react';
 
 const Input = React.forwardRef((props, ref) => {
   return (
-    <div className="input flex items-center self-center">
-      <label htmlFor={props.input.id}>{props.label}</label>
-      <input ref={ref} {...props.input} />
-    </div>
+    <input className="border border-gray-300 w-1/3 mr-2 pl-2" ref={ref} {...props.input} />
   )
 });
 // Are props allowed in a functional component
