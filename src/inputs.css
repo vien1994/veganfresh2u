@@ -72,12 +72,9 @@
   }
   /* End of CartItem.jsx styles */
   
-
-
-
   /* Navbar styles */
   .navbar-items{
-    @apply font-semibold m-4 text-lg
+    @apply font-semibold m-4 text-base
   }
      
 }

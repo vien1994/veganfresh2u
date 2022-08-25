@@ -26,7 +26,7 @@ function App() {
     <Provider>
       {cartIsShown && <Cart onClose={hideCartHandler} />}
       <Header onShowCart={showCartHandler} />
-      <div className="grid w-full h-full grid-cols-6 grid-rows-6 sm:pt-24">
+      <div className="grid w-full h-full grid-cols-6 grid-rows-6">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
