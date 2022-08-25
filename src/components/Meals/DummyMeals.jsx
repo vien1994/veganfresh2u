@@ -40,13 +40,13 @@ const sampleMeals = [
   function DummyMeals() {
     const mealsList = sampleMeals.map(meal => 
       <Recipes 
-      id={meal.id}
-      key={meal.id} 
-      name={meal.name} 
-      with={meal.with}
-      allergies={meal.allergies}
-      nutrition={meal.nutrition} 
-      price={meal.price} 
+        id={meal.id}
+        key={meal.id} 
+        name={meal.name} 
+        with={meal.with}
+        allergies={meal.allergies}
+        nutrition={meal.nutrition} 
+        price={meal.price} 
       />
     );
 
