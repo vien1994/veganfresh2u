@@ -29,6 +29,7 @@ function MenuTabs() {
           {/* Checks which tab is active and displays the content of the currently active tab  */}
           {/* VIEN: Removed menu-content here. */}
           {toggleState === 1 ? 
+            // Adding a key makes React mount the component from scratch. This TRIGGERS the animation we have placed 
             <div key={1} className="menu-active-content mt-4">
               <div className="flex justify-center">
                 <h1 className="menu-tab-header inline-flex">Breakfasts</h1>
