@@ -1,4 +1,3 @@
-import { map } from "@firebase/util";
 import './DummyMeals.css'
 import Recipes from "./Recipes";
 

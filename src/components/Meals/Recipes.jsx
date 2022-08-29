@@ -4,33 +4,33 @@ import Context from '../../store/Context';
 // import veggieBowl from '../../img/VeggieBowl.jpg';
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
-
 function Recipes(props) {
-const cartCtx = useContext(Context);
-const [imgUrl, setImgUrl] = useState(null);
-const storage = getStorage();
-getDownloadURL(ref(storage, 'images/MealBox.jpg'))
-  .then((url) => {
-    // `url` is the download URL for 'images/MealBox.jpg'
-    setImgUrl(url);
-  })
-  .catch((error) => {
-    // Handle any errors
-    console.log(error)
-  });
+  const cartCtx = useContext(Context);
+  const [imgUrl, setImgUrl] = useState(null);
+  const storage = getStorage();
+  
+  getDownloadURL(ref(storage, 'images/MealBox.jpg'))
+    .then((url) => {
+      // `url` is the download URL for 'images/MealBox.jpg'
+      setImgUrl(url);
+    })
+    .catch((error) => {
+      // Handle any errors
+      console.log(error)
+    });
 
 
-const addToCartHandler = amount => {
-  cartCtx.addItem({
-    id: props.id,
-    name: props.name,
-    with: props.with,
-    allergies: props.allergies,
-    nutrition: props.nutrition,
-    amount: amount,
-    price: props.price,
-  });
-};
+  const addToCartHandler = amount => {
+    cartCtx.addItem({
+      id: props.id,
+      name: props.name,
+      with: props.with,
+      allergies: props.allergies,
+      nutrition: props.nutrition,
+      amount: amount,
+      price: props.price,
+    });
+  };
 
   return (
     <Fragment>
