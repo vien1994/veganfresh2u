@@ -1,3 +1,21 @@
+/* Dropdown Menu on mobile screens */
+.dropdown {
+  animation: dropdown-animation .8s ease forwards;
+}
+
+@keyframes dropdown-animation{
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Menu Page */
 .meals {
   margin: 2rem auto;
   animation: meals-appear 1s ease-out forwards;

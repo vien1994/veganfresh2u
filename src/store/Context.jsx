@@ -6,7 +6,9 @@ const Context = createContext({
   addItem: (item) => {},
   removeItem: (id) => {}, 
   db: null, 
-  auth: null
+  auth: null,
+  dropdown: null,
+  closeHamburger: () => {}
 });
 
 export default Context;
