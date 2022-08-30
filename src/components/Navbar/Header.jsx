@@ -3,7 +3,7 @@ import HeaderCart from '../Cart/HeaderCart';
 import DropdownMenu from './DropdownMenu';
 import { Link } from "react-router-dom";
 import { Spin as Hamburger } from 'hamburger-react'
-import { useState, useEffect, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import Context from '../../store/Context';
 
 function Header(props) {
