@@ -1021,6 +1021,10 @@ video {
   overflow: hidden;
 }
 
+.overflow-clip {
+  overflow: clip;
+}
+
 .overflow-x-hidden {
   overflow-x: hidden;
 }

@@ -124,7 +124,7 @@ function CartProvider(props) {
     };
 
     const closeHamburger = () => {
-      console.log('edit')
+      console.log('closing burger')
       setDropdown(false);
     }
 

@@ -8,7 +8,7 @@ import '../../../src/animations/animations.css'
 function DropdownMenu() {
   const {closeHamburger} = useContext(Context);
   return (
-    <div className="absolute left-0 top-24 bg-white w-1/2 h-full border-r-2 border-grey z-10 dropdown">
+    <div className="absolute left-0 top-24 bg-white w-1/2 h-full border-r-2 border-grey z-10 dropdown overflow-clip">
       <div className="text-gray-500" >
         <Link to="/about" className="block text-lg p-3 ml-2 mt-2" onClick={closeHamburger}>About Us</Link>
         <Link to="/pricing" className="block text-lg p-3 ml-2" onClick={closeHamburger}>Pricing</Link>

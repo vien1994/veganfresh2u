@@ -1,10 +1,8 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import DummyMeals from '../Meals/DummyMeals';
 import './MenuTabs.css';
-import Context from '../../store/Context';
 
 function MenuTabs() {
-  const {closeHamburger} = useContext(Context)
   const [toggleState, setToggleState] = useState(1);
 
   const toggleTab = (index) => {
@@ -12,7 +10,7 @@ function MenuTabs() {
   }
 
   return (
-    <div className="menu-container" onClick={closeHamburger}>
+    <div className="menu-container">
       <div className="self-center text-gray-700 m-4 pt-4 text-4xl sm:text-5xl font-semibold">Meal Kits</div>
       <div className="self-center text-gray-700 my-2 text-xl sm:text-2xl font-normal italic">What's cooking this week...</div>
       <div className="self-center text-gray-700 mx-6 text-lg sm:text-xl">

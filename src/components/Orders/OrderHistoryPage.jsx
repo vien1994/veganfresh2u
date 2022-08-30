@@ -5,7 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import OrdersCard from './OrdersCard';
 
 export default function OrderHistoryPage() {
-  const {db, auth, closeHamburger} = useContext(Context);
+  const {db, auth} = useContext(Context);
   const [user] = useAuthState(auth);
   const [orders, setOrders] = useState(null);
 
@@ -37,7 +37,7 @@ export default function OrderHistoryPage() {
     <React.Fragment>
       {/* Don't load the page unless there is order info */}
       {orders !== null ? 
-        <div className="col-start-3 col-end-5" onClick={closeHamburger}>
+        <div className="col-start-3 col-end-5">
           <h1 className="m-4 pl-4 text-5xl font-semibold">
             Your Orders
           </h1>

@@ -1,11 +1,7 @@
-import {useContext} from 'react';
-import Context from '../../store/Context';
-
 function Pricing() {
-  const {closeHamburger} = useContext(Context)
 
   return (
-    <div onClick={closeHamburger}>
+    <div>
       Choose Your Plan Type
     </div>
   )
