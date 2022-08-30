@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom fonts */
+@font-face {
+  font-family: 'CabinSketch';
+  src: local('CabinSketch'), url(./fonts/Cabin_Sketch/CabinSketch-Regular.ttf) format('truetype');
+}
+
 /* Custom tailwind classes */
 @layer utilities {
   .border-1 {

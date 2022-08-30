@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        oohBaby: "'Parisienne', cursive"
+        CabinSketch: "CabinSketch"
       },
     },
   },
