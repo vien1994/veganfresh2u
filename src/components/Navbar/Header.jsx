@@ -6,7 +6,6 @@ import { Spin as Hamburger } from 'hamburger-react'
 import { useEffect, useContext } from 'react';
 import Context from '../../store/Context';
 
-
 function Header() {
   const { dropdownOpen, setDropdown, closeHamburger } = useContext(Context);
 
@@ -34,14 +33,16 @@ function Header() {
         <Link to='/menu' className="navbar-items">MENU</Link>
         <SignIn />
       </div>
+      <div className="sm:hidden self-center"><SignIn /></div>
+
 
       {/* If the hamburger is open, shows dropdown menu, if hamburger is closed displays nothing */}
       { dropdownOpen === true ?
-
          <DropdownMenu /> 
          :
          null 
       }
+
      </div> 
   )
 }
