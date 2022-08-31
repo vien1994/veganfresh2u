@@ -1,33 +1,27 @@
 import { Routes, Route } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, Fragment, useContext } from "react";
 import "./index.css";
 import Header from "./components/Navbar/Header";
 import AboutUs from "./components/Navbar/AboutUs";
 import Home from "./components/Home";
 // import Footer from "./components/Footer";
 import Cart from "./components/Cart/Cart";
-import Provider from "./store/Provider";
 import Menu from "./components/Menu/Menu";
 import Pricing from "./components/Navbar/Pricing";
 import OrderHistoryPage from "./components/Orders/OrderHistoryPage";
 import ProfilePage from "./components/Navbar/ProfilePage";
+import Context from "./store/Context";
+
 
 function App() {
-  const [cartIsShown, setCartIsShown] = useState(false);
-
-  const showCartHandler = () => {
-    setCartIsShown(true);
-  };
-
-  const hideCartHandler = () => {
-    setCartIsShown(false);
-  };
+  const {cartIsShown, showCartHandler, dropdownOpen, closeHamburger} = useContext(Context);
 
   return (
-    <Provider>
-      {cartIsShown && <Cart onClose={hideCartHandler} />}
-      <Header onShowCart={showCartHandler} />
-      <div className="grid w-full h-full grid-cols-6 grid-rows-6 sm:pt-24">
+    <Fragment>
+      {/* Cart modal that is displayed over the rest of the page */}
+      {cartIsShown && <Cart onClose={() => showCartHandler(false)} />}
+      <Header />
+      <div className={`grid w-full h-full grid-cols-6 grid-rows-6 ${dropdownOpen === true ? 'overflow-clip' : ''}`} onClick={closeHamburger}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
@@ -39,7 +33,7 @@ function App() {
         </Routes>
       </div>
       {/* <Footer /> */}
-    </Provider>
+    </Fragment>
   );
 }
 

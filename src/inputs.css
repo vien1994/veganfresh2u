@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom fonts */
+@font-face {
+  font-family: 'CabinSketch';
+  src: local('CabinSketch'), url(./fonts/Cabin_Sketch/CabinSketch-Regular.ttf) format('truetype');
+}
+
 /* Custom tailwind classes */
 @layer utilities {
   .border-1 {
@@ -84,6 +90,14 @@
   }
   /* End of CartItem.jsx styles */
   
+  /* Navbar styles */
+  .navbar-items {
+    @apply font-semibold m-4 text-base
+  }
+
+  .navbar-profile-dropdown-li {
+    @apply w-32 h-10 flex justify-center items-center hover:bg-green-50
+  }
 
 
   /* ~HeaderCart.jsx styles */
@@ -118,6 +132,10 @@
   /* Any screen size smaller than 'sm' (640px) will render these styles */
   .navbar-items-sm {
     @apply block left-0 text-lg p-3
+
+  .badge_option2 {
+    @apply bg-gray-200 pt-1 pb-1 pr-2 pl-2 rounded-full font-semibold text-center align-middle
+
   }
      
 }

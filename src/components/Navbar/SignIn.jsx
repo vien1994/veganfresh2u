@@ -1,7 +1,10 @@
 import React, { useState, useContext } from 'react';
-import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Context from '../../store/Context';
+import profile from '../../img/profile.svg';
+import HeaderCart from '../Cart/HeaderCart';
+import ProfileDropdown from './ProfileDropdown';
 
 /**
  * Functional component for signing in/creating users in our database using google's firebase.
@@ -11,8 +14,10 @@ import Context from '../../store/Context';
  */
 export default function SignIn() {
   const context = useContext(Context);
+  const { showCartHandler, show } = context;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const auth = context.auth;
   const provider = new GoogleAuthProvider();
   const [isAdmin, setIsAdmin] = useState(false);
@@ -26,12 +31,12 @@ export default function SignIn() {
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in 
-      const user = userCredential.user;
-      console.log(userCredential)
+      // const user = userCredential.user;
+      // console.log(userCredential)
       // ...
     })
     .catch((error) => {
-      const errorCode = error.code;
+      // const errorCode = error.code;
       const errorMessage = error.message;
 
       console.log(errorMessage)
@@ -42,7 +47,7 @@ export default function SignIn() {
   // Use firebase's function, signInWithPopup, to sign in with google.
   const signInWithGoogle = () => {
     console.log('Signing in with Google');
-    signInWithPopup(auth, provider)
+    signInWithRedirect(auth, provider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -71,6 +76,8 @@ export default function SignIn() {
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
+
+      console.log(errorCode, errorMessage, email, credential)
     });
   }
 
@@ -99,11 +106,24 @@ export default function SignIn() {
       {user ? 
         <React.Fragment>
           {/* <p>Welcome {user.displayName}</p> */}
-          <button className="navbar-items-sm navbar-items sm:pr-4" onClick={() => auth.signOut()}>SIGN OUT</button> 
+
+          {/* Profile Picture + Dropdown that appears when the mouse hovers over the item*/}
+          <div onMouseLeave={() => setShowProfileDropdown(false)} onClick={() => setShowProfileDropdown(!showProfileDropdown)}>
+            <img src={profile} alt='profile' className='w-10 p-2 m-2 bg-gray-300 rounded-full' onMouseEnter={() => setShowProfileDropdown(true)}/>
+            {showProfileDropdown === true ? 
+              <ProfileDropdown/>  
+            : 
+              null
+            }
+          </div>
+
+          
+          
+          {/* <button className="navbar-items border pl-3 pr-3 pt-2 pb-2 text-green-500 hover:border-green-500 whitespace-nowrap" onClick={() => auth.signOut()}>Sign Out</button>  */}
         </React.Fragment>
         : 
         <React.Fragment>
-          <button className="navbar-items-sm navbar-items sm:pr-4" onClick={signInWithGoogle}>SIGN IN</button>
+          <button className="navbar-items border pl-3 pr-3 pt-2 pb-2 text-green-500 hover:border-green-500 whitespace-nowrap" onClick={signInWithGoogle}>Log In</button>
           {/* Save sign in with email as a later feature */}
           {/* <button>Sign in with email</button> */}
         </React.Fragment>

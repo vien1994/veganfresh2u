@@ -1,23 +1,18 @@
-import Hamburger from 'hamburger-react';
 import { Link } from 'react-router-dom'
-import SignIn from './SignIn';
+import Context from '../../store/Context';
+import { useContext } from 'react';
+import '../../../src/animations/animations.css'
 
-// RUN NPM RUN BUILD-CSS in a new terminal
-
-function DropdownMenu(props) {
-
+function DropdownMenu() {
+  const {closeHamburger} = useContext(Context);
+  
     return (
-        <div className="absolute left-0 top-24 bg-white w-1/2 h-full border-r-2 border-grey z-10">
+        <div className="absolute left-0 top-24 bg-white w-1/2 h-full border-r-2 border-grey z-10 dropdown overflow-clip">
             <div className="text-gray-500" >
               <h1 className="mobile-dropdown-header" >VEGAN STUFF</h1>
-             <Link to="/about" className="mobile-dropdown-items" >About Us</Link>
-             <Link to="/pricing" className="mobile-dropdown-items" >Pricing</Link>
-             <Link to="/menu" className="mobile-dropdown-items">Menu</Link>
-             {/* Add visual effects for hover and active state of each tab */}
+              <Link to="/about" className="mobile-dropdown-items" onClick={closeHamburger}>About Us</Link>
+              <Link to="/pricing" className="mobile-dropdown-items" onClick={closeHamburger}>Pricing</Link>
+              <Link to="/menu" className="mobile-dropdown-items" onClick={closeHamburger}>Menu</Link>
             </div>
         </div>
     );
-}
-
-
-export default DropdownMenu;

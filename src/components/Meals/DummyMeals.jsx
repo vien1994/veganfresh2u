@@ -1,5 +1,4 @@
-import { map } from "@firebase/util";
-import './DummyMeals.css'
+import '../../../src/animations/animations.css'
 import Recipes from "./Recipes";
 
 const sampleMeals = [
@@ -35,18 +34,42 @@ const sampleMeals = [
       nutrition: '420 Calories / 69 minutes',
       price: 18.99,
     },
+    {
+      id: 'm5',
+      name: 'JACKFRUIT BURGER',
+      with: 'with Creamy Aioli and Pickles',
+      allergies: 'Nut-free, Gluten-free',
+      nutrition: '420 Calories / 69 minutes',
+      price: 16.5,
+    },
+    {
+      id: 'm6',
+      name: 'VEGAN PHO',
+      with: 'with Scallions and Impossible meat',
+      allergies: 'Nut-free, Gluten-free',
+      nutrition: '420 Calories / 69 minutes',
+      price: 12.99,
+    },
+    {
+      id: 'm7',
+      name: 'GREEN BOWL',
+      with: 'with Lettuce and Cherry Tomatoes',
+      allergies: 'Nut-free, Gluten-free',
+      nutrition: '420 Calories / 69 minutes',
+      price: 18.99,
+    },
   ];
 
   function DummyMeals() {
     const mealsList = sampleMeals.map(meal => 
       <Recipes 
-      id={meal.id}
-      key={meal.id} 
-      name={meal.name} 
-      with={meal.with}
-      allergies={meal.allergies}
-      nutrition={meal.nutrition} 
-      price={meal.price} 
+        id={meal.id}
+        key={meal.id} 
+        name={meal.name} 
+        with={meal.with}
+        allergies={meal.allergies}
+        nutrition={meal.nutrition} 
+        price={meal.price} 
       />
     );
 

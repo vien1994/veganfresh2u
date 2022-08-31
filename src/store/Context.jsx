@@ -6,7 +6,11 @@ const Context = createContext({
   addItem: (item) => {},
   removeItem: (id) => {}, 
   db: null, 
-  auth: null
+  auth: null,
+  dropdown: null,
+  closeHamburger: () => {},
+  cartIsShown: null,
+  showCartHandler: () => {}
 });
 
 export default Context;

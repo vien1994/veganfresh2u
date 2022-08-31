@@ -1,13 +1,13 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import DummyMeals from '../Meals/DummyMeals';
+import './MenuTabs.css';
 
 function MenuTabs() {
+  const [toggleState, setToggleState] = useState(1);
 
-    const [toggleState, setToggleState] = useState(1);
-
-    const toggleTab = (index) => {
-        setToggleState(index);
-    }
+  const toggleTab = (index) => {
+    setToggleState(index);
+  }
 
   return (
     <div className="menu-container">
@@ -17,55 +17,42 @@ function MenuTabs() {
         Certified fresh recipes delivered to your doorstep. 
         Choose from a variety of healthy meals and put your chef's hat on.
       </div>
-      <div className="menu-bloc-tabs">
-        
-      <button
-    //   Sets the clicked tab to the current index (tab 1 2 or 3)
-          className={toggleState === 1 ? "menu-tabs menu-active-tabs" : "menu-tabs"}
-          onClick={() => toggleTab(1)}
-        >BREAKFASTS</button>
-
-        <button
-          className={toggleState === 2 ? "menu-tabs menu-active-tabs" : "menu-tabs"}
-          onClick={() => toggleTab(2)}
-        >LUNCHES</button>
-
-        <button
-          className={toggleState === 3 ? "menu-tabs menu-active-tabs" : "menu-tabs"}
-          onClick={() => toggleTab(3)}
-        >DINNERS</button>
+      <div className="menu-bloc-tabs">  
+        {/* //Sets the clicked tab to the current index (tab 1 2 or 3) */}
+        <button className={toggleState === 1 ? "menu-tabs menu-active-tabs" : "menu-tabs"} onClick={() => toggleTab(1)}>BREAKFASTS</button>
+        <button className={toggleState === 2 ? "menu-tabs menu-active-tabs" : "menu-tabs"} onClick={() => toggleTab(2)}>LUNCHES</button>
+        <button className={toggleState === 3 ? "menu-tabs menu-active-tabs" : "menu-tabs"} onClick={() => toggleTab(3)}>DINNERS</button>
       </div>
 
         <div className="grow"> {/* The content of the active tab will fill the whole container */}
-
-            {/* Checks which tab is active and displays the content of the currently active tab  */}
-            {/* VIEN: Removed menu-content here. */}
-            {toggleState === 1 ? 
-              <div className="menu-active-content">
-                <div className="flex justify-center">
-                  <h1 className="menu-tab-header inline-flex">Breakfasts</h1>
-                  <div className="font-normal italic text-base pl-4 pt-1">Available in 2-4 servings</div>
-                </div>
-                <DummyMeals />
+          {/* Checks which tab is active and displays the content of the currently active tab  */}
+          {/* VIEN: Removed menu-content here. */}
+          {toggleState === 1 ? 
+            // Adding a key makes React mount the component from scratch. This TRIGGERS the animation we have placed 
+            <div key={1} className="menu-active-content mt-4">
+              <div className="flex justify-center">
+                <h1 className="menu-tab-header inline-flex">Breakfasts</h1>
+                <div className="font-normal italic text-base pl-4 pt-1">Available in 2-4 servings</div>
               </div>
-            : toggleState === 2 ?
-              <div className="menu-active-content">
-                <div className="flex justify-center">
-                  <h1 className="menu-tab-header inline-flex">Lunches</h1>
-                  <div className="font-normal italic text-base pl-4 pt-1">Available in 2-4 servings</div>
-                </div>
-                <DummyMeals />
+              <DummyMeals />
+            </div>
+          : toggleState === 2 ?
+            <div key={2} className="menu-active-content mt-4">
+              <div className="flex justify-center">
+                <h1 className="menu-tab-header inline-flex">Lunches</h1>
+                <div className="font-normal italic text-base pl-4 pt-1">Available in 2-4 servings</div>
               </div>
-            : 
-              <div className="menu-active-content">
-                <div className="flex justify-center">
-                  <h1 className="menu-tab-header inline-flex">Dinner</h1>
-                  <div className="font-normal italic text-base pl-4 pt-1">Available in 2-4 servings</div>
-                </div>
-                <DummyMeals />
+              <DummyMeals />
+            </div>
+          : 
+            <div key={3} className="menu-active-content mt-4">
+              <div className="flex justify-center">
+                <h1 className="menu-tab-header inline-flex">Dinner</h1>
+                <div className="font-normal italic text-base pl-4 pt-1">Available in 2-4 servings</div>
               </div>
-            }
-
+              <DummyMeals />
+            </div>
+          }
         </div>
 
     </div>
