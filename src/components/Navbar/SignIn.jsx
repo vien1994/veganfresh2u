@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Context from '../../store/Context';
 import profile from '../../img/profile.svg';
@@ -14,7 +14,7 @@ import ProfileDropdown from './ProfileDropdown';
  */
 export default function SignIn() {
   const context = useContext(Context);
-  const { showCartHandler } = context;
+  const { showCartHandler, show } = context;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
@@ -47,7 +47,7 @@ export default function SignIn() {
   // Use firebase's function, signInWithPopup, to sign in with google.
   const signInWithGoogle = () => {
     console.log('Signing in with Google');
-    signInWithPopup(auth, provider)
+    signInWithRedirect(auth, provider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -76,6 +76,8 @@ export default function SignIn() {
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
+
+      console.log(errorCode, errorMessage, email, credential)
     });
   }
 
@@ -106,7 +108,7 @@ export default function SignIn() {
           {/* <p>Welcome {user.displayName}</p> */}
 
           {/* Profile Picture + Dropdown that appears when the mouse hovers over the item*/}
-          <div onMouseLeave={() => setShowProfileDropdown(false)} onClick={() => setShowProfileDropdown(true)}>
+          <div onMouseLeave={() => setShowProfileDropdown(false)} onClick={() => setShowProfileDropdown(!showProfileDropdown)}>
             <img src={profile} alt='profile' className='w-10 p-2 m-2 bg-gray-300 rounded-full' onMouseEnter={() => setShowProfileDropdown(true)}/>
             {showProfileDropdown === true ? 
               <ProfileDropdown/>  
