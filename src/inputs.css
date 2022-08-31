@@ -79,8 +79,16 @@
   /* End of CartItem.jsx styles */
   
   /* Navbar styles */
-  .navbar-items{
+  .navbar-items {
     @apply font-semibold m-4 text-base
+  }
+
+  .navbar-profile-dropdown-li {
+    @apply w-32 h-10 flex justify-center items-center hover:bg-green-50
+  }
+
+  .badge_option2 {
+    @apply bg-gray-200 pt-1 pb-1 pr-2 pl-2 rounded-full font-semibold text-center align-middle
   }
      
 }

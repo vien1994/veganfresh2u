@@ -3,6 +3,8 @@ import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } f
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Context from '../../store/Context';
 import profile from '../../img/profile.svg';
+import HeaderCart from '../Cart/HeaderCart';
+import ProfileDropdown from './ProfileDropdown';
 
 /**
  * Functional component for signing in/creating users in our database using google's firebase.
@@ -12,8 +14,10 @@ import profile from '../../img/profile.svg';
  */
 export default function SignIn() {
   const context = useContext(Context);
+  const { showCartHandler } = context;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const auth = context.auth;
   const provider = new GoogleAuthProvider();
   const [isAdmin, setIsAdmin] = useState(false);
@@ -27,12 +31,12 @@ export default function SignIn() {
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in 
-      const user = userCredential.user;
-      console.log(userCredential)
+      // const user = userCredential.user;
+      // console.log(userCredential)
       // ...
     })
     .catch((error) => {
-      const errorCode = error.code;
+      // const errorCode = error.code;
       const errorMessage = error.message;
 
       console.log(errorMessage)
@@ -101,8 +105,16 @@ export default function SignIn() {
         <React.Fragment>
           {/* <p>Welcome {user.displayName}</p> */}
 
-          {/* Profile Picture */}
-          <img src={profile} alt='profile' className='w-10 p-2 m-2 bg-gray-300 rounded-full'/>
+          {/* Profile Picture + Dropdown that appears when the mouse hovers over the item*/}
+          <div onMouseLeave={() => setShowProfileDropdown(false)} onClick={() => setShowProfileDropdown(true)}>
+            <img src={profile} alt='profile' className='w-10 p-2 m-2 bg-gray-300 rounded-full' onMouseEnter={() => setShowProfileDropdown(true)}/>
+            {showProfileDropdown === true ? 
+              <ProfileDropdown/>  
+            : 
+              null
+            }
+          </div>
+
           
           
           {/* <button className="navbar-items border pl-3 pr-3 pt-2 pb-2 text-green-500 hover:border-green-500 whitespace-nowrap" onClick={() => auth.signOut()}>Sign Out</button>  */}

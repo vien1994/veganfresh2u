@@ -8,7 +8,9 @@ const Context = createContext({
   db: null, 
   auth: null,
   dropdown: null,
-  closeHamburger: () => {}
+  closeHamburger: () => {},
+  cartIsShown: null,
+  showCartHandler: () => {}
 });
 
 export default Context;

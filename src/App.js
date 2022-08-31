@@ -12,21 +12,13 @@ import OrderHistoryPage from "./components/Orders/OrderHistoryPage";
 import Context from "./store/Context";
 
 function App() {
-  const {dropdownOpen, closeHamburger} = useContext(Context);
-  const [cartIsShown, setCartIsShown] = useState(false);
-
-  const showCartHandler = () => {
-    setCartIsShown(true);
-  };
-
-  const hideCartHandler = () => {
-    setCartIsShown(false);
-  };
+  const {cartIsShown, showCartHandler, dropdownOpen, closeHamburger} = useContext(Context);
 
   return (
     <Fragment>
-      {cartIsShown && <Cart onClose={hideCartHandler} />}
-      <Header onShowCart={showCartHandler} />
+      {/* Cart modal that is displayed over the rest of the page */}
+      {cartIsShown && <Cart onClose={() => showCartHandler(false)} />}
+      <Header />
       <div className={`grid w-full h-full grid-cols-6 grid-rows-6 ${dropdownOpen === true ? 'overflow-clip' : ''}`} onClick={closeHamburger}>
         <Routes>
           <Route path="/" element={<Home />} />

@@ -6,7 +6,7 @@ import { Spin as Hamburger } from 'hamburger-react'
 import { useEffect, useContext } from 'react';
 import Context from '../../store/Context';
 
-function Header(props) {
+function Header() {
   const { dropdownOpen, setDropdown, closeHamburger } = useContext(Context);
 
   // Execute code whenever the hamburger is clicked
@@ -25,14 +25,13 @@ function Header(props) {
         <Hamburger toggled={dropdownOpen} toggle={setDropdown} hideOutline={true} />
       </div>
 
-      <Link to="/" className="logo-sm text-2xl text-green-500 font-bold self-center cursor-pointer font-CabinSketch" onClick={closeHamburger}>VEGANFRESH2U</Link>
+      <Link to="/" className="logo-sm text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-green-500 font-bold self-center cursor-pointer font-CabinSketch" onClick={closeHamburger}>VEGANFRESH2U</Link>
+
       <div className="hidden sm:flex sm:items-center">
         <Link to='/about' className="navbar-items" >ABOUT US</Link>
         <Link to="/pricing" className="navbar-items" >PRICING</Link>
         <Link to='/menu' className="navbar-items">MENU</Link>
-        <Link to='/orders' className="navbar-items">ORDERS</Link>
         <SignIn />
-        <HeaderCart onClick={props.onShowCart} />
       </div>
       <div className="sm:hidden self-center"><SignIn /></div>
 

@@ -123,10 +123,19 @@ function CartProvider(props) {
       dispatchCartAction({type: 'REMOVE', id: id})
     };
 
+    // Close the navbar on mobile screen
     const closeHamburger = () => {
       console.log('closing burger')
       setDropdown(false);
     }
+
+    // Handles the modal for the cart to review the items added
+    const [cartIsShown, setCartIsShown] = useState(false);
+
+    // Handles whether or not the cart is shown. Accepts true/false
+    const showCartHandler = (bool) => {
+      setCartIsShown(bool);
+    };
 
     const context = {
       items: cartState.items,
@@ -137,7 +146,9 @@ function CartProvider(props) {
       auth: auth,
       dropdownOpen: dropdown,
       setDropdown: setDropdown,
-      closeHamburger: closeHamburger
+      closeHamburger: closeHamburger,
+      cartIsShown: cartIsShown,
+      showCartHandler: showCartHandler
     };
 
   return (
