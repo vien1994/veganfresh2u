@@ -27,24 +27,32 @@ export default function OrderHistoryPage() {
     }
   }, [user, db])
 
-  // Function runs everytime order state changes
-  
+  // Creates cards for order history
   useEffect(() => {
+    // Once orders have loaded, then render the OrdersCard component 
     if(orders !== null) {
-      const orderMap = orders.map(order => 
-        <OrdersCard 
-          foodID={order.order1.foodID}
-          total={order.total}
-          qty={order.order1.qty}
-          status={order.status}
-        />
-      )
+      // orderMap stores the array of orders
+      let orderMap = [];
 
-    setOrdersList(orderMap);
+      orders.forEach(order => {
+        // Checks all properties in 'order' object
+        for (const property in order) {
+          if(property.includes('order')) {
+            orderMap.push(
+              <OrdersCard 
+                foodID={order[property].foodID} 
+                qty={order[property].qty}
+                total={order.total}
+                status={order.status}
+              />
+            )
+          }
+        }
+      })
+      setOrdersList(orderMap);
+      console.log(orders);
     }
   }, [orders])
-
-  console.log(orders);
 
     // Print all the dummy order info (quantity, price, id(name) of the item, image of the item) onto a page(dynamically) and style it
     // Make sure to cover what happens if a user has no order history 
@@ -68,7 +76,7 @@ export default function OrderHistoryPage() {
       {/* Don't load the page unless there is order info */}
       {orders !== null ? 
         <div className="col-start-3 col-end-5">
-          <h1 className="m-4 pl-4 text-5xl font-semibold">
+          <h1 className="m-4 pl-4 text-5xl font-semibold text-gray-700">
             Your Orders
           </h1>
           {ordersList}

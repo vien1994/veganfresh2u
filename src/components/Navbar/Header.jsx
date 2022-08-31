@@ -8,14 +8,12 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 function Header(props) {
-
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
 
   // Execute code whenever the hamburger is clicked
   useEffect(() => {
     console.log(hamburgerOpen);
   }, [hamburgerOpen]);
-  
 
   return (
     // All the following styles will be ran as default
@@ -35,21 +33,19 @@ function Header(props) {
       <div className="hidden sm:flex sm:items-center">
         <Link to='/about' className="navbar-items">ABOUT US</Link>
         <Link to="/pricing" className="navbar-items" >PRICING</Link>
-        <Link to='/menu' className="navbar-items">MENU</Link>
+        <Link to='/menu' className="navbar-items">MENU</Link>                
         <Link to='/orders' className="navbar-items">ORDERS</Link>
         <SignIn />
         <HeaderCart onClick={props.onShowCart} />
       </div>
+
       <div className="sm:hidden self-center"><SignIn /></div>
-
-
-        {/* If the hamburger is open, shows dropdown menu, if hamburger is closed displays nothing */}
+      {/* If the hamburger is open, shows dropdown menu, if hamburger is closed displays nothing */}
       { hamburgerOpen === true ?
          <DropdownMenu /> 
          :
          null 
       }
-
      </div> 
   )
 }
