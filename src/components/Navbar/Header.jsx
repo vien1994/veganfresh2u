@@ -7,7 +7,7 @@ import { useEffect, useContext } from 'react';
 import Context from '../../store/Context';
 
 function Header() {
-  const { dropdownOpen, setDropdown, closeHamburger, showCartHandler } = useContext(Context);
+  const { dropdownOpen, setDropdown, closeHamburger } = useContext(Context);
 
   // Execute code whenever the hamburger is clicked
   useEffect(() => {
@@ -30,9 +30,7 @@ function Header() {
         <Link to='/about' className="navbar-items" >ABOUT US</Link>
         <Link to="/pricing" className="navbar-items" >PRICING</Link>
         <Link to='/menu' className="navbar-items">MENU</Link>
-        <Link to='/orders' className="navbar-items">ORDERS</Link>
         <SignIn />
-        <HeaderCart onClick={() => showCartHandler(true)} />
       </div>
       <div className="sm:hidden self-center"><SignIn /></div>
 

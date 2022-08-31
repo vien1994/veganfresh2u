@@ -30,10 +30,13 @@ function HeaderCart(props) {
     }, [items]);
 
     return (
-        <button className="cart-button bump" onClick={props.onClick} >
-            <span className="icon"><CartIcon /></span>
-            <span className="badge">{numberOfCartItems}</span>
-        </button>
+      // <button className="cart-button bump scale-75" onClick={props.onClick} >
+      //   <span className="icon"><CartIcon /></span>
+      //   <span className="badge">{numberOfCartItems}</span>
+      // </button>
+      <button onClick={props.onClick} >
+        CHECKOUT <span className="badge_option2">{numberOfCartItems}</span>
+      </button>
     )
 }
 
