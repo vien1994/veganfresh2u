@@ -6,7 +6,6 @@ import Modal from './Modal'
 import Context from '../../store/Context';
 import { collection, getDoc, setDoc, doc, serverTimestamp, query, getDocs } from "firebase/firestore"; 
 import { useAuthState } from 'react-firebase-hooks/auth';
-import PaymentPage from '../Orders/PaymentPage';
 
 function Cart(props) {
     const cartCtx = useContext(Context);
@@ -40,7 +39,26 @@ function Cart(props) {
       ))}</ul>
     );
 
-    // Constant to hold order information/details
+
+    // mock order
+
+    // const dummyOrder = {
+    //   total: 52,
+    //   order1: {
+    //     foodID: "1", //Need a database for food to reference ID
+    //     qty: 2
+    //   },
+    //   order2: {
+    //     foodID:"2", 
+    //     qty: 1
+    //   },
+    //   status: "order placed", // Need to figure out what status we want to use
+    //   date: serverTimestamp(), //Timestamp
+    //   uid: user.uid,  // Keep track of WHOSE order it is - Need user table and address info
+    //   customer_id: "", //ID from Stripe payment processing company
+    //   payment_succeeded: false // Make this dynamic
+    // }
+
     const createFinalOrder = () => {
       let finalOrder = {
         status: "order placed", // Need to figure out what status we want to use
@@ -50,17 +68,16 @@ function Cart(props) {
         payment_succeeded: false, // Make this dynamic
         total: cartCtx.totalAmount,
       };
-
       let counter = 1;
       cartCtx.items.forEach((item) => {
-        // For each food item list as order1, order2, and so on (stores foodID and qty)
+        console.log(item);
         finalOrder[`order${counter}`] = {
           foodID: item.id,
           qty: item.amount,
         };
         counter++;
-        console.log(finalOrder);
       })
+      console.log(finalOrder);
       return finalOrder;
     }
   
@@ -69,6 +86,7 @@ function Cart(props) {
     const checkIfUserOrderIDExists = async (userID) => {
       const docRef = doc(db, `orders/${userID}/transactions/1`);
       const docSnap = await getDoc(docRef);
+      console.log(docSnap)
 
       if (docSnap.exists()) {
         return true;
@@ -127,12 +145,10 @@ function Cart(props) {
         <span>Total Amount</span>
         <span>{totalAmount}</span>
     </div>
-    <PaymentPage />
     <div className="cart-button-wrapper">
         <button className="cart-buttons cart-close-button" onClick={props.onClose} >Close</button>
         {hasItems && <button className="cart-buttons cart-order-button" onClick={placeOrder}>Place Order</button>}
     </div>
-    
   </Modal>
   )
 }
