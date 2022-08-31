@@ -16,3 +16,6 @@ function DropdownMenu() {
             </div>
         </div>
     );
+}
+
+export default DropdownMenu;
