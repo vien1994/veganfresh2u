@@ -1,10 +1,9 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import HeaderCart from "../Cart/HeaderCart";
-import Provider from "../../store/Provider";
 import Context from "../../store/Context";
 
-export default function ProfileDropdown(props) {
+export default function ProfileDropdown() {
   const { showCartHandler, auth } = useContext(Context);
 
   return(
