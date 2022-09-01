@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "veganfresh2u"
-  }
+    "default": "veganfresh2u",
+    "staging": "veganfresh2u"
+  },
+  "targets": {}
 }
