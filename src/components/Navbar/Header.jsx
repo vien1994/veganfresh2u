@@ -35,6 +35,8 @@ function Header() {
         <SignIn />
       </div>
 
+      <div className="sm:hidden self-center"><SignIn /></div>
+
       {/* If the hamburger is open, shows dropdown menu, if hamburger is closed displays nothing */}
       { dropdownOpen === true ?
 
