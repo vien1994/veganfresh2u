@@ -21,7 +21,7 @@ function Header() {
         <Hamburger toggled={dropdownOpen} toggle={setDropdown} hideOutline={true} />
       </div>
 
-      <Link to="/" className="logo-sm text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-green-500 font-bold self-center cursor-pointer font-CabinSketch" onClick={closeHamburger}>VEGANFRESH2U</Link>
+      <Link to="/" className="logo-sm text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-green-500 font-bold self-center cursor-pointer font-CabinSketch" onClick={closeHamburger}>VEGANFRESH 2 U</Link>
 
       <div className="hidden sm:flex sm:items-center">
         <Link to='/about' className="navbar-items" >ABOUT US</Link>
