@@ -9,7 +9,9 @@ import Cart from "./components/Cart/Cart";
 import Menu from "./components/Menu/Menu";
 import Pricing from "./components/Navbar/Pricing";
 import OrderHistoryPage from "./components/Orders/OrderHistoryPage";
+import ProfilePage from "./components/Navbar/ProfilePage";
 import Context from "./store/Context";
+
 
 function App() {
   const {cartIsShown, showCartHandler, dropdownOpen, closeHamburger} = useContext(Context);
@@ -25,6 +27,7 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/pricing" element={<Pricing />} />
+          <Route path="/profile" element={<ProfilePage />} />
           {/* Currently there is no way to access this page. May need something like a dropdown on the user icon to navigate to it. */}
           <Route path="/orders" element={<OrderHistoryPage />} />
         </Routes>
