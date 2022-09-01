@@ -9,6 +9,9 @@ export default function ProfileDropdown() {
   return(
     <ul className="absolute -translate-x-1/3 z-10 border border-gray-300 bg-white">
       <li className="navbar-profile-dropdown-li">
+        <Link to="/profile">PROFILE</Link>
+      </li>
+      <li className="navbar-profile-dropdown-li">
         <Link to='/orders'>ORDERS</Link>
       </li>
       <li>

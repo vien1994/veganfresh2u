@@ -47,7 +47,7 @@ function MenuTabs() {
           : 
             <div key={3} className="menu-active-content mt-4">
               <div className="flex justify-center">
-                <h1 className="menu-tab-header inline-flex">Dinner</h1>
+                <h1 className="menu-tab-header inline-flex">Dinners</h1>
                 <div className="font-normal italic text-base pl-4 pt-1">Available in 2-4 servings</div>
               </div>
               <DummyMeals />
