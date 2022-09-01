@@ -10,11 +10,6 @@ import Context from '../../store/Context';
 function Header() {
   const { dropdownOpen, setDropdown, closeHamburger } = useContext(Context);
 
-  // Execute code whenever the hamburger is clicked
-  useEffect(() => {
-    console.log(dropdownOpen);
-  }, [dropdownOpen]);
-
   return (
     // All the following styles will be ran as default
     // until screen size of 640px is reached, then 
