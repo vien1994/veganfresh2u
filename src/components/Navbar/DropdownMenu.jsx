@@ -13,9 +13,12 @@ function DropdownMenu() {
               <Link to="/about" className="mobile-dropdown-items" onClick={closeHamburger}>About Us</Link>
               <Link to="/pricing" className="mobile-dropdown-items" onClick={closeHamburger}>Pricing</Link>
               <Link to="/menu" className="mobile-dropdown-items" onClick={closeHamburger}>Menu</Link>
+              <Link to="/orders" className="mobile-dropdown-items" onClick={closeHamburger}>Orders</Link>
             </div>
         </div>
     );
+
 }
 
 export default DropdownMenu;
+
