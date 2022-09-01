@@ -8,7 +8,16 @@ export default function ProfileDropdown(props) {
   const { showCartHandler, auth } = useContext(Context);
 
   return(
-    <ul className="absolute -translate-x-1/3 z-10 border border-gray-300 bg-white">
+    <ul className="absolute -translate-x-1/4 z-10 border border-gray-300 bg-white">
+      <li className="navbar-profile-dropdown-li sm:hidden">
+        <Link to='/about'>ABOUT US</Link>
+      </li>
+      <li className="navbar-profile-dropdown-li sm:hidden">
+        <Link to="/pricing">PRICING</Link>
+      </li>
+      <li className="navbar-profile-dropdown-li sm:hidden">
+        <Link to='/menu'>MENU</Link>
+      </li>
       <li className="navbar-profile-dropdown-li">
         <Link to='/orders'>ORDERS</Link>
       </li>

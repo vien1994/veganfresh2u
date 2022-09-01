@@ -132,10 +132,10 @@
   /* Any screen size smaller than 'sm' (640px) will render these styles */
   .navbar-items-sm {
     @apply block left-0 text-lg p-3
-  }
-  
+
   .badge_option2 {
     @apply bg-gray-200 pt-1 pb-1 pr-2 pl-2 rounded-full font-semibold text-center align-middle
+
   }
      
 }
