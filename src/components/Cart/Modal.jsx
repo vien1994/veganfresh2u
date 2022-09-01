@@ -1,19 +1,20 @@
 import ReactDOM from 'react-dom'
 import {Fragment} from 'react'
 
-function Backdrop (props) {
-    return <div className="backdrop" onClick={props.onClose} />
+
+function Backdrop(props) {
+  return <div className="backdrop" onClick={props.onClose} />
 }
 
-function ModalOverlay (props) {
-    return (
-        <div className="modal">
-            <div>{props.children}</div>
-        </div>
-    )
+function ModalOverlay(props) {
+  return (
+    <div className="modal">
+      <div>{props.children}</div>
+    </div>
+  )
 }
 
-const portalElement = document.getElementById('overlays');
+const portalElement = document.getElementById('root');
 
 function Modal(props) {
   return (
