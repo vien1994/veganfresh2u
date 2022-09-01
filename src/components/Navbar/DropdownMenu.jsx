@@ -3,7 +3,7 @@ import Context from '../../store/Context';
 import { useContext } from 'react';
 import '../../../src/animations/animations.css'
 
-function DropdownMenu() {
+export default function DropdownMenu() {
   const {closeHamburger} = useContext(Context);
   
     return (
@@ -16,3 +16,4 @@ function DropdownMenu() {
             </div>
         </div>
     );
+};
