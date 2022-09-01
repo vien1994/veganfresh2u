@@ -75,8 +75,8 @@ export default function OrderHistoryPage() {
     <React.Fragment>
       {/* Don't load the page unless there is order info */}
       {orders !== null ? 
-        <div className="col-start-3 col-end-5">
-          <h1 className="m-4 pl-4 text-5xl font-semibold text-gray-700">
+        <div className="col-start-2 col-end-6 sm:col-start-3 sm:col-end-5">
+        <h1 className="m-4 pl-4 text-4xl sm:text-5xl font-semibold text-gray-700">
             Your Orders
           </h1>
           {ordersList}
