@@ -8,6 +8,7 @@ import { collection, getDoc, setDoc, doc, serverTimestamp, query, getDocs } from
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getFunctions, httpsCallable } from "firebase/functions";
 import PaymentPage from '../Orders/PaymentPage';
+import { useStripe } from '@stripe/react-stripe-js';
 
 function Cart(props) {
   const cartCtx = useContext(Context);
@@ -15,6 +16,7 @@ function Cart(props) {
   const auth = cartCtx.auth;
   const functions = getFunctions();
   const createStripeCheckout = httpsCallable(functions, 'createStripeCheckout');
+  const stripe = useStripe();
 
 
   // Check if user is signed in. Signed in - User is an object. Signed out - User is null. 
@@ -50,6 +52,7 @@ function Cart(props) {
       status: "order placed", // Need to figure out what status we want to use
       date: serverTimestamp(), //Timestamp
       uid: user.uid,  // Keep track of WHOSE order it is - Need user table and address info
+      email: user.email,
       customer_id: "", //ID from Stripe payment processing company
       payment_succeeded: false, // Make this dynamic
       total: cartCtx.totalAmount,
@@ -89,7 +92,13 @@ function Cart(props) {
     console.log("placing order...");
 
     try{
-      createStripeCheckout();
+      createStripeCheckout(order)
+        .then(response => {
+          const sessionId = response.data.id;
+          stripe.redirectToCheckout({
+            sessionId: sessionId
+          })
+        });
     }
     catch (err) {
       console.log(err)

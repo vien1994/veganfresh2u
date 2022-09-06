@@ -12,13 +12,14 @@ exports.createStripeCheckout = functions.https.onCall(async (data, context) => {
         quantity: 1,
         price_data: {
           currency: "usd",
-          unit_amount: (100) * 100, // 10,000 = $100
+          unit_amount: (100) * data.total, // 10,000 = $100
           product_data: {
             name: "Jackfruit Burger",
           },
         },
       },
     ],
+    customer_email: data.email,
   });
 
   return {
