@@ -14,6 +14,10 @@
     border-width: 1px;
   }
 
+  .border-b-1 {
+    border-bottom: 1px;
+  }
+
   .rounded-4xl {
     border-radius: 30px;
   }
@@ -33,10 +37,15 @@
   .top-20vh {
     top: 20vh;
   }
+
+  .-left-01 {
+    left: -1px;
+  }
 }
 
 @layer components {
-   /* ~Cart.jsx styles*/
+
+   /* Cart.jsx styles*/
   .cart-items {
      @apply list-none m-0 p-0 max-h-80 overflow-y-scroll
   }
@@ -50,7 +59,7 @@
   }
 
   .cart-buttons {
-    @apply text-inherit cursor-pointer bg-transparent border-2 border-gray-700 py-2 px-8 rounded-3xl ml-4 
+    @apply text-inherit cursor-pointer bg-transparent border-1 border-gray-700 py-2 px-8 rounded-3xl ml-4 
     hover:border-gray-500 hover:bg-green-500 hover:text-white
   } 
 
@@ -64,7 +73,7 @@
   /* End of Cart.jsx styles */
 
 
-  /* ~CartItem.jsx styles */
+  /* CartItem.jsx styles */
   .cart-item {
     @apply flex justify-between items-center border-b-2 border-green-500 py-4 px-0 my-4 mx-0
   }
@@ -86,15 +95,13 @@
   }
 
   .cart-item-actions {
-    @apply flex flex-col md:flex-row
+    @apply flex mr-2
   }
 
   .cart-item-buttons {
     @apply text-inherit font-bold text-xl text-green-600 border-2 border-green-600 w-12 
-           text-center rounded-md bg-transparent 
-           cursor-pointer ml-4 m-1 flex-wrap
+           text-center rounded-md bg-transparent cursor-pointer m-0.5
            hover:bg-green-500 hover:text-white active:bg-green-600 active:text-white
-           /* font: inherit */
   }
   /* End of CartItem.jsx styles */
   
@@ -108,9 +115,19 @@
   }
 
 
-  /* ~HeaderCart.jsx styles */
+  /* HeaderCart.jsx styles */
   .cart-button {
-    @apply cursor-pointer text-inherit border-none font-bold bg-green-500 text-white py-2 px-3 flex items-center rounded-4xl
+    @apply cursor-pointer text-inherit border-none bg-green-500 text-white py-2 px-3 flex items-center rounded-4xl font-bold
+            hover:bg-green-700 active:bg-green-700
+  }
+  
+  .icon {
+    @apply w-5 h-5 mr-1
+  }
+
+  .badge {
+    @apply bg-green-500 py-1 px-4 rounded-3xl font-bold
+            hover:bg-green-500 active:bg-green-500
   }
   /* End of HeaderCart.jsx styles */
 
@@ -124,7 +141,48 @@
   }
   /* End of Modal.jsx styles */
 
-  /* ~DropdownMenu.jsx styles */
+  /* MenuTabs.jsx styles */
+  .menu-container {
+    @apply flex flex-col relative bg-white
+  }
+  
+  .menu-bloc-tabs {
+    @apply flex justify-center
+  }
+  
+  .menu-tabs {
+    @apply p-4 text-center cursor-pointer box-content relative outline-none font-semibold border-b-0
+  }
+  
+  .menu-tab-bottom-border {
+    @apply border-b-1 border-black w-full
+  }
+  
+  .menu-active-tabs {
+    @apply before:block before:-left-01 before:-bottom-1 before:w-full before:h-0.5 before:bg-green-500
+  }
+  
+  .menu-content-tabs {
+    @apply grow
+  }
+  
+  .menu-content {
+    @apply bg-white w-full h-full hidden
+  }
+  
+  .menu-content h1 {
+    @apply w-full h-0.5 bg-gray-800 mb-5
+  }
+  
+  .menu-tab-header {
+    @apply font-medium text-lg
+  }
+   
+  .menu-active-content {
+    @apply block
+  }
+
+  /* DropdownMenu.jsx styles */
   .mobile-dropdown-items{
     @apply block left-0 text-lg p-3 mt-3 hover:border-l-3 hover:border-green-600 hover:bg-green-100 hover:text-green-500 
     focus:border-l-3 focus:border-green-600 focus:bg-green-100 focus:text-green-500
@@ -138,10 +196,11 @@
   
   /* ProfilePage.jsx styles */
   .profile-item {
-    @apply bg-white shadow border-2 rounded-lg mb-4 p-2
+    @apply bg-white shadow border-2 rounded-lg mb-4 p-2 font-normal text-base
   }
   /* End of ProfilePage.jsx styles */
 
+  
   /* ~Navbar styles */
   /* Any screen size larger than 'sm' (640px) will render these styles */
   .navbar-items{

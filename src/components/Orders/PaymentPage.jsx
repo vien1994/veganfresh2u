@@ -4,18 +4,19 @@ function PaymentPage() {
   return (
     <form>
       <div className="mb-2 overflow-auto">
-        <label className="block">Your Address: </label>
+        <label className="block font-medium sm:text-lg">Your Address: </label>
         <input className="border-1 border-gray-600 rounded" type="text" id="address"></input>
       </div>
       <div className="mb-2">
-        <label className="block">Postal Code: </label>
+        <label className="block font-medium sm:text-lg">Postal Code: </label>
         <input className="border-1 border-gray-600 rounded" type="text" id="postal"></input>
       </div>
       <div className="mb-2">
-        <label className="block">City: </label>
+        <label className="block font-medium sm:text-lg">City: </label>
         <input className="border-1 border-gray-600 rounded" type="text" id="city"></input>
       </div>
-      <button className="font-bold text-gray-900">Confirm</button>
+      {/* <input type='time' min='16:30' max='20:00' required></input> */}
+      {/* Add a note that will state deliveries will happen somewhere from 4:30 to 8:00PM */}
     </form>
   )
 }
