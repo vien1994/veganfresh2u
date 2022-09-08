@@ -5,12 +5,16 @@ import App from "./App";
 // import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import Provider from "./store/Provider";
+import { Elements } from '@stripe/react-stripe-js';
+import { stripePromise } from "./stripe/stripe";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider>
     <BrowserRouter>
-      <App />
+      <Elements stripe={stripePromise}>
+        <App />
+      </Elements>
     </BrowserRouter>
   </Provider>
 );
