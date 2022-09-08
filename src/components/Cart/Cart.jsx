@@ -47,13 +47,17 @@ function Cart(props) {
   );
 
   // Constant to hold order information/details
-  const createFinalOrder = () => {
+  const createFinalOrder = async () => {
+
+    // Get the customer ID so stripe knows which record needs to be updated in firestore db
+    const customerID = await getUserCustomerID(user.uid);
+
     let finalOrder = {
       status: "order placed", // Need to figure out what status we want to use
       date: serverTimestamp(), //Timestamp
       uid: user.uid,  // Keep track of WHOSE order it is - Need user table and address info
       email: user.email,
-      customer_id: "", //ID from Stripe payment processing company
+      customer_id: customerID, //ID from Stripe payment processing company
       payment_succeeded: false, // Make this dynamic
       total: cartCtx.totalAmount,
     };
@@ -85,25 +89,23 @@ function Cart(props) {
     }
   }
 
+  const getUserCustomerID = async (userID) => {
+    const docRef = doc(db, `customers/${userID}`);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      return docSnap.data().stripeId;
+    } else {
+      // doc.data() will be undefined in this case and does not exist
+      return false;
+    }
+  }
+
   // Writes order to DB. Need to implement validation. Did order go through?
   const placeOrder = async () => {
 
-    let order = createFinalOrder();
+    let order = await createFinalOrder();
     console.log("placing order...");
-
-    try{
-      createStripeCheckout(order)
-        .then(response => {
-          const sessionId = response.data.id;
-          stripe.redirectToCheckout({
-            sessionId: sessionId
-          })
-        });
-    }
-    catch (err) {
-      console.log(err)
-    }
-
 
     // If the user does not have a record (document) in the orders table, create an empty one for them. Then create the subcollection, "transactions", to store the actual order data.
     const userOrderIDExists = await checkIfUserOrderIDExists(user.uid);
@@ -134,6 +136,23 @@ function Cart(props) {
       } catch (error) {
         console.log(error);
       }
+    }
+
+
+    // After logging the order, do the payment.
+    try{
+      createStripeCheckout(order)
+        .then(response => {
+          console.log(response)
+          console.log(response.data);
+          const sessionId = response.data.id;
+          stripe.redirectToCheckout({
+            sessionId: sessionId
+          })
+        });
+    }
+    catch (err) {
+      console.log(err)
     }
 
 
