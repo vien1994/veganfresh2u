@@ -10,6 +10,7 @@ import { useReducer, useState } from 'react';
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { getFunctions } from 'firebase/functions';
 
 //Set up firebase configurations
 const firebaseConfig = {
@@ -28,6 +29,10 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
+
+// Initialize functions
+const functions = getFunctions(app);
+
 
 // Tool used to check who is logged in
 const auth = getAuth();
