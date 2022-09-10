@@ -1,16 +1,12 @@
 import { useContext } from 'react';
-import React from "react";
-// import "./Cart.css";
+import { useStripe } from '@stripe/react-stripe-js';
+import { getDoc, doc } from "firebase/firestore";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { getFunctions, httpsCallable } from "firebase/functions";
 import CartItem from './CartItem';
 import Modal from './Modal'
 import Context from '../../store/Context';
-import { collection, getDoc, setDoc, doc, serverTimestamp, query, getDocs } from "firebase/firestore";
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { getFunctions, httpsCallable } from "firebase/functions";
 import PaymentPage from '../Orders/PaymentPage';
-import { useStripe } from '@stripe/react-stripe-js';
-import { useState } from 'react';
-import Loading from '../Loading/Loading';
 
 function Cart(props) {
   const { items, totalAmount, db, auth, showLoading, removeItem, addItem } = useContext(Context);
@@ -43,6 +39,8 @@ function Cart(props) {
     ))}</ul>
   );
 
+
+  // Transforms cart data to fit the data Stripe is expecting
   const createFinalOrder = async () => {
     // Get the customer ID so stripe knows which record needs to be updated in firestore db
     const customerID = await getUserCustomerID(user.uid);
@@ -68,6 +66,7 @@ function Cart(props) {
     return finalOrder;
   }
 
+  // Gets Stripe customer ID
   const getUserCustomerID = async (userID) => {
     const docRef = doc(db, `customers/${userID}`);
     const docSnap = await getDoc(docRef);
