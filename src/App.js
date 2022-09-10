@@ -11,13 +11,20 @@ import Pricing from "./components/Navbar/Pricing";
 import OrderHistoryPage from "./components/Orders/OrderHistoryPage";
 import ProfilePage from "./components/Navbar/ProfilePage";
 import Context from "./store/Context";
-
+import Loading from "./components/Loading/Loading";
 
 function App() {
-  const {cartIsShown, showCartHandler, dropdownOpen, closeHamburger} = useContext(Context);
+  const {cartIsShown, showCartHandler, dropdownOpen, closeHamburger, isLoading} = useContext(Context);
 
   return (
     <Fragment>
+      {/* Show Loading Animation or Not - Currently used when placing an order before the Stripe Checkout loads*/}
+      { isLoading === true ?
+          <Loading />
+        :
+          null
+      }
+
       {/* Cart modal that is displayed over the rest of the page */}
       {cartIsShown && <Cart onClose={() => showCartHandler(false)} />}
       <Header />

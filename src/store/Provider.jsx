@@ -142,6 +142,14 @@ function CartProvider(props) {
       setCartIsShown(bool);
     };
 
+    // Determines if loading SVG should appear
+    const [isLoading, setIsLoading] = useState(false);
+
+    // Handles whether or not loading SVG should appear. Accepts true/false
+    const showLoading = (bool) => {
+      setIsLoading(bool);
+    };
+
     const context = {
       items: cartState.items,
       totalAmount: cartState.totalAmount,
@@ -153,7 +161,9 @@ function CartProvider(props) {
       setDropdown: setDropdown,
       closeHamburger: closeHamburger,
       cartIsShown: cartIsShown,
-      showCartHandler: showCartHandler
+      showCartHandler: showCartHandler,
+      isLoading: isLoading,
+      showLoading: showLoading
     };
 
   return (

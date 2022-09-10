@@ -9,14 +9,18 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { getFunctions, httpsCallable } from "firebase/functions";
 import PaymentPage from '../Orders/PaymentPage';
 import { useStripe } from '@stripe/react-stripe-js';
+import { useState } from 'react';
+import Loading from '../Loading/Loading';
 
 function Cart(props) {
   const cartCtx = useContext(Context);
   const db = cartCtx.db;
   const auth = cartCtx.auth;
+  const showLoading = cartCtx.showLoading;
   const functions = getFunctions();
   const createStripeCheckout = httpsCallable(functions, 'createStripeCheckout');
   const stripe = useStripe();
+  const [isLoading, setIsLoading] = useState(false);
 
 
   // Check if user is signed in. Signed in - User is an object. Signed out - User is null. 
@@ -138,6 +142,7 @@ function Cart(props) {
       }
     }
 
+    showLoading(true);
 
     // After logging the order, do the payment.
     try{
@@ -155,10 +160,6 @@ function Cart(props) {
       console.log(err)
     }
 
-
-    // Create a new record in the orders table. Ensure that a UID is included in the order to keep track of all orders.
-
-
   }
 
   return (
@@ -173,7 +174,6 @@ function Cart(props) {
         <button className="cart-buttons cart-close-button" onClick={props.onClose} >Close</button>
         {hasItems && <button className="cart-buttons cart-order-button" onClick={placeOrder}>Place Order</button>}
       </div>
-
     </Modal>
   )
 }
