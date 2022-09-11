@@ -50,6 +50,7 @@ function Cart(props) {
       line_items: [],
     };
 
+    // Store all the cart items in line_items
     items.forEach((item) => {
       finalOrder.line_items.push({
         quantity: item.amount,

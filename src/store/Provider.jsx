@@ -130,7 +130,6 @@ function CartProvider(props) {
 
     // Close the navbar on mobile screen
     const closeHamburger = () => {
-      console.log('closing burger')
       setDropdown(false);
     }
 

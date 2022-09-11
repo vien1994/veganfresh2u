@@ -12,11 +12,12 @@ exports.createStripeCheckout = functions.https.onCall(async (data, context) => {
     cancel_url: "https://veganfresh2u.com/orders", // required
     line_items: data.line_items,
     customer: data.customer_id, // This ties the checkout session to the appropriate customer in our DB. Once a payment succeeds, stripe knows which customer to update in our DB.
+    shipping_address_collection: {
+      allowed_countries: ["US"],
+    },
   });
 
   return {
     id: session.id,
   };
 });
-
-

@@ -15,7 +15,7 @@ export default function OrderHistoryPage() {
     if(user !== null) {
       const getOrders = async () => {
         let tmp = [];
-        const queryResults = await getDocs(collection(db, `orders/${user.uid}/transactions`));
+        const queryResults = await getDocs(collection(db, `customers/${user.uid}/payments`));
         queryResults.forEach((doc) => {
           // doc.data() is never undefined for query doc snapshots
           tmp.push(doc.data());
@@ -34,21 +34,32 @@ export default function OrderHistoryPage() {
       // orderMap stores the array of orders
       let orderMap = [];
 
+      console.log(orders)
+
+      // Create each card and populate with order info
       orders.forEach(order => {
-        // Checks all properties in 'order' object
-        for (const property in order) {
-          if(property.includes('order')) {
-            orderMap.push(
-              <OrdersCard 
-                foodID={order[property].foodID} 
-                qty={order[property].qty}
-                total={order.total}
-                status={order.status}
-              />
-            )
-          }
-        }
-      })
+        orderMap.push(
+          <OrdersCard 
+            foodID={'s'}
+          />
+        )
+      });
+
+      // orders.forEach(order => {
+      //   // Checks all properties in 'order' object
+      //   for (const property in order) {
+      //     if(property.includes('order')) {
+      //       orderMap.push(
+      //         <OrdersCard 
+      //           foodID={order.data} 
+      //           qty={'test'}
+      //           total={order.amount / 100}
+      //           status={order.status}
+      //         />
+      //       )
+      //     }
+      //   }
+      // })
       setOrdersList(orderMap);
       console.log(orders);
     }
