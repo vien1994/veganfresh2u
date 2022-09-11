@@ -17,33 +17,27 @@ function DummyMeals() {
 
       const getProducts = async () => {
         let tmp = [];
+        let productIds = [];
         const queryResults = await getDocs(collection(db, `products`));
         queryResults.forEach(async (doc) => {
           let tmpDocData = doc.data();
-
-          //This fails for some reason 
-
-          // const getPrice = await getDocs(collection(db, `products/${doc.id}/prices`));
-          // getPrice.forEach((docPrice) => {
-          //   console.log(docPrice.data());
-          //   tmpDocData.price = docPrice.data().unit_amount
-          // })
-
-
-
-
-
-          tmpDocData.price = 6;
+          tmpDocData.docId = doc.id; //Manually insert the docId
+          productIds.push(doc.id)
           console.log(tmpDocData)
           
           // doc.data() is never undefined for query doc snapshots
           tmp.push(tmpDocData);
         });
 
-        // const getPrice = await getDocs(collection(db, `products/${doc.id}/prices`));
-        // getPrice.forEach((price) => {
-        //   tmpDocData.price = (price.data().unit_amount / 100).toFixed(2)
-        // })
+        console.log('getting prices...', tmp)
+        tmp.forEach(async (doc) => {
+          const getPrice = await getDocs(collection(db, `products/${doc.docId}/prices`));
+          getPrice.forEach((price) => {
+            console.log(price.data());
+            doc.price = (price.data().unit_amount / 100).toFixed(2)
+          })
+        })
+       
 
         console.log(tmp)
         setProducts(tmp);
@@ -53,6 +47,8 @@ function DummyMeals() {
       getProducts();
     }
   }, [user, db]);
+
+  console.log(products);
 
   useEffect(() => {
     if(products !== null) {
@@ -70,9 +66,6 @@ function DummyMeals() {
       ));
     }
   }, [products])
-
-  console.log(products)
-
 
   return (
     <div className="meals flex flex-wrap content-center justify-evenly">
