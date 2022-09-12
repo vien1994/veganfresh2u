@@ -45,6 +45,7 @@ function DummyMeals() {
       // nutrition={product.nutrition} 
       price={product.price / 100}
       imgUrl={product.images[0]}
+      priceId={product.price_id}
     />
   );
 

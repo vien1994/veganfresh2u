@@ -57,13 +57,7 @@ function Cart(props) {
     items.forEach((item) => {
       finalOrder.line_items.push({
         quantity: item.amount,
-        price_data: {
-          currency: "usd",
-          unit_amount: (100) * item.price,
-          product_data: {
-            name: item.name,
-          }
-        }
+        price: item.priceId,
       })
     });
 

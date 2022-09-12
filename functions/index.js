@@ -32,6 +32,7 @@ exports.insertProductPrice = functions.firestore
     .onWrite((change, context) => {
       db.doc(`products/${context.params.docId}`).set({
         price: change.after.data().unit_amount,
+        price_id: context.params.productPrices,
       }, {merge: true});
     });
 
