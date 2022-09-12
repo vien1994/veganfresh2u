@@ -4,13 +4,15 @@
 
 import React from 'react'
 import Context from './Context';
-import { useReducer, useState } from 'react';
+import { useReducer, useState, useEffect } from 'react';
 
 // Import the firebase functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getFunctions } from 'firebase/functions';
+import { collection, getDocs } from "firebase/firestore";
+
 
 //Set up firebase configurations
 const firebaseConfig = {
@@ -45,7 +47,6 @@ const defaultCartState = {
 const cartReducer = (state, action) => {
     // Loop that runs if an item is added to the cart
     if (action.type === 'ADD') {
-
       // Adds price and quantity together to find total for the item(s)
       const updatedTotalAmount = state.totalAmount + action.item.price;
       
@@ -117,9 +118,11 @@ const cartReducer = (state, action) => {
 function CartProvider(props) {
     const [cartState, dispatchCartAction]= useReducer(cartReducer, defaultCartState);
     const [dropdown, setDropdown] = useState(false);
+    const [products, setProducts] = useState();
 
     // Dispatches item prop
     const addItemToCartHandler = item => {
+      console.log(item);
       dispatchCartAction({type:'ADD', item: item});
     };
 
@@ -149,6 +152,33 @@ function CartProvider(props) {
       setIsLoading(bool);
     };
 
+    const getProducts = async () => {
+      let tmp = []; // Store all the products
+
+      // Get all products & store in the tmp array
+      const queryResults = await getDocs(collection(db, `products`));
+      queryResults.forEach(async (doc) => {
+        let tmpDocData = doc.data();
+        tmpDocData.docId = doc.id; //Manually insert the docId
+        tmp.push(tmpDocData); // doc.data() is never undefined for query doc snapshots
+      });
+
+      // For every product in tmp, grab the price via the product docId
+      tmp.forEach(async (doc, index) => {
+        const getPrice = await getDocs(collection(db, `products/${doc.docId}/prices`));
+        getPrice.forEach((price) => {
+          tmp[index]['price'] = (price.data().unit_amount / 100).toFixed(2);
+        })
+      })
+
+      setProducts(tmp);
+    } // End of getProducts()
+
+    useEffect(() => {
+      getProducts()
+    }, [])
+    // getProducts();
+
     const context = {
       items: cartState.items,
       totalAmount: cartState.totalAmount,
@@ -162,7 +192,8 @@ function CartProvider(props) {
       cartIsShown: cartIsShown,
       showCartHandler: showCartHandler,
       isLoading: isLoading,
-      showLoading: showLoading
+      showLoading: showLoading,
+      products: products,
     };
 
   return (

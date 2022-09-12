@@ -3,18 +3,19 @@ import MealItemForm from '../Cart/MealItemForm';
 import Context from '../../store/Context';
 
 function Recipes(props) {
-  const cartCtx = useContext(Context);
+  const { addItem } = useContext(Context);
 
 
   const addToCartHandler = amount => {
-    cartCtx.addItem({
+    console.log('adding to cart', props)
+    addItem({
       id: props.id,
       name: props.name,
       with: props.with,
       allergies: props.allergies,
       nutrition: props.nutrition,
       amount: amount,
-      price: props.price,
+      price: 6,
     });
   };
 
