@@ -1,83 +1,63 @@
 import '../../../src/animations/animations.css'
 import Recipes from "./Recipes";
+import React, { useContext, useEffect, useState } from 'react'
+import Context from '../../store/Context';
+import { collection, getDocs } from "firebase/firestore";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { async } from '@firebase/util';
 
-const sampleMeals = [
-    {
-      id: 'm1',
-      name: 'GLAZED TOFU',
-      with: 'with Crunchy Bell Peppers and Rice',
-      allergies: 'Nut-free, Gluten-free',
-      nutrition: '420 Calories / 69 minutes',
-      price: 22.99,
-    },
-    {
-      id: 'm2',
-      name: 'JACKFRUIT BURGER',
-      with: 'with Creamy Aioli and Pickles',
-      allergies: 'Nut-free, Gluten-free',
-      nutrition: '420 Calories / 69 minutes',
-      price: 16.5,
-    },
-    {
-      id: 'm3',
-      name: 'VEGAN PHO',
-      with: 'with Scallions and Impossible meat',
-      allergies: 'Nut-free, Gluten-free',
-      nutrition: '420 Calories / 69 minutes',
-      price: 12.99,
-    },
-    {
-      id: 'm4',
-      name: 'GREEN BOWL',
-      with: 'with Lettuce and Cherry Tomatoes',
-      allergies: 'Nut-free, Gluten-free',
-      nutrition: '420 Calories / 69 minutes',
-      price: 18.99,
-    },
-    {
-      id: 'm5',
-      name: 'JACKFRUIT BURGER',
-      with: 'with Creamy Aioli and Pickles',
-      allergies: 'Nut-free, Gluten-free',
-      nutrition: '420 Calories / 69 minutes',
-      price: 16.5,
-    },
-    {
-      id: 'm6',
-      name: 'VEGAN PHO',
-      with: 'with Scallions and Impossible meat',
-      allergies: 'Nut-free, Gluten-free',
-      nutrition: '420 Calories / 69 minutes',
-      price: 12.99,
-    },
-    {
-      id: 'm7',
-      name: 'GREEN BOWL',
-      with: 'with Lettuce and Cherry Tomatoes',
-      allergies: 'Nut-free, Gluten-free',
-      nutrition: '420 Calories / 69 minutes',
-      price: 18.99,
-    },
-  ];
+function DummyMeals() {
+  const { db, showLoading, isLoading } = useContext(Context);
+  const [products, setProducts] = useState([]);
 
-  function DummyMeals() {
-    const mealsList = sampleMeals.map(meal => 
-      <Recipes 
-        id={meal.id}
-        key={meal.id} 
-        name={meal.name} 
-        with={meal.with}
-        allergies={meal.allergies}
-        nutrition={meal.nutrition} 
-        price={meal.price} 
-      />
-    );
-
-    return (
-      <div className="meals flex flex-wrap content-center justify-evenly">
-        {mealsList}
-      </div>
-    )
+  // The menu page can take a second to load so we implement the loading animation
+  if(products.length === 0) {
+    showLoading(true);
+  } else {
+    showLoading(false);
   }
 
-  export default DummyMeals;
+  // When the page loads, make a request to gather all menu information
+  useEffect(() => {
+    const getProducts = async () => {
+      let tmpProducts = []; // Store all the products
+  
+      // Get all products & store in the tmp array
+      const queryResults = await getDocs(collection(db, `products`));
+      queryResults.forEach(async (doc) => {
+        let tmpDocData = doc.data();
+        tmpProducts.push(tmpDocData); // doc.data() is never undefined for query doc snapshots
+      });
+
+      setProducts(tmpProducts);
+    }
+
+    getProducts();
+  }, [db]);
+
+  const mealsList = products.map(product => 
+    <Recipes 
+      id= {product.name}
+      key={product.name} 
+      name={product.name} 
+      description={product.description}
+      // allergies={product.allergies}
+      // nutrition={product.nutrition} 
+      price={product.price / 100}
+      imgUrl={product.images[0]}
+    />
+  );
+
+  return (
+    <div className="meals flex flex-wrap content-center justify-evenly">
+      {/* {mealsList} */}
+      { isLoading === true ? 
+        <h1>Loading</h1>
+      :
+        mealsList
+      }
+    </div>
+  )
+}
+
+export default DummyMeals;

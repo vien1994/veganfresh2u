@@ -15,7 +15,7 @@ export default function OrderHistoryPage() {
     if(user !== null) {
       const getOrders = async () => {
         let tmp = [];
-        const queryResults = await getDocs(collection(db, `orders/${user.uid}/transactions`));
+        const queryResults = await getDocs(collection(db, `customers/${user.uid}/payments`));
         queryResults.forEach((doc) => {
           // doc.data() is never undefined for query doc snapshots
           tmp.push(doc.data());
@@ -34,21 +34,24 @@ export default function OrderHistoryPage() {
       // orderMap stores the array of orders
       let orderMap = [];
 
+      console.log(orders)
+
+      // Create each card and populate with order info
       orders.forEach(order => {
-        // Checks all properties in 'order' object
-        for (const property in order) {
-          if(property.includes('order')) {
-            orderMap.push(
-              <OrdersCard 
-                foodID={order[property].foodID} 
-                qty={order[property].qty}
-                total={order.total}
-                status={order.status}
-              />
-            )
-          }
-        }
-      })
+
+        // Create a formatted date to display. Converts unix timestamp to Date object
+        let date = new Date(order.created*1000);
+        let dateOrdered = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
+
+        orderMap.push(
+          <OrdersCard 
+            total={(order.amount / 100 ).toFixed(2)}
+            items={order.items}
+            dateOrdered={dateOrdered}
+          />
+        )
+      });
+
       setOrdersList(orderMap);
       console.log(orders);
     }
@@ -56,38 +59,15 @@ export default function OrderHistoryPage() {
 
     // Print all the dummy order info (quantity, price, id(name) of the item, image of the item) onto a page(dynamically) and style it
     // Make sure to cover what happens if a user has no order history 
-    // ALSO, make sure there is a way for the user to navigate to this page
-
-    
-      // const orderList = sampleMeals.map(meal => 
-      //   <Recipes 
-      //   id={meal.id}
-      //   key={meal.id} 
-      //   name={meal.name} 
-      //   with={meal.with}
-      //   allergies={meal.allergies}
-      //   nutrition={meal.nutrition} 
-      //   price={meal.price} 
-      //   />
-      // );
       
   return (
     <React.Fragment>
       {/* Don't load the page unless there is order info */}
       {orders !== null ? 
-        <div className="col-start-2 col-end-6 sm:col-start-3 sm:col-end-5">
-        <h1 className="m-4 pl-4 text-4xl sm:text-5xl font-semibold text-gray-700">
-            Your Orders
-          </h1>
+        <div className="col-start-2 col-end-6 row-start-1 row-end-7 sm:col-start-3 sm:col-end-5">
+          <h1 className="m-4 pl-4 text-4xl sm:text-5xl font-semibold text-gray-700">Your Orders</h1>
           {ordersList}
-          {/* Example on how to display data */}
-          
-          {/* <div>Total Price: ${orders[0].total}</div>
-          <div>Item: {orders[0].order1.foodID}</div>
-          <div>Quantity: {orders[0].order1.qty}</div>
-          <div>Status: {orders[0].status}</div> */}
         </div>
-      
       :
         null
       }

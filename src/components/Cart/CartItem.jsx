@@ -1,7 +1,9 @@
 import { React } from 'react';
  
+// Used in Cart.jsx
 const CartItem = (props) => {
-  const price = `$${props.price.toFixed(2)}`;
+  console.log(props)
+  const price = `$${props.price}`;
 
   return (
     <li className="cart-item">
@@ -13,7 +15,7 @@ const CartItem = (props) => {
         </div>
       </div>
       <div className="cart-item-actions">
-        <button className="cart-item-buttons" onClick={props.onRemove}>−</button>
+        <button className="cart-item-buttons" onClick={props.onRemove}>-</button>
         <button className="cart-item-buttons" onClick={props.onAdd}>+</button>
         
       </div>
