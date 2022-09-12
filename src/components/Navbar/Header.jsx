@@ -27,6 +27,7 @@ function Header() {
         <Link to='/about' className="navbar-items" >ABOUT US</Link>
         <Link to="/pricing" className="navbar-items" >PRICING</Link>
         <Link to='/menu' className="navbar-items">MENU</Link>
+        <Link to='/pantry' className="navbar-items">PANTRY</Link>
         <SignIn />
       </div>
 
