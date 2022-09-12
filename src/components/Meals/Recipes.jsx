@@ -15,7 +15,7 @@ function Recipes(props) {
       allergies: props.allergies,
       nutrition: props.nutrition,
       amount: amount,
-      price: 6,
+      price: props.price,
     });
   };
 

@@ -13,7 +13,6 @@ const Context = createContext({
   showCartHandler: () => {},
   isLoading: null,
   showLoading: () => {},
-  products: [],
 });
 
 export default Context;

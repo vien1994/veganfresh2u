@@ -118,7 +118,6 @@ const cartReducer = (state, action) => {
 function CartProvider(props) {
     const [cartState, dispatchCartAction]= useReducer(cartReducer, defaultCartState);
     const [dropdown, setDropdown] = useState(false);
-    const [products, setProducts] = useState();
 
     // Dispatches item prop
     const addItemToCartHandler = item => {
@@ -152,33 +151,6 @@ function CartProvider(props) {
       setIsLoading(bool);
     };
 
-    const getProducts = async () => {
-      let tmp = []; // Store all the products
-
-      // Get all products & store in the tmp array
-      const queryResults = await getDocs(collection(db, `products`));
-      queryResults.forEach(async (doc) => {
-        let tmpDocData = doc.data();
-        tmpDocData.docId = doc.id; //Manually insert the docId
-        tmp.push(tmpDocData); // doc.data() is never undefined for query doc snapshots
-      });
-
-      // For every product in tmp, grab the price via the product docId
-      tmp.forEach(async (doc, index) => {
-        const getPrice = await getDocs(collection(db, `products/${doc.docId}/prices`));
-        getPrice.forEach((price) => {
-          tmp[index]['price'] = (price.data().unit_amount / 100).toFixed(2);
-        })
-      })
-
-      setProducts(tmp);
-    } // End of getProducts()
-
-    useEffect(() => {
-      getProducts()
-    }, [])
-    // getProducts();
-
     const context = {
       items: cartState.items,
       totalAmount: cartState.totalAmount,
@@ -193,7 +165,6 @@ function CartProvider(props) {
       showCartHandler: showCartHandler,
       isLoading: isLoading,
       showLoading: showLoading,
-      products: products,
     };
 
   return (
