@@ -2,9 +2,7 @@ import '../../../src/animations/animations.css'
 import Recipes from "./Recipes";
 import React, { useContext, useEffect, useState } from 'react'
 import Context from '../../store/Context';
-import { collection, getDocs } from "firebase/firestore";
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { async } from '@firebase/util';
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 function DummyMeals() {
   const { db, showLoading, isLoading } = useContext(Context);
@@ -23,7 +21,8 @@ function DummyMeals() {
       let tmpProducts = []; // Store all the products
   
       // Get all products & store in the tmp array
-      const queryResults = await getDocs(collection(db, `products`));
+      const q = query(collection(db, 'products'), where('active','==', true));
+      const queryResults = await getDocs(q);
       queryResults.forEach(async (doc) => {
         let tmpDocData = doc.data();
         tmpProducts.push(tmpDocData); // doc.data() is never undefined for query doc snapshots

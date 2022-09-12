@@ -26,7 +26,6 @@ function Cart(props) {
     addItem(item);
   };
 
-  console.log(items)
   const cartItems = (
     <ul className="cart-items">
       {items.map((item) => (
