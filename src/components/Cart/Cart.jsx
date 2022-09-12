@@ -57,7 +57,7 @@ function Cart(props) {
     items.forEach((item) => {
       finalOrder.line_items.push({
         quantity: item.amount,
-        price: item.priceId,
+        price: item.priceId, // This is the key stripe uses to identify price information
       })
     });
 
