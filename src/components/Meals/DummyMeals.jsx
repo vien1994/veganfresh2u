@@ -7,11 +7,17 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { async } from '@firebase/util';
 
 function DummyMeals() {
-  const { db } = useContext(Context);
+  const { db, showLoading, isLoading } = useContext(Context);
   const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
-  // When the page loads and we get the user info, then make a call to the database to get all our user transactions
+  // The menu page can take a second to load so we implement the loading animation
+  if(products.length === 0) {
+    showLoading(true);
+  } else {
+    showLoading(false);
+  }
+
+  // When the page loads, make a request to gather all menu information
   useEffect(() => {
     const getProducts = async () => {
       let tmpProducts = []; // Store all the products
@@ -24,7 +30,6 @@ function DummyMeals() {
       });
 
       setProducts(tmpProducts);
-      setIsLoading(false);
     }
 
     getProducts();
@@ -56,14 +61,3 @@ function DummyMeals() {
 }
 
 export default DummyMeals;
-
-
-// <Recipes id= {products[0]}
-//           key={products[0].name} 
-//           name={products[0].name} 
-//           description={products[0].description}
-//           // allergies={products[0].allergies}
-//           // nutrition={products[0].nutrition} 
-//           price={prices[0].price}
-//           imgUrl={products[0].images[0]}
-//         />
