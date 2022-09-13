@@ -690,9 +690,16 @@ video {
 
 .cart-item-summary {
   display: flex;
-  width: 10rem;
+  width: 8rem;
   align-items: center;
   justify-content: space-between;
+}
+
+@media (min-width: 640px) {
+  .cart-item-summary {
+    width: 10rem;
+    justify-content: space-between;
+  }
 }
 
 .cart-item-price {
@@ -777,12 +784,6 @@ video {
 }
 
 /* HeaderCart.jsx styles */
-
-.icon {
-  margin-right: 0.25rem;
-  height: 1.25rem;
-  width: 1.25rem;
-}
 
 /* End of HeaderCart.jsx styles */
 
@@ -985,6 +986,10 @@ video {
   top: 6rem;
 }
 
+.left-1\/2 {
+  left: 50%;
+}
+
 .-z-10 {
   z-index: -10;
 }
@@ -1045,12 +1050,20 @@ video {
   grid-row-end: 7;
 }
 
+.row-end-3 {
+  grid-row-end: 3;
+}
+
 .m-2 {
   margin: 0.5rem;
 }
 
 .m-4 {
   margin: 1rem;
+}
+
+.m-auto {
+  margin: auto;
 }
 
 .my-2 {
@@ -1061,6 +1074,11 @@ video {
 .mx-6 {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .mr-2 {
@@ -1085,6 +1103,10 @@ video {
 
 .block {
   display: block;
+}
+
+.inline {
+  display: inline;
 }
 
 .flex {
@@ -1123,6 +1145,10 @@ video {
   height: 6rem;
 }
 
+.h-3\/5 {
+  height: 60%;
+}
+
 .max-h-80 {
   max-height: 20rem;
 }
@@ -1153,6 +1179,10 @@ video {
 
 .w-10 {
   width: 2.5rem;
+}
+
+.w-5\/12 {
+  width: 41.666667%;
 }
 
 .grow {

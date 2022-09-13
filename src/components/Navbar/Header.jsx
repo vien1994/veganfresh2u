@@ -25,7 +25,7 @@ function Header() {
 
       <div className="hidden sm:flex sm:items-center">
         <Link to='/about' className="navbar-items" >ABOUT US</Link>
-        <Link to="/pricing" className="navbar-items" >PRICING</Link>
+        <Link to="/merch" className="navbar-items" >MERCH</Link>
         <Link to='/menu' className="navbar-items">MENU</Link>
         <Link to='/pantry' className="navbar-items">PANTRY</Link>
         <SignIn />

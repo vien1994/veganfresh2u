@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 // import StockCuttingBoard from '../img/StockCuttingBoard.jpg';
 import wave from '../img/wave.svg';
+import veggiebox from '../img/veggiebox.jpg';
 import '../../src/animations/animations.css';
 import Context from '../store/Context';
 
@@ -13,6 +14,16 @@ function Home() {
       <img src={wave} alt='bg' className="w-full col-start-1 col-end-8 row-start-1 row-end-5 opacity-50 -z-10"/>
       {/* <div className="bg-green-500 h-full w-full col-start-1 col-end-8 row-start-1" /> */}
       <div className="col-start-2 row-start-2 text-2xl sm:text-4xl md:text-6xl text-gray-800 appear">Enjoy</div>
+      <div className="col-span-full flex flex-wrap justify-between" >
+        <div className="m-auto w-5/12 h-3/5">
+          <img src={veggiebox} alt='bg'></img>
+          <button></button>
+        </div>
+        <div className="m-auto w-5/12 h-3/5">
+          <img src={veggiebox} alt='bg'></img>
+          <button></button>
+        </div>
+      </div>
     </div> 
   )
 }

@@ -83,7 +83,7 @@
   }
 
   .cart-item-summary {
-    @apply w-40 flex justify-between items-center
+    @apply flex w-32 justify-between sm:w-40 sm:justify-between items-center
   }
 
   .cart-item-price {
