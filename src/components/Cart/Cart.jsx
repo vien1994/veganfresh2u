@@ -15,7 +15,7 @@ function Cart(props) {
   const stripe = useStripe();
   // Check if user is signed in. Signed in - User is an object. Signed out - User is null. 
   const [user] = useAuthState(auth);
-  const totalAmountString = `$${totalAmount}`;
+  const totalAmountString = `$${totalAmount.toFixed(2)}`;
   const hasItems = items.length > 0;
 
   const cartItemRemoveHandler = id => {
@@ -26,7 +26,6 @@ function Cart(props) {
     addItem(item);
   };
 
-  console.log(items)
   const cartItems = (
     <ul className="cart-items">
       {items.map((item) => (
@@ -57,13 +56,7 @@ function Cart(props) {
     items.forEach((item) => {
       finalOrder.line_items.push({
         quantity: item.amount,
-        price_data: {
-          currency: "usd",
-          unit_amount: (100) * item.price,
-          product_data: {
-            name: item.name,
-          }
-        }
+        price: item.priceId, // This is the key stripe uses to identify price information
       })
     });
 

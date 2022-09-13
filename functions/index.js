@@ -32,6 +32,26 @@ exports.insertProductPrice = functions.firestore
     .onWrite((change, context) => {
       db.doc(`products/${context.params.docId}`).set({
         price: change.after.data().unit_amount,
+        price_id: context.params.productPrices,
       }, {merge: true});
+    });
+
+// Automatically sends an email whena successful payment has been made (stored in db)
+// Writes to the mail collection to trigger the Trigger Email firebase extension
+exports.sendEmailReceipt = functions.firestore
+    .document("customers/{uid}/payments/{payment_intent}")
+    .onWrite((change, context) => {
+      const newData = change.after.data();
+      if (newData.status !== "succeeded") {
+        return;
+      }
+      db.doc(`mail/${context.params.payment_intent}`).create({
+        toUids: [`${context.params.uid}`],
+        from: "",
+        message: {
+          subject: "Your VeganFresh2U Order Has Been Received!",
+          html: `<h3 style='color:black;'>Thank you for your order! Your receipt can be found <a href='${newData.charges.data[0].receipt_url}'><i>here</i></a></h3>`,
+        },
+      });
     });
 

@@ -2,10 +2,11 @@ import { useContext, Fragment } from 'react';
 import MealItemForm from '../Cart/MealItemForm';
 import Context from '../../store/Context';
 
+// Props probably come from DummyMeals.jsx
 function Recipes(props) {
   const { addItem } = useContext(Context);
 
-
+  // This data gets stored in the 'items' variable in the context
   const addToCartHandler = amount => {
     console.log('adding to cart', props)
     addItem({
@@ -16,6 +17,7 @@ function Recipes(props) {
       nutrition: props.nutrition,
       amount: amount,
       price: props.price,
+      priceId: props.priceId,
     });
   };
 
