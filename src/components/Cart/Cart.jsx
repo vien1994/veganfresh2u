@@ -15,7 +15,7 @@ function Cart(props) {
   const stripe = useStripe();
   // Check if user is signed in. Signed in - User is an object. Signed out - User is null. 
   const [user] = useAuthState(auth);
-  const totalAmountString = `$${totalAmount}`;
+  const totalAmountString = `$${totalAmount.toFixed(2)}`;
   const hasItems = items.length > 0;
 
   const cartItemRemoveHandler = id => {

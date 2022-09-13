@@ -1,15 +1,20 @@
-import React from 'react'
+import React from 'react';
 
 // Card that is created for each group of orders
 // Each card displays all the items ordered, the date, and the total
 function OrdersCard(props) {
+  let orderItems = [];
 
   // Generate the list of orders to be displayed
-  const orderItems = props.items.map(item => {
-    return (
-      <p className='pl-4 pt-1 pb-1 italic'>{item.description} <span className='font-bold not-italic'>x{item.quantity}</span></p>
-    )
-  })
+  if(props.items) {
+    let key = 0;
+    orderItems = props.items.map(item => {
+      key++;
+      return (
+        <p key={key} className='pl-4 pt-1 pb-1 italic'>{item.description} <span className='font-bold not-italic'>x{item.quantity}</span></p>
+      )
+    })
+  } 
 
   return (
     <div className="bg-white shadow border-2 rounded-xl mt-4 mb-4 p-4">

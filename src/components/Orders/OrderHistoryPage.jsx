@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Context from '../../store/Context';
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import OrdersCard from './OrdersCard';
 
@@ -15,7 +15,8 @@ export default function OrderHistoryPage() {
     if(user !== null) {
       const getOrders = async () => {
         let tmp = [];
-        const queryResults = await getDocs(collection(db, `customers/${user.uid}/payments`));
+        const q = query(collection(db, `customers/${user.uid}/payments`), orderBy('created', 'desc'));
+        const queryResults = await getDocs(q);
         queryResults.forEach((doc) => {
           // doc.data() is never undefined for query doc snapshots
           tmp.push(doc.data());
@@ -33,18 +34,15 @@ export default function OrderHistoryPage() {
     if(orders !== null) {
       // orderMap stores the array of orders
       let orderMap = [];
-
-      console.log(orders)
-
+    
       // Create each card and populate with order info
       orders.forEach(order => {
-
         // Create a formatted date to display. Converts unix timestamp to Date object
         let date = new Date(order.created*1000);
         let dateOrdered = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
-
         orderMap.push(
           <OrdersCard 
+            key={`${dateOrdered} ${date.getSeconds()} ${date.getMinutes()} ${date.getHours()}`}
             total={(order.amount / 100 ).toFixed(2)}
             items={order.items}
             dateOrdered={dateOrdered}
@@ -53,7 +51,6 @@ export default function OrderHistoryPage() {
       });
 
       setOrdersList(orderMap);
-      console.log(orders);
     }
   }, [orders])
 

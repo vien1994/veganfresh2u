@@ -9,13 +9,15 @@ function DummyMeals() {
   const [products, setProducts] = useState([]);
 
   // The menu page can take a second to load so we implement the loading animation
-  if(products.length === 0) {
-    showLoading(true);
-  } else {
-    showLoading(false);
-  }
+  useEffect(() => {
+    if(products.length === 0) {
+      showLoading(true);
+    } else {
+      showLoading(false);
+    }
+  }, [showLoading, products])
 
-  // When the page loads, make a request to gather all menu information
+  // When the page loads, make a request to gather all active menu information from the products collection
   useEffect(() => {
     const getProducts = async () => {
       let tmpProducts = []; // Store all the products
@@ -50,9 +52,8 @@ function DummyMeals() {
 
   return (
     <div className="meals flex flex-wrap content-center justify-evenly">
-      {/* {mealsList} */}
       { isLoading === true ? 
-        <h1>Loading</h1>
+        null
       :
         mealsList
       }
