@@ -2,7 +2,7 @@ function Pricing() {
 
   return (
     <div>
-      Choose Your Plan Type
+      Rep your favorite local vegan mealkit delivery with affordable merchandise.
     </div>
   )
 }

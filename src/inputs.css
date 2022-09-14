@@ -83,7 +83,7 @@
   }
 
   .cart-item-summary {
-    @apply w-40 flex justify-between items-center
+    @apply flex w-32 justify-between sm:w-40 sm:justify-between items-center
   }
 
   .cart-item-price {
@@ -196,7 +196,11 @@
   
   /* ProfilePage.jsx styles */
   .profile-item {
-    @apply bg-white shadow border-2 rounded-lg mb-4 p-2 font-normal text-base
+    @apply bg-white shadow-sm border-2 rounded-lg mb-4 p-2 font-normal text-base
+  }
+
+  .edit-profile-buttons {
+    @apply rounded-md p-1 border-1 border-black text-gray-700 font-medium
   }
   /* End of ProfilePage.jsx styles */
 
