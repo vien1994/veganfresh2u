@@ -12,6 +12,7 @@ import OrderHistoryPage from "./components/Orders/OrderHistoryPage";
 import ProfilePage from "./components/Navbar/ProfilePage";
 import Context from "./store/Context";
 import PantryMenu from "./components/Menu/PantryMenu";
+import Footer from "./components/Footer";
 
 function App() {
   const { cartIsShown, showCartHandler, dropdownOpen, closeHamburger } =
@@ -23,7 +24,7 @@ function App() {
       {cartIsShown && <Cart onClose={() => showCartHandler(false)} />}
       <Header />
       <div
-        className={`grid w-full h-full grid-cols-6 grid-rows-6  ${
+        className={`grid w-full h-full grid-cols-6 grid-rows-3  ${
           dropdownOpen === true ? "overflow-clip" : ""
         }`}
         onClick={closeHamburger}
@@ -33,13 +34,12 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/pantry" element={<PantryMenu />} />
-          <Route path="/pricing" element={<Pricing />} />
           <Route path="/merch" element={<Merch />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/orders" element={<OrderHistoryPage />} />
         </Routes>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </Fragment>
   );
 }

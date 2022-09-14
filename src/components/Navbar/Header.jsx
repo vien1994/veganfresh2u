@@ -24,7 +24,7 @@ function Header() {
       <Link to="/" className="logo-sm text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-green-500 font-bold self-center cursor-pointer font-CabinSketch" onClick={closeHamburger}>VEGANFRESH 2 U</Link>
 
       <div className="hidden sm:flex sm:items-center">
-        <Link to='/about' className="navbar-items" >ABOUT US</Link>
+        <Link to='/about' className="navbar-items" >WHY US</Link>
         <Link to="/merch" className="navbar-items" >MERCH</Link>
         <Link to='/menu' className="navbar-items">MENU</Link>
         <Link to='/pantry' className="navbar-items">PANTRY</Link>
