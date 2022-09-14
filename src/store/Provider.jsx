@@ -4,13 +4,15 @@
 
 import React from 'react'
 import Context from './Context';
-import { useReducer, useState } from 'react';
+import { useReducer, useState, useEffect } from 'react';
 
 // Import the firebase functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getFunctions } from 'firebase/functions';
+import { collection, getDocs } from "firebase/firestore";
+
 
 //Set up firebase configurations
 const firebaseConfig = {
@@ -45,7 +47,6 @@ const defaultCartState = {
 const cartReducer = (state, action) => {
     // Loop that runs if an item is added to the cart
     if (action.type === 'ADD') {
-
       // Adds price and quantity together to find total for the item(s)
       const updatedTotalAmount = state.totalAmount + action.item.price;
       
@@ -120,6 +121,7 @@ function CartProvider(props) {
 
     // Dispatches item prop
     const addItemToCartHandler = item => {
+      console.log(item);
       dispatchCartAction({type:'ADD', item: item});
     };
 
@@ -130,7 +132,6 @@ function CartProvider(props) {
 
     // Close the navbar on mobile screen
     const closeHamburger = () => {
-      console.log('closing burger')
       setDropdown(false);
     }
 
@@ -140,6 +141,14 @@ function CartProvider(props) {
     // Handles whether or not the cart is shown. Accepts true/false
     const showCartHandler = (bool) => {
       setCartIsShown(bool);
+    };
+
+    // Determines if loading SVG should appear
+    const [isLoading, setIsLoading] = useState(false);
+
+    // Handles whether or not loading SVG should appear. Accepts true/false
+    const showLoading = (bool) => {
+      setIsLoading(bool);
     };
 
     const context = {
@@ -153,7 +162,9 @@ function CartProvider(props) {
       setDropdown: setDropdown,
       closeHamburger: closeHamburger,
       cartIsShown: cartIsShown,
-      showCartHandler: showCartHandler
+      showCartHandler: showCartHandler,
+      isLoading: isLoading,
+      showLoading: showLoading,
     };
 
   return (
