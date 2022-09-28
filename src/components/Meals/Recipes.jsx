@@ -4,7 +4,22 @@ import Context from '../../store/Context';
 
 // Props probably come from DummyMeals.jsx
 function Recipes(props) {
-  const { addItem } = useContext(Context);
+  const { 
+    addItem, 
+    showModalHandler,
+    setModalData,
+  } = useContext(Context);
+  
+  function settingUpModal () {
+    setModalData({
+      name: props.name,
+      price: props.price,
+      with: props.with,
+      allergies: props.allergies,
+      nutrition: props.nutrition,
+    })
+    showModalHandler(true);
+  }
 
   // This data gets stored in the 'items' variable in the context
   const addToCartHandler = amount => {
@@ -23,7 +38,7 @@ function Recipes(props) {
 
   return (
     <Fragment>
-      <div className="recipe-container relative border border-slate-200 w-96 mb-8">
+      <div className="recipe-container relative border border-slate-200 w-96 mb-8" onClick={settingUpModal}>
         <img src={props.imgUrl} alt='veggieBowl' className="font-bold w-96 h-44" />
         <div className='m-2'>
           <p className='font-bold'>{props.name}</p>
