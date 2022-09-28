@@ -42,8 +42,8 @@ function DummyMeals() {
       key={product.name} 
       name={product.name} 
       description={product.description}
-      // allergies={product.allergies}
-      // nutrition={product.nutrition} 
+      allergies={product.allergies}
+      nutrition={product.nutrition} 
       price={product.price / 100}
       imgUrl={product.images[0]}
       priceId={product.price_id}

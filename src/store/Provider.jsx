@@ -145,10 +145,18 @@ function CartProvider(props) {
 
     // Determines if loading SVG should appear
     const [isLoading, setIsLoading] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [modalData, setModalData] = useState({});
 
     // Handles whether or not loading SVG should appear. Accepts true/false
+
     const showLoading = (bool) => {
       setIsLoading(bool);
+    };
+
+    const showModalHandler = (bool) => {
+      console.log('boom')
+      setShowModal(bool);
     };
 
     const context = {
@@ -165,6 +173,10 @@ function CartProvider(props) {
       showCartHandler: showCartHandler,
       isLoading: isLoading,
       showLoading: showLoading,
+      showModal: showModal, 
+      showModalHandler: showModalHandler,
+      modalData: modalData,
+      setModalData: setModalData,
     };
 
   return (

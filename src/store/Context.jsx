@@ -13,6 +13,9 @@ const Context = createContext({
   showCartHandler: () => {},
   isLoading: null,
   showLoading: () => {},
+  showModal: null,
+  showModalHandler: () => {},
+  modalData: {},
 });
 
 export default Context;

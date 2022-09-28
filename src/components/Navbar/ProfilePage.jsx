@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import ProfilePageEditor from './ProfilePageEditor';
 
-function ProfilePage(props) {
+function ProfilePage() {
   const [editMode, setEditMode] = useState(false);
 
   function editToFalse () {
@@ -14,7 +14,7 @@ function ProfilePage(props) {
     <div className="col-start-2 col-end-5">
     {editMode === true ? (
       <div>
-        <ProfilePageEditor changeToFalse={editToFalse}/>
+        <ProfilePageEditor editProfToFalse={editToFalse}/>
       </div>
     ) : (
       <div>
@@ -24,28 +24,28 @@ function ProfilePage(props) {
       <h2 className="font-medium text-lg mt-4" >
         Address:
         <div className="profile-item">
-          1234 Lettuce Drive{props.address}
+          1234 Lettuce Drive
         </div>
       </h2>
       
       <h3 className="font-medium text-lg">
         City:
         <div className="profile-item">
-          Sacramento{props.city}
+          Sacramento
         </div>
       </h3>
       
       <h4 className="font-medium text-lg">
         State:
         <div className="profile-item">
-          California{props.state}
+          California
         </div>
       </h4>
       
       <h5 className="font-medium text-lg">
         ZIP Code:
         <div className="profile-item">
-          95624{props.zip}
+          95624
         </div>
       </h5>
       <button className="edit-profile-buttons" onClick={() => setEditMode(true)} >Edit</button>

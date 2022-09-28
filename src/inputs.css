@@ -10,6 +10,10 @@
 
 /* Custom tailwind classes */
 @layer utilities {
+  .grid-layout {
+    
+  }
+
   .border-1 {
     border-width: 1px;
   }

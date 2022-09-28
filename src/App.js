@@ -14,6 +14,8 @@ import Context from "./store/Context";
 import PantryMenu from "./components/Menu/PantryMenu";
 import Footer from "./components/Footer";
 import Loading from "./components/Loading/Loading";
+import AdminOrdersPage from "./components/Orders/AdminOrdersPage";
+import NewModal from "./components/Modal/NewModal";
 
 function App() {
   const {
@@ -22,17 +24,22 @@ function App() {
     dropdownOpen,
     closeHamburger,
     isLoading,
+    showModal,
+    showModalHandler,
   } = useContext(Context);
+  console.log(showModal);
 
   return (
     <Fragment>
       {/* Show Loading Animation or Not - Currently used when placing an order before the Stripe Checkout loads*/}
       {isLoading === true ? <Loading /> : null}
+      {showModal === true ? <NewModal /> : null}
 
       {/* Cart modal that is displayed over the rest of the page */}
       {cartIsShown && <Cart onClose={() => showCartHandler(false)} />}
       <Header />
       <div
+        // FIX: Create a custom grid class with specific grid values for height/width or content
         className={`grid w-full h-full grid-cols-6 grid-rows-3  ${
           dropdownOpen === true ? "overflow-clip" : ""
         }`}
@@ -46,6 +53,7 @@ function App() {
           <Route path="/merch" element={<Merch />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/orders" element={<OrderHistoryPage />} />
+          <Route path="/admin" element={<AdminOrdersPage />} />
         </Routes>
       </div>
       <Footer />
