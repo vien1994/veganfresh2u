@@ -29,7 +29,6 @@ function DummyMeals() {
         let tmpDocData = doc.data();
         tmpProducts.push(tmpDocData); // doc.data() is never undefined for query doc snapshots
       });
-
       setProducts(tmpProducts);
     }
 
@@ -43,7 +42,7 @@ function DummyMeals() {
       name={product.name} 
       description={product.description}
       allergies={product.allergies}
-      nutrition={product.nutrition} 
+      nutrition={product.nutrition}
       price={product.price / 100}
       imgUrl={product.images[0]}
       priceId={product.price_id}

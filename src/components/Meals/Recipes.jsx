@@ -4,6 +4,7 @@ import Context from '../../store/Context';
 
 // Props probably come from DummyMeals.jsx
 function Recipes(props) {
+
   const { 
     addItem, 
     showModalHandler,
@@ -38,10 +39,10 @@ function Recipes(props) {
 
   return (
     <Fragment>
-      <div className="recipe-container relative border border-slate-200 w-96 mb-8" onClick={settingUpModal}>
-        <img src={props.imgUrl} alt='veggieBowl' className="font-bold w-96 h-44" />
+      <div className="recipe-container relative border border-slate-200 w-96 mb-8" >
+        <img src={props.imgUrl} alt='veggieBowl' className="font-bold w-96 h-44" onClick={settingUpModal}/>
         <div className='m-2'>
-          <p className='font-bold'>{props.name}</p>
+          <p className='font-bold' onClick={settingUpModal}>{props.name}</p>
           <p className='mb-4'>{props.description}</p>
           <p className="italic">Allergies Here</p>
           <div className='flex justify-between items-center'>

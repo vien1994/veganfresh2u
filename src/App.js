@@ -4,7 +4,6 @@ import "./index.css";
 import Header from "./components/Navbar/Header";
 import AboutUs from "./components/Navbar/AboutUs";
 import Home from "./components/Home";
-// import Footer from "./components/Footer";
 import Cart from "./components/Cart/Cart";
 import Menu from "./components/Menu/Menu";
 import Merch from "./components/Navbar/Merch";
@@ -39,7 +38,7 @@ function App() {
       {cartIsShown && <Cart onClose={() => showCartHandler(false)} />}
       <Header />
       <div
-        // FIX: Create a custom grid class with specific grid values for height/width or content
+        // FIX: Create a custom grid class in Tailwind with specific grid values for height/width or content
         className={`grid w-full h-full grid-cols-6 grid-rows-3  ${
           dropdownOpen === true ? "overflow-clip" : ""
         }`}
