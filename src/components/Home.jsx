@@ -18,7 +18,7 @@ function Home() {
         <div className="col-start-2 col-end-7 sm:col-end-6 row-start-1 xl:row-start-2 text-2xl sm:text-4xl md:text-6xl text-gray-800 appear">
           Coming soon...  A mealkit delivery service 
         </div>
-        <div className="sm:col-start-4 col-start-3 col-end-6 text-4xl font-bold m-10">
+        <div className="sm:col-start-4 sm:col-end-6 col-start-2 col-end-7 text-xl sm:text-4xl font-bold m-10">
           Sample Text Banner 
         </div>
       </div> 
