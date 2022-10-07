@@ -40,7 +40,7 @@ function App() {
       <Header />
       <div
         // FIX: Create a custom grid class with specific grid values for height/width or content
-        className={`grid w-full h-full grid-cols-6 grid-rows-3  ${
+        className={`grid-layout-mobile md:grid-layout  ${
           dropdownOpen === true ? "overflow-clip" : ""
         }`}
         onClick={closeHamburger}

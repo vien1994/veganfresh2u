@@ -11,27 +11,27 @@ function Home() {
 
   return (
     <React.Fragment>
-      <div className={`row-start-1 row-end-2 col-span-full grid grid-cols-7 grid-rows-1 ${dropdownOpen === true ? 'overflow-clip' : ''}`}>
+      <div className={`row-start-1 row-end-2 col-span-full grid grid-cols-7 grid-rows-2 ${dropdownOpen === true ? 'overflow-clip' : ''}`}>
         {/* <div className="col-start-1 col-end-8 row-start-1 row-end-4 max-h-80 overflow-hidden"></div> */}
         <img src={wave} alt='bg' className="w-full col-start-1 col-end-8 row-start-1 row-end-5 opacity-50 -z-10"/>
         {/* <div className="bg-green-500 h-full w-full col-start-1 col-end-8 row-start-1" /> */}
         <div className="col-start-2 col-end-7 sm:col-end-6 row-start-1 xl:row-start-2 text-2xl sm:text-4xl md:text-6xl text-gray-800 appear">
           Coming soon...  A mealkit delivery service 
         </div>
-        <div className="sm:col-start-4 col-start-3 col-end-6 text-4xl font-bold m-10">
+        <div className="sm:col-start-4 sm:col-end-6 col-start-2 col-end-7 text-xl sm:text-4xl font-bold m-10">
           Sample Text Banner 
         </div>
       </div> 
-      <div className="row-start-2 row-end-3 col-span-full flex justify-center">
-        <div className="m-1 relative">
+      <div className="row-start-2 row-end-3 col-span-full flex flex-wrap justify-center">
+        <div className="m-1 mb-20 relative">
           <img className="h-96" src={veggiebox} alt='bg'></img> 
-          <Link to='/menu' className="absolute p-3 bg-white border-gray-600 border-2 rounded-md bottom-2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <Link to='/menu' className="homepage-buttons">
             Meal Kits
           </Link>
         </div>
         <div className="m-1 relative">
           <img className="h-96" src={veggiebox} alt='bg'></img>
-          <Link to='/pantry' className="absolute p-3 bg-white border-gray-600 border-2 rounded-md bottom-2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <Link to='/pantry' className="homepage-buttons">
             The Pantry
           </Link>
         </div>
