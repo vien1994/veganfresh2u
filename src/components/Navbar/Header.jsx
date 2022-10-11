@@ -1,15 +1,19 @@
 import SignIn from './SignIn';
-import HeaderCart from '../Cart/HeaderCart';
 import DropdownMenu from './DropdownMenu';
 import { Link } from "react-router-dom";
 import { Spin as Hamburger } from 'hamburger-react'
 import { useEffect, useContext } from 'react';
 import Context from '../../store/Context';
 import CartIcon from '../Cart/CartIcon';
+import { useAuthState } from 'react-firebase-hooks/auth';
+
 
 
 function Header() {
-  const { dropdownOpen, setDropdown, closeHamburger, items, showCartHandler} = useContext(Context);
+  const { dropdownOpen, setDropdown, closeHamburger, items, showCartHandler, auth} = useContext(Context);
+
+  // Check if user is signed in. Signed in - User is an object. Signed out - User is null. 
+  const [user] = useAuthState(auth);
 
   const numberOfCartItems = items.reduce((curNumber, item) => {
     return curNumber + item.amount;
@@ -26,7 +30,7 @@ function Header() {
         <Hamburger toggled={dropdownOpen} toggle={setDropdown} hideOutline={true} />
       </div>
 
-      <Link to="/" className="logo-sm text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-green-500 font-bold self-center cursor-pointer font-CabinSketch whitespace-nowrap" onClick={closeHamburger}>VEGANFRESH 2 U</Link>
+      <Link to="/" className="logo-sm text-xl sm:text-2xl md:text-3xl lg:text-5xl text-green-500 font-bold self-center cursor-pointer font-CabinSketch whitespace-nowrap" onClick={closeHamburger}>VEGANFRESH 2 U</Link>
 
       <div className="hidden sm:flex sm:items-center">
         <Link to='/about' className="navbar-items whitespace-nowrap">WHY US</Link>
@@ -34,7 +38,7 @@ function Header() {
         <Link to='/menu' className="navbar-items">MENU</Link>
         <Link to='/pantry' className="navbar-items">PANTRY</Link>
         {/* Sign in button as well as Profile Icon + Dropdown options */}
-        <div className='pr-8'>
+        <div className='pr-8 md:pr-1 lg:pr-8'>
           <SignIn />
         </div>
         <div className='w-9' onClick={() => showCartHandler(true)}>
@@ -46,18 +50,26 @@ function Header() {
           null
         }
       </div>
-      
+
       {/* This section is for mobile and removes the profile picture and only shows the cart */}
-      <div className="sm:hidden self-center flex">
-        <div className='w-9' onClick={() => showCartHandler(true)}>
-          <CartIcon />
+      {/* If user exists, then we are logged in. Hide Cart and display Login Button instead */}
+      {user ?
+        <div className="sm:hidden self-center flex">
+          <div className='w-9' onClick={() => showCartHandler(true)}>
+            <CartIcon />
+          </div>
+          { numberOfCartItems > 0 ? 
+            <span className="badge_option2 -translate-x-4 -translate-y-3 scale-75">{numberOfCartItems}</span>
+          :
+            null
+          }
         </div>
-        { numberOfCartItems > 0 ? 
-          <span className="badge_option2 -translate-x-4 -translate-y-3 scale-75">{numberOfCartItems}</span>
-        :
-          null
-        }
-      </div>
+      :
+        <div className='sm:hidden self-center flex'>
+          <SignIn />
+        </div>
+      }
+        
 
       {/* If the hamburger is open, shows dropdown menu (for mobile), if hamburger is closed displays nothing */}
       { dropdownOpen === true ?
