@@ -7,7 +7,7 @@ export default function ProfileDropdown() {
   const { showCartHandler, auth } = useContext(Context);
 
   return(
-    <ul className="absolute -translate-x-1/3 z-10 border border-gray-300 bg-white">
+    <ul className="absolute -translate-x-1/4 -translate-y-2 z-10 border border-gray-300 bg-white">
       <li className="navbar-profile-dropdown-li">
         <Link to="/profile">PROFILE</Link>
       </li>
