@@ -1,10 +1,23 @@
 import React from 'react'
+import { useState } from 'react';
 import { useContext } from 'react';
 import Context from '../../store/Context';
+import 'animate.css';
 
 function NewModal(props) {
     const {showModalHandler, modalData} = useContext(Context);
-    console.log(modalData);
+    const [animate, setAnimate] = useState(false);
+
+    //animates the element and then resets the animation state after 2 seconds
+    const animateHandler = () => {
+      setAnimate(true);
+      
+      setTimeout(() => {
+        setAnimate(false);
+      }, 2000);
+    }
+
+
 
   return (
     <React.Fragment>
@@ -17,7 +30,7 @@ function NewModal(props) {
           <p>Allergy Info{modalData.allergies}</p>
           <p>Nutrition Info{modalData.nutrition}</p>
         </div>
-        <button className="absolute bottom-5 right-5 font-medium text-green-900" >Add to Cart</button>
+        <button className={`absolute bottom-5 right-5 font-medium text-green-900 ${animate === true ? 'animate__animated animate__tada' : ''}`} onClick={animateHandler}>Add to Cart</button>
       </div>
     </React.Fragment>
   )
