@@ -17,9 +17,6 @@ export default function ProfileDropdown() {
       <li>
         <button className="navbar-profile-dropdown-li" onClick={() => auth.signOut()}>SIGN OUT</button> 
       </li>
-      <li className="navbar-profile-dropdown-li">
-        <HeaderCart onClick={() => showCartHandler(true)} />
-      </li>
     </ul>
   )
 }

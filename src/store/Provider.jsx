@@ -143,19 +143,18 @@ function CartProvider(props) {
       setCartIsShown(bool);
     };
 
-    // Determines if loading SVG should appear
+    // Determines if loading SVG or Modal for the menu should appear
     const [isLoading, setIsLoading] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [modalData, setModalData] = useState({});
 
     // Handles whether or not loading SVG should appear. Accepts true/false
-
     const showLoading = (bool) => {
       setIsLoading(bool);
     };
 
+    // Handles whether or not Modal for the menu should appear. Accepts true/false
     const showModalHandler = (bool) => {
-      console.log('boom')
       setShowModal(bool);
     };
 

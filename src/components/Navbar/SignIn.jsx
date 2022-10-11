@@ -11,6 +11,7 @@ import ProfileDropdown from './ProfileDropdown';
  * A user can click the button to sign in with google and it will create an account for them in our database if it doesn't alread exist.
  * 
  * Workflow: When signed in, the 'Sign Out' button appears. When signed out, the 'Sign In' button appears.
+ *           If a user is signed in, it will show a profile picture and have it's own dropdown.
  */
 export default function SignIn() {
   const context = useContext(Context);

@@ -233,7 +233,7 @@
   }
   
   .badge_option2 {
-    @apply bg-gray-200 pt-1 pb-1 pr-2 pl-2 rounded-full font-semibold text-center align-middle
+    @apply bg-red-500 text-white h-5 w-5 p-3.5 rounded-full font-semibold flex items-center justify-center
   }
 
   /* Home styles */
