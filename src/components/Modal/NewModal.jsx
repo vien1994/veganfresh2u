@@ -5,19 +5,17 @@ import Context from '../../store/Context';
 import 'animate.css';
 
 function NewModal(props) {
-    const {showModalHandler, modalData} = useContext(Context);
-    const [animate, setAnimate] = useState(false);
+  const {showModalHandler, modalData} = useContext(Context);
+  const [animate, setAnimate] = useState(false);
 
-    //animates the element and then resets the animation state after 2 seconds
-    const animateHandler = () => {
-      setAnimate(true);
-      
-      setTimeout(() => {
-        setAnimate(false);
-      }, 2000);
-    }
-
-
+  //animates the element and then resets the animation state after 2 seconds
+  const animateHandler = () => {
+    setAnimate(true);
+    
+    setTimeout(() => {
+      setAnimate(false);
+    }, 2000);
+  }
 
   return (
     <React.Fragment>
