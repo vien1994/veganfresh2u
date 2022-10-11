@@ -47,6 +47,7 @@ function Header() {
         }
       </div>
       
+      {/* This section is for mobile and removes the profile picture and only shows the cart */}
       <div className="sm:hidden self-center flex">
         <div className='w-9' onClick={() => showCartHandler(true)}>
           <CartIcon />
