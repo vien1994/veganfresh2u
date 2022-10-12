@@ -9,7 +9,7 @@ import { useReducer, useState, useEffect } from 'react';
 // Import the firebase functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getFunctions } from 'firebase/functions';
 import { collection, getDocs } from "firebase/firestore";
 
@@ -34,7 +34,6 @@ const db = getFirestore(app);
 
 // Initialize functions
 const functions = getFunctions(app);
-
 
 // Tool used to check who is logged in
 const auth = getAuth();
@@ -121,7 +120,6 @@ function CartProvider(props) {
 
     // Dispatches item prop
     const addItemToCartHandler = item => {
-      console.log(item);
       dispatchCartAction({type:'ADD', item: item});
     };
 
@@ -148,6 +146,8 @@ function CartProvider(props) {
     const [showModal, setShowModal] = useState(false);
     const [modalData, setModalData] = useState({});
 
+    const [isAdmin, setIsAdmin] = useState(false);
+
     // Handles whether or not loading SVG should appear. Accepts true/false
     const showLoading = (bool) => {
       setIsLoading(bool);
@@ -157,6 +157,26 @@ function CartProvider(props) {
     const showModalHandler = (bool) => {
       setShowModal(bool);
     };
+
+    // When the page loads, check if the user is an admin. 
+    useEffect(() => {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // User is signed in, see docs for a list of available properties
+          // https://firebase.google.com/docs/reference/js/firebase.User
+          user.getIdTokenResult()
+            .then((result) => {
+              if(result.claims.admin === true) {
+                setIsAdmin(true)
+              }
+            })
+        } else {
+          // User is signed out
+          setIsAdmin(false);
+        }
+      });
+    }, [])
+   
 
     const context = {
       items: cartState.items,
@@ -176,6 +196,7 @@ function CartProvider(props) {
       showModalHandler: showModalHandler,
       modalData: modalData,
       setModalData: setModalData,
+      isAdmin: isAdmin,
     };
 
   return (

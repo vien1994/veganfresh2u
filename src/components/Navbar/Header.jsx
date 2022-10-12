@@ -10,7 +10,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 
 function Header() {
-  const { dropdownOpen, setDropdown, closeHamburger, items, showCartHandler, auth} = useContext(Context);
+  const { dropdownOpen, setDropdown, closeHamburger, items, showCartHandler, auth, isAdmin} = useContext(Context);
 
   // Check if user is signed in. Signed in - User is an object. Signed out - User is null. 
   const [user] = useAuthState(auth);
@@ -37,6 +37,14 @@ function Header() {
         <Link to="/merch" className="navbar-items" >MERCH</Link>
         <Link to='/menu' className="navbar-items">MENU</Link>
         <Link to='/pantry' className="navbar-items">PANTRY</Link>
+
+        {/* Admins get an extra option */}
+        { isAdmin ? 
+          <Link to="/admin" className="navbar-items">Active Orders</Link>
+        :
+          null
+        }
+
         {/* Sign in button as well as Profile Icon + Dropdown options */}
         <div className='pr-8 md:pr-1 lg:pr-8'>
           <SignIn />
