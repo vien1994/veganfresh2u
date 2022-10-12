@@ -10,6 +10,7 @@ function Recipes(props) {
     setModalData,
   } = useContext(Context);
   
+  // Function to pass in data for the modal
   function settingUpModal () {
     setModalData({
       name: props.name,
@@ -51,7 +52,6 @@ function Recipes(props) {
         </div>
       </div>
     </Fragment>
-    
   )
 }
 

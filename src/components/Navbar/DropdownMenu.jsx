@@ -7,14 +7,13 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 // Mobile navbar that appears on the left side of the page
 function DropdownMenu() {
-  const { closeHamburger, auth } = useContext(Context);
+  const { closeHamburger, auth, isAdmin } = useContext(Context);
 
   // Check if user is signed in. Signed in - User is an object. Signed out - User is null. 
   const [user] = useAuthState(auth);
   
   // Get URL path to determine what page we're on
   const location = useLocation();
-  console.log(location.pathname);
   
   return (
     <div className="absolute left-0 top-24 bg-white w-1/2 h-full border-r-2 border-grey z-10 dropdown overflow-clip">
@@ -26,6 +25,13 @@ function DropdownMenu() {
           <Link to="/orders" className={`mobile-dropdown-items ${location.pathname === '/orders' ? 'border-l-3 border-green-600 bg-green-100 text-green-500' : ''} `} onClick={closeHamburger}>Orders</Link>
           <Link to="/profile" className={`mobile-dropdown-items ${location.pathname === '/profile' ? 'border-l-3 border-green-600 bg-green-100 text-green-500' : ''} `} onClick={closeHamburger}>Profile</Link>
           
+          {/* Admins get an extra option */}
+          { isAdmin ? 
+            <Link to="/admin" className={`mobile-dropdown-items ${location.pathname === '/admin' ? 'border-l-3 border-green-600 bg-green-100 text-green-500' : ''} `} onClick={closeHamburger}>Active Orders</Link>
+          :
+            null
+          }
+
           {/* If signed in, provide Sign Out button */}
           { user ? 
             <button className='mobile-dropdown-items' onClick={() => auth.signOut()}>Sign Out</button> 

@@ -55,3 +55,32 @@ exports.sendEmailReceipt = functions.firestore
       });
     });
 
+// Automatically populates adminContent collection when an order is placed
+// Stores active orders for the administrator only to view
+exports.insertAdminContent = functions.firestore
+    .document("customers/{uid}/payments/{payment_intent}")
+    .onWrite((change, context) => {
+      const newData = change.after.data();
+      const orderItems = [];
+      if (newData.status !== "succeeded") {
+        return;
+      }
+
+      // Create the list of items ordered
+      for (let i = 0; i < newData.items.length; i++) {
+        orderItems.push({
+          item: newData.items[i].description,
+          quantity: newData.items[i].quantity,
+        });
+      }
+
+      // Write to the adminContent collection with the order details
+      db.doc(`adminContent/${context.params.payment_intent}`).create({
+        // status: [`${context.params.uid}`],
+        status: "Order Placed",
+        customer: `${newData.charges.data[0].billing_details.name} - ${newData.charges.data[0].billing_details.email}`,
+        amount: `${(newData.charges.data[0].amount/100).toFixed(2)}`,
+        items: orderItems,
+        created: newData.created,
+      });
+    });
