@@ -16,6 +16,7 @@ const Context = createContext({
   showModal: null,
   showModalHandler: () => {},
   modalData: {},
+  isAdmin: null
 });
 
 export default Context;
