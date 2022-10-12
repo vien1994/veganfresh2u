@@ -81,5 +81,6 @@ exports.insertAdminContent = functions.firestore
         customer: `${newData.charges.data[0].billing_details.name} - ${newData.charges.data[0].billing_details.email}`,
         amount: `${(newData.charges.data[0].amount/100).toFixed(2)}`,
         items: orderItems,
+        created: newData.created,
       });
     });

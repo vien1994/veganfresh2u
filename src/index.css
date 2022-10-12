@@ -1346,6 +1346,10 @@ video {
   grid-template-rows: repeat(2, minmax(0, 1fr));
 }
 
+.flex-row {
+  flex-direction: row;
+}
+
 .flex-col {
   flex-direction: column;
 }
@@ -1380,6 +1384,10 @@ video {
 
 .self-center {
   align-self: center;
+}
+
+.justify-self-center {
+  justify-self: center;
 }
 
 .overflow-auto {
@@ -1600,6 +1608,16 @@ video {
   line-height: 1;
 }
 
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -1731,6 +1749,10 @@ video {
     grid-column-end: 5;
   }
 
+  .sm\:m-4 {
+    margin: 1rem;
+  }
+
   .sm\:ml-1 {
     margin-left: 0.25rem;
   }
@@ -1753,6 +1775,10 @@ video {
 
   .sm\:pr-5 {
     padding-right: 1.25rem;
+  }
+
+  .sm\:pl-4 {
+    padding-left: 1rem;
   }
 
   .sm\:text-4xl {
@@ -1820,6 +1846,11 @@ video {
   .md\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
+  }
+
+  .md\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
   }
 
   .md\:grid-layout {
