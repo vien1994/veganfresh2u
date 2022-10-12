@@ -158,21 +158,25 @@ function CartProvider(props) {
       setShowModal(bool);
     };
 
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        user.getIdTokenResult()
-          .then((result) => {
-            if(result.claims.admin === true) {
-              setIsAdmin(true)
-            }
-          })
-      } else {
-        // User is signed out
-        setIsAdmin(false);
-      }
-    });
+    // When the page loads, check if the user is an admin. 
+    useEffect(() => {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // User is signed in, see docs for a list of available properties
+          // https://firebase.google.com/docs/reference/js/firebase.User
+          user.getIdTokenResult()
+            .then((result) => {
+              if(result.claims.admin === true) {
+                setIsAdmin(true)
+              }
+            })
+        } else {
+          // User is signed out
+          setIsAdmin(false);
+        }
+      });
+    }, [])
+   
 
     const context = {
       items: cartState.items,
