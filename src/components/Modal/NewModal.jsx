@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useContext } from 'react';
 import Context from '../../store/Context';
-import 'animate.css';
+// import 'animate.css';
 
 function NewModal(props) {
   const {showModalHandler, modalData} = useContext(Context);

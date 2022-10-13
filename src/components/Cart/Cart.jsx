@@ -106,7 +106,8 @@ function Cart(props) {
         <span>Total Amount</span>
         <span>{totalAmountString}</span>
       </div>
-      <PaymentPage />
+      {/* Commented out address field in checkout */}
+      {/* <PaymentPage /> */}
       <div className="cart-button-wrapper">
         <button className="cart-buttons cart-close-button" onClick={props.onClose} >Close</button>
         {hasItems && <button className="cart-buttons cart-order-button" onClick={placeOrder}>Place Order</button>}

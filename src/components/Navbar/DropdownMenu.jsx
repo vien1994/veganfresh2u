@@ -22,6 +22,7 @@ function DropdownMenu() {
           <Link to="/about" className={`mobile-dropdown-items ${location.pathname === '/about' ? 'border-l-3 border-green-600 bg-green-100 text-green-500' : ''} `} onClick={closeHamburger}>About Us</Link>
           <Link to="/merch" className={`mobile-dropdown-items ${location.pathname === '/merch' ? 'border-l-3 border-green-600 bg-green-100 text-green-500' : ''} `} onClick={closeHamburger}>Merch</Link>
           <Link to="/menu" className={`mobile-dropdown-items ${location.pathname === '/menu' ? 'border-l-3 border-green-600 bg-green-100 text-green-500' : ''} `} onClick={closeHamburger}>Menu</Link>
+          <Link to="/pantry" className={`mobile-dropdown-items ${location.pathname === '/pantry' ? 'border-l-3 border-green-600 bg-green-100 text-green-500' : ''} `} onClick={closeHamburger}>Pantry</Link>
           <Link to="/orders" className={`mobile-dropdown-items ${location.pathname === '/orders' ? 'border-l-3 border-green-600 bg-green-100 text-green-500' : ''} `} onClick={closeHamburger}>Orders</Link>
           <Link to="/profile" className={`mobile-dropdown-items ${location.pathname === '/profile' ? 'border-l-3 border-green-600 bg-green-100 text-green-500' : ''} `} onClick={closeHamburger}>Profile</Link>
           
