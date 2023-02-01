@@ -52,13 +52,22 @@ function Cart(props) {
       line_items: [],
     };
 
-    // Store all the cart items in line_items
+    let total = 0;
+
+    // Store all the cart items in line_items & calculate total to determine if shipping should be applied.
     items.forEach((item) => {
+      total += item.amount * item.price;
       finalOrder.line_items.push({
         quantity: item.amount,
         price: item.priceId, // This is the key stripe uses to identify price information
       })
     });
+
+    // Apply shipping to orders under 30
+    finalOrder.shipping = false;
+    if(total < 30) {
+      finalOrder.shipping = true;
+    }
 
     return finalOrder;
   }
