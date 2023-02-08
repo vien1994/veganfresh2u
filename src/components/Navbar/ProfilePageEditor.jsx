@@ -17,22 +17,22 @@ function EditProfilePage({editProfToFalse}) {
       </h1>
       <h2 className="font-medium text-lg mt-4" >
         Address:
-        <input className="profile-item" type="text" onChange={event=>setAddress(event.target.value)} />
+        <input className="edit-mode-profile-item" type="text" onChange={event=>setAddress(event.target.value)} />
 
       </h2>
       <h3 className="font-medium text-lg">
         City:
-        <input className="profile-item" type="text" onChange={event=>setCity(event.target.value)} />
+        <input className="edit-mode-profile-item" type="text" onChange={event=>setCity(event.target.value)} />
 
       </h3>
       <h4 className="font-medium text-lg">
         State:
-        <input className="profile-item" type="text" onChange={event=>setState(event.target.value)} />
+        <input className="edit-mode-profile-item" type="text" onChange={event=>setState(event.target.value)} />
 
       </h4>
       <h5 className="font-medium text-lg">
         ZIP Code:
-        <input className="profile-item" type="text" onChange={event=>setZip(event.target.value)} />
+        <input className="edit-mode-profile-item" type="text" onChange={event=>setZip(event.target.value)} />
       </h5>
       <div className="flex" >
         <button className="edit-profile-buttons mr-2" onClick={() => editProfToFalse()}>Back</button>
