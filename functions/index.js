@@ -8,7 +8,7 @@ const db = admin.firestore();
 // Configuration for the checkout session
 exports.createStripeCheckout = functions.https.onCall(async (data, context) => {
   const stripe = require("stripe")(functions.config().stripe.secret_key); // This is the test key and needs to be swapped for the LIVE key
-  const session = await stripe.checkout.sessions.create({
+  const checkoutPayload = {
     payment_method_types: ["card"],
     mode: "payment",
     success_url: "https://veganfresh2u.com/orders",
@@ -18,7 +18,22 @@ exports.createStripeCheckout = functions.https.onCall(async (data, context) => {
     shipping_address_collection: {
       allowed_countries: ["US"],
     },
-  });
+  };
+
+  // If the order is under 30 dollars, then we apply shipping
+  if (data.shipping) {
+    checkoutPayload.shipping_options = [
+      {
+        shipping_rate_data: {
+          type: "fixed_amount",
+          fixed_amount: {amount: 500, currency: "usd"},
+          display_name: "Shipping fee for orders under $30",
+        },
+      },
+    ];
+  }
+
+  const session = await stripe.checkout.sessions.create(checkoutPayload);
 
   return {
     id: session.id,
