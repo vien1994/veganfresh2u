@@ -51,7 +51,7 @@ exports.insertProductPrice = functions.firestore
       }, {merge: true});
     });
 
-// Automatically sends an email whena successful payment has been made (stored in db)
+// Automatically sends an email when a successful payment has been made (stored in db)
 // Writes to the mail collection to trigger the Trigger Email firebase extension
 exports.sendEmailReceipt = functions.firestore
     .document("customers/{uid}/payments/{payment_intent}")
@@ -67,6 +67,65 @@ exports.sendEmailReceipt = functions.firestore
           subject: "Your VeganFresh2U Order Has Been Received!",
           html: `<h3 style='color:black;'>Thank you for your order! Your receipt can be found <a href='${newData.charges.data[0].receipt_url}'><i>here</i></a></h3>`,
         },
+      });
+    });
+
+// Automatically send the customer an email when the order status has changed (Delivered/On the way) ///THIS DOES NOT WORK YET
+exports.sendEmailDeliveryStatus = functions.firestore
+    .document("adminContent/{payment_intent}")
+    .onWrite((change, context) => {
+      const newData = change.after.data();
+      let orderMessage;
+      let subject;
+      // If it's a new order, then don't send an email
+      if (newData.status === "Order Placed") {
+        return;
+      } else if (newData.status === "OTW") {
+        subject = "Your VeganFresh2U order is on the way!";
+        orderMessage = "Thank you for your patience. Your order will arrive shortly!";
+      } else if (newData.status === "Delivered") {
+        subject = "Your VeganFresh2U order has been delivered!";
+        orderMessage = "Thank you for ordering at VeganFresh2U. We hope you enjoy your meal!";
+      }
+      // Create a new unique entry in the mail collection so it triggers an email. Use the payment_intent plus the status to avoid dupes.
+      db.doc(`mail/${context.params.payment_intent}-${newData.status}`).create({
+        toUids: [`${newData.uid}`],
+        from: "",
+        message: {
+          subject: `${subject}`,
+          html: `<h3 style='color:black;'>${orderMessage}</h3>`,
+        },
+      });
+    });
+
+
+// Automatically populates adminContent collection when an order is placed
+// Stores active orders for the administrator only to view
+exports.insertAdminContent = functions.firestore
+    .document("customers/{uid}/payments/{payment_intent}")
+    .onWrite((change, context) => {
+      const newData = change.after.data();
+      const orderItems = [];
+      if (newData.status !== "succeeded") {
+        return;
+      }
+
+      // Create the list of items ordered
+      for (let i = 0; i < newData.items.length; i++) {
+        orderItems.push({
+          item: newData.items[i].description,
+          quantity: newData.items[i].quantity,
+        });
+      }
+
+      // Write to the adminContent collection with the order details
+      db.doc(`adminContent/${context.params.payment_intent}`).create({
+        uid: `${context.params.uid}`,
+        status: "Order Placed",
+        customer: `${newData.charges.data[0].billing_details.name} - ${newData.charges.data[0].billing_details.email}`,
+        amount: `${(newData.charges.data[0].amount/100).toFixed(2)}`,
+        items: orderItems,
+        created: newData.created,
       });
     });
 
