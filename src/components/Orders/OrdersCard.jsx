@@ -4,13 +4,17 @@ import React from 'react';
 // Each card displays all the items ordered, the date, and the total
 function OrdersCard(props) {
   let orderItems = [];
-
+  
   // Calculate if we need to display shipping information
   let calcIfShipping = 0;
-  for(let i = 0; i < props.items.length; i++) {
-    calcIfShipping += props.items[i].amount_total;
-  } 
 
+  // Cancelled orders may not have items
+  if(props.items) {
+    for(let i = 0; i < props.items.length; i++) {
+      calcIfShipping += props.items[i].amount_total;
+    } 
+  }
+ 
   // If order total is under $30, then shipping must have been charged
   if(calcIfShipping < 3000) {
     console.log(calcIfShipping);
@@ -32,6 +36,7 @@ function OrdersCard(props) {
     <div className="bg-white shadow border-2 rounded-xl mt-4 mb-4 p-4">
       <h3 className=" font-bold text-lg pb-2">{props.dateOrdered}</h3>
       {orderItems}
+      {/* Add Shipping info if applicable */}
       { calcIfShipping === true ?
         <div className='pt-2'>Delivery: <b>$5</b></div>
       : 

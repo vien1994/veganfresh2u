@@ -40,14 +40,17 @@ export default function OrderHistoryPage() {
         // Create a formatted date to display. Converts unix timestamp to Date object
         let date = new Date(order.created*1000);
         let dateOrdered = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
-        orderMap.push(
-          <OrdersCard 
-            key={`${dateOrdered} ${date.getSeconds()} ${date.getMinutes()} ${date.getHours()}`}
-            total={(order.amount / 100 ).toFixed(2)}
-            items={order.items}
-            dateOrdered={dateOrdered}
-          />
-        )
+        console.log(order)
+        if(order.items) {
+          orderMap.push(
+            <OrdersCard 
+              key={`${dateOrdered} ${date.getSeconds()} ${date.getMinutes()} ${date.getHours()}`}
+              total={(order.amount / 100 ).toFixed(2)}
+              items={order.items}
+              dateOrdered={dateOrdered}
+            />
+          )
+        }
       });
 
       setOrdersList(orderMap);
