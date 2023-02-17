@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import React, { useState, Fragment, useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import "./index.css";
 import Header from "./components/Navbar/Header";
 import AboutUs from "./components/Navbar/AboutUs";
@@ -16,6 +16,7 @@ import Footer from "./components/Footer";
 import Loading from "./components/Loading/Loading";
 import AdminOrdersPage from "./components/Orders/AdminOrdersPage";
 import NewModal from "./components/Modal/NewModal";
+import Events from "./components/Navbar/Events";
 
 function App() {
   const {
@@ -25,7 +26,6 @@ function App() {
     closeHamburger,
     isLoading,
     showModal,
-    showModalHandler,
   } = useContext(Context);
   console.log(showModal);
 
@@ -40,7 +40,7 @@ function App() {
       <Header />
       <div
         // FIX: Create a custom grid class with specific grid values for height/width or content
-        className={`grid-layout-mobile md:grid-layout  ${
+        className={`grid-layout-mobile sm:grid-layout  ${
           dropdownOpen === true ? "overflow-clip" : ""
         }`}
         onClick={closeHamburger}
@@ -51,6 +51,7 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/pantry" element={<PantryMenu />} />
           <Route path="/merch" element={<Merch />} />
+          <Route path="/events" element={<Events />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/orders" element={<OrderHistoryPage />} />
           <Route path="/admin" element={<AdminOrdersPage />} />

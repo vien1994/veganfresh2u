@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useContext } from 'react';
 import Context from '../../store/Context';
-import 'animate.css';
+// import 'animate.css';
 
 function NewModal(props) {
   const {showModalHandler, modalData} = useContext(Context);
@@ -25,8 +25,8 @@ function NewModal(props) {
         <div className="">
           <h1 className="font-semibold" >{modalData.name}</h1>
           <p>Item Description. YouTube Link goes here as well</p>
-          <p>Allergy Info{modalData.allergies}</p>
-          <p>Nutrition Info{modalData.nutrition}</p>
+          {/* <p>Allergy Info{modalData.allergies}</p>
+          <p>Nutrition Info{modalData.nutrition}</p> */}
         </div>
         <button className={`absolute bottom-5 right-5 font-medium text-green-900 ${animate === true ? 'animate__animated animate__tada' : ''}`} onClick={animateHandler}>Add to Cart</button>
       </div>

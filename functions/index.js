@@ -128,3 +128,4 @@ exports.insertAdminContent = functions.firestore
         created: newData.created,
       });
     });
+
