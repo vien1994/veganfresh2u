@@ -18,9 +18,11 @@ function ProfilePage() {
       </div>
     ) : (
       <div>
-      <h1 className="text-gray-700 text-5xl relative">
+        
+      <h1 className="text-gray-700 text-6xl font-medium relative sm:text-5xl sm:font-normal">
         Personal Info
       </h1>
+
       <h2 className="font-medium text-lg mt-4" >
         Address:
         <div className="profile-item">
