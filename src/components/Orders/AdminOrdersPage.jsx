@@ -51,6 +51,7 @@ function AdminOrdersPage() {
               dateOrdered={dateOrdered}
               status={order.status}
               customer={order.customer}
+              // address={order.address}
             />
           )
         });

@@ -33,7 +33,8 @@ function AdminOrdersCard(props) {
       ) : (
         <div className="bg-white shadow border-2 rounded-xl mt-4 mb-4 p-4">
           <h3 className="font-bold text-lg pb-2">{props.dateOrdered}</h3>
-          <h4 className='italic text-lg'>{props.customer}</h4>
+          <h4 className='italic text-lg'>{props.address}</h4>                  {/* Customer address */}
+         <h5 className='italic text-lg'>{props.customer}</h5>                  {/* Customer email */}
           {orderItems}
           <div className='pt-2 inline-flex'>
             <p className="mr-2 font-medium">Order status:</p>
