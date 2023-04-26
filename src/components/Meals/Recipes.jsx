@@ -45,7 +45,7 @@ function Recipes(props) {
           <p className='font-bold'>{props.name}</p>
           <p className='mb-4'>{props.description}</p>
           <div className='flex justify-end items-center'>
-            <MealItemForm id={props.id} onAddToCart={addToCartHandler} />
+            <MealItemForm id={props.id} onAddToCart={addToCartHandler}/>
           </div>
         </div>
       </div>

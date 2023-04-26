@@ -1094,12 +1094,20 @@ video {
   grid-column-start: 1;
 }
 
+.col-start-5 {
+  grid-column-start: 5;
+}
+
 .col-start-2 {
   grid-column-start: 2;
 }
 
-.col-end-8 {
-  grid-column-end: 8;
+.col-end-13 {
+  grid-column-end: 13;
+}
+
+.col-end-9 {
+  grid-column-end: 9;
 }
 
 .col-end-7 {
@@ -1122,6 +1130,14 @@ video {
   grid-row-start: 1;
 }
 
+.row-start-3 {
+  grid-row-start: 3;
+}
+
+.row-start-4 {
+  grid-row-start: 4;
+}
+
 .row-start-2 {
   grid-row-start: 2;
 }
@@ -1130,20 +1146,12 @@ video {
   grid-row-end: 2;
 }
 
-.row-end-4 {
-  grid-row-end: 4;
-}
-
-.row-end-5 {
-  grid-row-end: 5;
+.row-end-7 {
+  grid-row-end: 7;
 }
 
 .row-end-3 {
   grid-row-end: 3;
-}
-
-.row-end-7 {
-  grid-row-end: 7;
 }
 
 .m-1 {
@@ -1224,10 +1232,6 @@ video {
   height: 6rem;
 }
 
-.h-full {
-  height: 100%;
-}
-
 .h-96 {
   height: 24rem;
 }
@@ -1252,8 +1256,16 @@ video {
   height: 60%;
 }
 
-.max-h-80 {
-  max-height: 20rem;
+.h-full {
+  height: 100%;
+}
+
+.h-auto {
+  height: auto;
+}
+
+.h-80 {
+  height: 20rem;
 }
 
 .w-full {
@@ -1294,6 +1306,10 @@ video {
 
 .w-10 {
   width: 2.5rem;
+}
+
+.w-80 {
+  width: 20rem;
 }
 
 .grow {
@@ -1353,12 +1369,20 @@ video {
   cursor: pointer;
 }
 
-.grid-cols-7 {
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+.grid-rows-6 {
+  grid-template-rows: repeat(6, minmax(0, 1fr));
 }
 
-.grid-rows-2 {
-  grid-template-rows: repeat(2, minmax(0, 1fr));
+.grid-rows-5 {
+  grid-template-rows: repeat(5, minmax(0, 1fr));
+}
+
+.grid-rows-3 {
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+}
+
+.grid-rows-4 {
+  grid-template-rows: repeat(4, minmax(0, 1fr));
 }
 
 .flex-col {
@@ -1399,10 +1423,6 @@ video {
 
 .overflow-auto {
   overflow: auto;
-}
-
-.overflow-hidden {
-  overflow: hidden;
 }
 
 .overflow-clip {
@@ -1589,11 +1609,6 @@ video {
   font-family: CabinSketch;
 }
 
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
-
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
@@ -1622,6 +1637,21 @@ video {
 .text-5xl {
   font-size: 3rem;
   line-height: 1;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .font-bold {
@@ -1688,10 +1718,6 @@ video {
           text-decoration-color: transparent;
 }
 
-.opacity-50 {
-  opacity: 0.5;
-}
-
 .opacity-70 {
   opacity: 0.7;
 }
@@ -1713,7 +1739,7 @@ video {
   width: 100%;
   height: 100%;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  grid-template-rows: 40rem 1fr;
+  grid-template-rows: repeat(6, 1fr);
 }
 
 .border-1 {
@@ -1744,16 +1770,20 @@ video {
     grid-column-start: 3;
   }
 
-  .sm\:col-end-6 {
-    grid-column-end: 6;
-  }
-
   .sm\:col-end-5 {
     grid-column-end: 5;
   }
 
   .sm\:row-start-3 {
     grid-row-start: 3;
+  }
+
+  .sm\:row-start-2 {
+    grid-row-start: 2;
+  }
+
+  .sm\:row-start-4 {
+    grid-row-start: 4;
   }
 
   .sm\:m-4 {
@@ -1780,9 +1810,14 @@ video {
     align-items: center;
   }
 
-  .sm\:text-4xl {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
+  .sm\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .sm\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 
   .sm\:text-5xl {
@@ -1793,11 +1828,6 @@ video {
   .sm\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
-  }
-
-  .sm\:text-xl {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
   }
 
   .sm\:text-3xl {
@@ -1819,18 +1849,13 @@ video {
     width: 100%;
     height: 100%;
     grid-template-columns: repeat(6, minmax(0, 1fr));
-    grid-template-rows: 30rem 1fr 5rem;
+    grid-template-rows: repeat(6, 1fr);
   }
 }
 
 @media (min-width: 768px) {
   .md\:pr-1 {
     padding-right: 0.25rem;
-  }
-
-  .md\:text-6xl {
-    font-size: 3.75rem;
-    line-height: 1;
   }
 
   .md\:text-3xl {
@@ -1849,14 +1874,13 @@ video {
     padding-right: 2rem;
   }
 
+  .lg\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+
   .lg\:text-5xl {
     font-size: 3rem;
     line-height: 1;
-  }
-}
-
-@media (min-width: 1280px) {
-  .xl\:row-start-2 {
-    grid-row-start: 2;
   }
 }
