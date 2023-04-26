@@ -13,9 +13,9 @@ function Home() {
   return (
     <React.Fragment>
       <div className={`row-start-1 row-end-2 col-span-full grid grid-cols-15 grid-rows-6 ${dropdownOpen === true ? 'overflow-clip' : ''}`}>
-        <img src={homeWallpaper} alt='bg' className="w-full col-start-1 col-end-13 row-start-1 row-end-7 -z-10"/>
-        <p className='col-start-5 col-end-9 row-start-3 appear md:text-3xl sm:text-xl lg:text-6xl text-gray-800'>VeganFresh2U</p>
-        <p className='col-start-5 col-end-9 row-start-4 appear md:text-3xl sm:text-xl lg:text-6xl text-gray-800'>Eat Fresh</p>
+        <img src={homeWallpaper} alt='bg' className="w-full col-start-1 col-end-13 row-start-1 row-end-7 -z-10 "/>
+        <p className='col-start-5 col-end-9 row-start-2 sm:row-start-3 appear text-sm sm:text-base md:text-3xl lg:text-6xl text-gray-800'>VeganFresh2U</p>
+        <p className='col-start-5 col-end-9 row-start-3 sm:row-start-4 appear text-sm sm:text-base md:text-3xl lg:text-6xl text-gray-800'>Eat Fresh</p>
       </div> 
       {/* Meal Kits Section */}
       <div className='col-span-full grid grid-col-15 grid-rows-6'>
